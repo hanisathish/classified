@@ -13,7 +13,8 @@
 
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
-  	
+      
+    
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
     Route::get('items', 'ItemController@index')->name('admin.items'); 
     Route::get('items/create', 'ItemController@create')->name('admin.items.create'); 
