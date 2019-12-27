@@ -3,17 +3,40 @@
     <div class="container">
 
         <style>
+            .column-custom {
+                height: 220px;
+                border-bottom: none;
+            }
+
             .column-custom-title {
                 border-top: none;
                 margin-top: 0px;
-                padding: 0px;margin:0px;
             }
 
             .column-custom-title:hover {
                 border-top: none;
             }
 
-            
+            .column-custom:hover {
+                border-bottom: none;
+            }
+
+            .custom-img {
+                height: 100%;
+
+            }
+
+
+            .fullimage {
+
+                background-image: url('http://localhost/classified/public/uploads/4.jpg');
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 170% !important;
+
+            }
+
 
             img {
                 max-width: 100%;
@@ -50,7 +73,6 @@
                 display: block;
                 overflow: hidden;
                 position: relative;
-                height: 300px;
             }
 
             .img-wrapper:before {
@@ -79,20 +101,6 @@
                 height: 30px;
                 margin-top: 0px;
             }
-            .focus-layout .tdleft {
-                text-align: left;
-                padding-left: 10px;
-                
-            }
-            .focus-layout .tdright {
-                text-align: right;
-                padding-right: 10px !important;
-            }
-            .focustable {
-                width: 100%;
-                font-size: 12px;
-            }
-            
         </style>
         <!-- <div class="row row-eq-height"> -->
         <div class="col-md-3 ">
@@ -117,14 +125,8 @@
                     </a>
                 </div>
                 <div class="focus-grid  column-custom-title">
-                    <div class="focus-layout" >
-                        <table class="focustable">
-                            <tr><td class="tdleft">Name</td><td></td></tr>
-                            <tr><td class="tdleft">Desc</td><td></td></tr>
-                            <tr><td></td><td class="tdright">Date</td></tr>
-                        </table>
-                        
-                        
+                    <div class="focus-layout">
+                        <h4>Mobiles</h4>
                     </div>
                 </div>
             </div>
