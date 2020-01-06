@@ -91,6 +91,7 @@ class ItemController extends Controller
         $item->user_id = $request['user_id'];
         $item->image = $filename;
         $item->s3key = $s3key;
+        $item->show_price = $request['show_price'];
 
         if($item->save()){
             if(!is_null($filename)) {
@@ -157,7 +158,7 @@ class ItemController extends Controller
         $item->published = $request['published'];
         $item->user_id = $request['user_id'];
         $item->image = $filename? $filename: $item->image;
-        
+        $item->show_price = $request['show_price'];
 
         if($item->save()){
 

@@ -8,7 +8,14 @@
 				<ul>
 					<li class="dropdown head-dpdn">
 						@if(Auth::user())
-							<a href="{{URL::asset('/admin/dashboard')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin</a>
+							@if(Auth::user()->hasRole('admin'))
+								<a href="{{URL::asset('/admin/dashboard')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin</a>
+							@else
+								<a href="{{URL::asset('/post')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Post an Ads</a>
+								<a href="{{URL::asset('/profile')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+								<a href="{{URL::asset('/user/myitems')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> My Ads</a>
+								<!-- <a href="{{URL::asset('/item/sendmessage')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Messages</a> -->
+							@endif
 						@else
 							<a href="{{URL::asset('/login')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
 						@endif

@@ -75,7 +75,13 @@ New Item
                       </div>
                     </div>
                    
-                   
+                    <div class="form-group">
+                     {!! Form::label('inputShowPrice', 'Show Price', array('class'=> 'col-sm-2 control-label')) !!}
+                      <div class="col-sm-10">
+                        <input type="radio" name="show_price" class="minimal"  value="1" checked> Yes 
+                        <input type="radio" name="show_price" class="minimal" value="2"> No
+                      </div>
+                    </div>
                   
                     <div class="form-group">
                      {!! Form::label('inputPrice', 'Price', array('class'=> 'col-sm-2 control-label')) !!}
