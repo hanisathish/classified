@@ -35,9 +35,9 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         /* Set default meta tags*/
         
-        Meta::meta('title', 'Laralist');
-        Meta::meta('description', 'Laralist');
-        Meta::meta('keywords', 'Laralist,classified,laravel,ads');
+        Meta::meta('title', 'Kinfraindustries');
+        Meta::meta('description', 'Kinfraindustries');
+        Meta::meta('keywords', 'Kinfraindustries,classified,laravel,ads');
        
     }
 

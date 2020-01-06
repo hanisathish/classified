@@ -1,4 +1,4 @@
-<!-- header -->
+
 <header>
 		<div class="w3ls-header"><!--header-one--> 
 			<!-- <div class="w3ls-header-left">
@@ -7,10 +7,14 @@
 			<div class="w3ls-header-right">
 				<ul>
 					<li class="dropdown head-dpdn">
-						<a href="signin.html" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
+						@if(Auth::user())
+							<a href="{{URL::asset('/admin/dashboard')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin</a>
+						@else
+							<a href="{{URL::asset('/login')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
+						@endif
 					</li>
 					<li class="dropdown head-dpdn">
-						<a href="help.html"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
+						<a href=""><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
 					</li>
 					<!-- <li class="dropdown head-dpdn">
 						<a href="#"><span class="active uls-trigger"><i class="fa fa-language" aria-hidden="true"></i>languages</span></a>
@@ -69,7 +73,7 @@
 		<div class="container">
 			<div class="agile-its-header">
 				<div class="logo">
-					<h1><a href="index.html"><span>Re</span>sale-v2</a></h1>
+					<h1><a href="index.html"><span>K</span>infraindustries</a></h1>
 				</div>
 				<div class="agileits_search">
 					<form action="#" method="post">
@@ -89,4 +93,4 @@
 			</div>
 		</div>
 	</header>
-	<!-- //header -->
+	<!-- //header

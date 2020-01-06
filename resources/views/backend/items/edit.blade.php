@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>
-       Laralist
+       Kinfraindustries
         <small>Items</small>
     </h1>
 @endsection
@@ -143,7 +143,7 @@ Edit Item
 
                       
                     <div class="form-group">
-                     {!! Form::label('inputZipcode', 'Zip COde', array('class'=> 'col-sm-2 control-label')) !!}
+                     {!! Form::label('inputZipcode', 'Zip Code', array('class'=> 'col-sm-2 control-label')) !!}
                       <div class="col-sm-10">
                        {!! Form::text('zipcode', $item->zipcode, ['class'=>'form-control', 'placeholder'=>'Enter Zipcode', 'id'=>'inputZipcode']) !!}          
                       </div>
@@ -153,6 +153,13 @@ Edit Item
                       {!! Form::label('inputAddress3', 'Address', array('class'=> 'col-sm-2 control-label')) !!}
                       <div class="col-sm-10">
                         {!! Form::textarea('address3',$item->address3,['id' => 'inputAddress3' ,'size' => '75x5']) !!}                        
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                     {!! Form::label('inputMobile', 'Mobile', array('class'=> 'col-sm-2 control-label')) !!}
+                      <div class="col-sm-10">
+                       {!! Form::text('phone', $item->phone, ['class'=>'form-control', 'placeholder'=>'Enter Mobile', 'id'=>'inputMobile']) !!}          
                       </div>
                     </div>
 

@@ -10,7 +10,7 @@ use DB;
 use Meta;
 use Setting;
 use Config;
-
+use App\Item;
 class HomeController extends Controller
 {    
 
@@ -24,6 +24,9 @@ class HomeController extends Controller
         $Category = new Category;
         $allCategories = $Category->getCategories();  
         //Config::write('laralist.item_per_page', 'http://octobercms.com');
-        return view('frontend.home', compact('allCategories'));
+
+        $allItem = Item::where('published',1)->get();
+        //dd($allItem->count());
+        return view('frontend.home', compact('allCategories','allItem'));
     }
 }

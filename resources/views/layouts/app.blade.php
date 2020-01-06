@@ -5,57 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Kinfraindustries</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ URL::asset('frontend/css/bootstrap.min.css') }}"><!-- bootstrap-CSS -->
+    <link rel="stylesheet" href="{{ URL::asset('frontend/css/bootstrap-select.css') }}"><!-- bootstrap-select-CSS -->
+    <link href="{{ URL::asset('frontend/css/style.css') }}" rel="stylesheet" type="text/css" media="all" /><!-- style.css') }} -->
+    <link rel="stylesheet" href="{{ URL::asset('frontend/css/flexslider.css') }}" type="text/css" media="screen" /><!-- flexslider-CSS -->
+    <link rel="stylesheet" href="{{ URL::asset('frontend/css/font-awesome.min.css') }}" /><!-- fontawesome-CSS -->
+    <link rel="stylesheet" href="{{ URL::asset('frontend/css/menu_sideslide.css') }}" type="text/css" media="all"><!-- Navigation-CSS -->
+    <!-- meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //meta tags -->
+    <!--fonts-->
+    <link href='//fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!--//fonts-->  
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
+<body>
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+    <!-- Navigation -->
+    @include('frontend.includes.navbar')
+    <!-- Header-->
+    @include('frontend.includes.header')
+    <!-- sign in form -->
+     
+    <!-- //sign in form -->
+    
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
+    <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -67,16 +49,144 @@
                             </ul>
                         </li>
                     @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     @yield('content')
+ 
+        <!--partners-->
+        @include('frontend.includes.footer')
+            
+        <!-- Navigation-Js-->
+            <script type="text/javascript" src="{{asset('frontend/js/main.js')}}"></script>
+            <script type="text/javascript" src="{{asset('frontend/js/classie.js')}}"></script>
+        <!-- //Navigation-Js-->
+        <!-- js -->
+        <script type="text/javascript" src="{{asset('frontend/js/jquery.min.js')}}"></script>
+        <!-- js -->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="{{asset('frontend/js/bootstrap.js')}}"></script>
+        <script src="{{asset('frontend/js/bootstrap-select.js')}}"></script>
+        <script>
+          $(document).ready(function () {
+            var mySelect = $('#first-disabled2');
 
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+            $('#special').on('click', function () {
+              mySelect.find('option:selected').prop('disabled', true);
+              mySelect.selectpicker('refresh');
+            });
+
+            $('#special2').on('click', function () {
+              mySelect.find('option:disabled').prop('disabled', false);
+              mySelect.selectpicker('refresh');
+            });
+
+            $('#basic2').selectpicker({
+              liveSearch: true,
+              maxOptions: 1
+            });
+          });
+        </script>
+        <!-- language-select -->
+        <script type="text/javascript" src="{{asset('frontend/js/jquery.leanModal.min.js')}}"></script>
+        <link href="{{ URL::asset('frontend/css/jquery.uls.css') }}" rel="stylesheet"/>
+        <link href="{{ URL::asset('frontend/css/jquery.uls.grid.css') }}" rel="stylesheet"/>
+        <link href="{{ URL::asset('frontend/css/jquery.uls.lcd.css') }}" rel="stylesheet"/>
+        <!-- Source -->
+        <script src="{{asset('frontend/js/jquery.uls.data.js')}}"></script>
+        <script src="{{asset('frontend/js/jquery.uls.data.utils.js')}}"></script>
+        <script src="{{asset('frontend/js/jquery.uls.lcd.js')}}"></script>
+        <script src="{{asset('frontend/js/jquery.uls.languagefilter.js')}}"></script>
+        <script src="{{asset('frontend/js/jquery.uls.regionfilter.js')}}"></script>
+        <script src="{{asset('frontend/js/jquery.uls.core.js')}}"></script>
+        <script>
+                    $( document ).ready( function() {
+                        $( '.uls-trigger' ).uls( {
+                            onSelect : function( language ) {
+                                var languageName = $.uls.data.getAutonym( language );
+                                $( '.uls-trigger' ).text( languageName );
+                            },
+                            quickList: ['en', 'hi', 'he', 'ml', 'ta', 'fr'] //FIXME
+                        } );
+                    } );
+                </script>
+        <!-- //language-select -->
+        <script type="text/javascript" src="{{asset('frontend/js/jquery.flexisel.js')}}"></script><!-- flexisel-js -->  
+                    <script type="text/javascript">
+                         $(window).load(function() {
+                            $("#flexiselDemo3").flexisel({
+                                visibleItems:1,
+                                animationSpeed: 1000,
+                                autoPlay: true,
+                                autoPlaySpeed: 5000,            
+                                pauseOnHover: true,
+                                enableResponsiveBreakpoints: true,
+                                responsiveBreakpoints: { 
+                                    portrait: { 
+                                        changePoint:480,
+                                        visibleItems:1
+                                    }, 
+                                    landscape: { 
+                                        changePoint:640,
+                                        visibleItems:1
+                                    },
+                                    tablet: { 
+                                        changePoint:768,
+                                        visibleItems:1
+                                    }
+                                }
+                            });
+                            
+                        });
+                       </script>
+        <!-- Slider-JavaScript -->
+            <script src="{{asset('frontend/js/responsiveslides.min.js')}}"></script>    
+             <script>
+            $(function () { 
+              $("#slider").responsiveSlides({
+                auto: true,
+                pager: false,
+                nav: true,
+                speed: 500,
+                maxwidth: 800,
+                namespace: "large-btns"
+              });
+
+            });
+          </script>
+        <!-- //Slider-JavaScript -->
+        <!-- here stars scrolling icon -->
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    /*
+                        var defaults = {
+                        containerID: 'toTop', // fading element id
+                        containerHoverID: 'toTopHover', // fading element hover id
+                        scrollSpeed: 1200,
+                        easingType: 'linear' 
+                        };
+                    */
+                                        
+                    $().UItoTop({ easingType: 'easeOutQuart' });
+                                        
+                    });
+            </script>
+            <!-- start-smoth-scrolling -->
+            <script type="text/javascript" src="{{asset('frontend/js/move-top.js')}}"></script>
+            <script type="text/javascript" src="{{asset('frontend/js/easing.js')}}"></script>
+            <script type="text/javascript">
+                jQuery(document).ready(function($) {
+                    $(".scroll").click(function(event){     
+                        event.preventDefault();
+                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                    });
+                });
+            </script>
+            <!-- start-smoth-scrolling -->
+        <!-- //here ends scrolling icon -->
+        
+
+
+ 
+
+                 
 </body>
 </html>

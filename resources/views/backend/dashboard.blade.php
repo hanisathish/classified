@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>
-       Laralist
+       Kinfraindustries
         <small>Dashboard</small>
     </h1>
 @endsection

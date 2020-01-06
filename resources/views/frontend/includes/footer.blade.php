@@ -56,7 +56,7 @@
 			<div class="agileits-footer-bottom text-center">
 			<div class="container">
 				<div class="w3-footer-logo">
-					<h1><a href="index.html"><span>Re</span>sale-v2</a></h1>
+					<h1><a href="index.html"><span>K</span>infraindustries</a></h1>
 				</div>
 				<div class="w3-footer-social-icons">
 					<ul>
@@ -68,7 +68,7 @@
 					</ul>
 				</div>
 				<div class="copyrights">
-					<p> © 2016 Resale. All Rights Reserved | Design by  <a href="http://w3layouts.com/"> W3layouts</a></p>
+					<p> © <?php echo date('Y');?> Kinfraindustries. All Rights Reserved | Design by  <a href=""> Kinfraindustries</a></p>
 				</div>
 				<div class="clearfix"></div>
 			</div>

@@ -62,7 +62,7 @@
                 top: 35px;
                 left: -40px;
                 transform: rotate(-45deg);
-                content: 'Screenshot';
+                content: 'Featured';
             }
 
             .col3-border {
@@ -81,39 +81,36 @@
             }
             .focus-layout .tdleft {
                 text-align: left;
-                padding-left: 10px;
+                padding-left: 10px !important;
                 
             }
             .focus-layout .tdright {
                 text-align: right;
                 padding-right: 10px !important;
+                font-size: 10px !important;
             }
             .focustable {
                 width: 100%;
                 font-size: 12px;
             }
+
+            .pricetag{
+                font-size: 14px !important;
+                font-weight: bold;                
+            }
+            .titletag{
+                font-size: 12px !important;
+                
+            }
             
         </style>
         <!-- <div class="row row-eq-height"> -->
-        <div class="col-md-3 ">
+        
+        <!-- <div class="col-md-3 ">
             <div class="focus-grid w3layouts-boder12 img-wrapper">
                 <div class="box large">
                     <a href="#" class=" ">
-                        <img class="child" src="http://localhost/classified/public/uploads/4.jpg" alt="Card image cap">
-                    </a>
-                </div>
-                <div class="focus-grid  column-custom-title">
-                    <div class="focus-layout">
-                        <h4>Mobiles</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 ">
-            <div class="focus-grid w3layouts-boder12 img-wrapper">
-                <div class="box large">
-                    <a href="#" class=" ">
-                        <img class="child" src="http://localhost/classified/public/uploads/4.jpg" alt="Card image cap">
+                        <img class="child" src="http://localhost/kishore/classified/public/uploads/4.jpg" alt="Card image cap">
                     </a>
                 </div>
                 <div class="focus-grid  column-custom-title">
@@ -128,12 +125,46 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
+        src="http://localhost/kishore/classified/public/uploads/4.jpg"
+    -->
+        @if($allItem->count() > 0)
+            @foreach($allItem as $allItemValue)
+                @if($allItemValue->image)
+                    @php ($itemImageDisp = $allItemValue->image)
+                @else
+                    @php ($itemImageDisp = "dummy.png")
+                @endif
+                <div class="col-md-3 ">
+                    <div class="focus-grid w3layouts-boder12 img-wrapper">
+                        <div class="box large">
+                            <a href="#" class=" ">
+                                <img class="child" src="{{ URL::asset('uploads/'.$itemImageDisp)}}" 
+                                 alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="focus-grid  column-custom-title">
+                            <div class="focus-layout" >
+                                <table class="focustable">
+                                    <tr><td class="tdleft pricetag">&#x20b9; {{$allItemValue->price}}</td></tr>
+                                    <tr><td class="tdleft titletag">{{$allItemValue->title}}</td></tr>
+                                    <tr><td class="tdright">{{date('dS M, Y g:i a',strtotime($allItemValue->created_at))}}</td></tr>
+                                </table>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
+
+        <!-- 
         <div class="col-md-3 ">
             <div class="focus-grid w3layouts-boder12 img-wrapper">
                 <div class="box large">
                     <a href="#" class=" ">
-                        <img class="child" src="http://localhost/classified/public/uploads/1.jpg" alt="Card image cap">
+                        <img class="child" src="http://localhost/kishore/classified/public/uploads/1.jpg" alt="Card image cap">
                     </a>
                 </div>
                 <div class="focus-grid  column-custom-title">
@@ -147,7 +178,7 @@
             <div class="focus-grid w3layouts-boder12 img-wrapper">
                 <div class="box large">
                     <a href="#" class=" ">
-                        <img class="child" src="http://localhost/classified/public/uploads/2.jpg" alt="Card image cap">
+                        <img class="child" src="http://localhost/kishore/classified/public/uploads/2.jpg" alt="Card image cap">
                     </a>
                 </div>
                 <div class="focus-grid  column-custom-title">
@@ -161,7 +192,7 @@
             <div class="focus-grid w3layouts-boder12 img-wrapper">
                 <div class="box large">
                     <a href="#" class=" ">
-                        <img class="child" src="http://localhost/classified/public/uploads/3.jpg" alt="Card image cap">
+                        <img class="child" src="http://localhost/kishore/classified/public/uploads/3.jpg" alt="Card image cap">
                     </a>
                 </div>
                 <div class="focus-grid  column-custom-title">
@@ -175,7 +206,7 @@
             <div class="focus-grid w3layouts-boder12 img-wrapper">
                 <div class="box large">
                     <a href="#" class=" ">
-                        <img class="child" src="http://localhost/classified/public/uploads/5.jpg" alt="Card image cap">
+                        <img class="child" src="http://localhost/kishore/classified/public/uploads/5.jpg" alt="Card image cap">
                     </a>
                 </div>
                 <div class="focus-grid  column-custom-title">
@@ -184,7 +215,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
           
 
         <div class="clearfix"></div>

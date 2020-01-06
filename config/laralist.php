@@ -2,13 +2,13 @@
 return [
 
  	// Dispaly Website title
-	'site_title' => 'My Class',
+	'site_title' => 'Kinfraindustries',
 
 	 // Dispaly item per page
 	'item_per_page' => '10',
 
 	// Default country
-	'default_country' => '236',
+	'default_country' => '103',
 
 	//Maximum number of image user can upload per post
 	'max_image_post' => '5',

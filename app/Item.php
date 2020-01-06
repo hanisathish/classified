@@ -9,7 +9,9 @@ class Item extends Model
    
 
     protected $fillable = [
-        'title', 'alias', 'category_id', 'country_id', 'published', 'description', 'price', 'user_id', 'created_at',
+         'category_id', 'id', 'title', 'alias', 'description', 'country_id', 'region_id', 
+         'ispricable', 'price', 'address1', 'address2', 'address3', 'zipcode', 'phone', 'tags', 
+         'views', 'published', 'user_id', 'lat', 'lng', 'image', 's3key', 'created_at', 'updated_at'
     ];
 
     public static function boot() { 

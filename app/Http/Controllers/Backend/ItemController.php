@@ -86,6 +86,7 @@ class ItemController extends Controller
         $item->address2 = $request['address2'];
         $item->address3 = $request['address3'];
         $item->zipcode = $request['zipcode'];
+        $item->phone = $request['phone'];
         $item->published = $request['published'];
         $item->user_id = $request['user_id'];
         $item->image = $filename;
@@ -152,6 +153,7 @@ class ItemController extends Controller
         $item->address2 = $request['address2'];
         $item->address3 = $request['address3'];
         $item->zipcode = $request['zipcode'];
+        $item->phone = $request['phone'];
         $item->published = $request['published'];
         $item->user_id = $request['user_id'];
         $item->image = $filename? $filename: $item->image;

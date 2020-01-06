@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 26, 2019 at 07:14 AM
+-- Generation Time: Jan 06, 2020 at 10:05 AM
 -- Server version: 5.6.33-0ubuntu0.14.04.1
 -- PHP Version: 7.1.20-1+ubuntu14.04.1+deb.sury.org+1
 
@@ -414,15 +414,15 @@ CREATE TABLE IF NOT EXISTS `items` (
   PRIMARY KEY (`id`),
   KEY `items_category_id_foreign` (`category_id`),
   KEY `items_user_id_foreign` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`category_id`, `id`, `title`, `alias`, `description`, `country_id`, `region_id`, `ispricable`, `price`, `address1`, `address2`, `address3`, `zipcode`, `phone`, `tags`, `views`, `published`, `user_id`, `lat`, `lng`, `image`, `s3key`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Toyota Pickup Truck', 'toyota-pickup-truck', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.</p>\r\n', 1, NULL, NULL, 250.00, '', '', '', '', NULL, NULL, 1, 1, 1, NULL, NULL, '193.png', NULL, '2019-12-22 18:35:08', '2019-12-22 18:47:54'),
-(2, 2, 'Farari', 'farari', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 1, NULL, NULL, 2000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
+(2, 1, 'Toyota Pickup Truck', 'toyota-pickup-truck', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.</p>\r\n', 1, NULL, NULL, 250.00, 'Kar', 'Manga', 'Dedede', '567', '123', NULL, 1, 1, 1, NULL, NULL, '701.jpg', NULL, '2019-12-22 18:35:08', '2020-01-05 06:17:59'),
+(2, 2, 'Farari-New', 'farari', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.</p>\r\n', 1, NULL, NULL, 2000.00, '', '', '', '', NULL, NULL, 0, 1, 1, NULL, NULL, '851.jpg', NULL, '2019-12-22 18:35:08', '2020-01-04 04:50:45'),
 (57, 3, 'Mobile Computer', 'mobile-computer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 10, NULL, NULL, 50.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
 (11, 4, 'Freezer', 'freezer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 5, NULL, NULL, 550.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
 (11, 5, 'Appliances', 'appliances', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 5, NULL, NULL, 470.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
@@ -433,10 +433,12 @@ INSERT INTO `items` (`category_id`, `id`, `title`, `alias`, `description`, `coun
 (39, 10, 'Programming Experts', 'programming-experts', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 10000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
 (35, 11, 'Composite Process Engineer', 'composite-process-engineer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 11, NULL, NULL, 10000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
 (35, 12, 'Laraevl Developer', 'laraevl-developer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 25, NULL, NULL, 10000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(2, 13, 'Car 3', 'car-3', '<p>Car 3 asdad ada</p>\r\n', 1, NULL, NULL, 111.00, '', '', '', '', NULL, NULL, 2, 1, 1, NULL, NULL, '862.jpg', NULL, '2019-12-22 18:45:33', '2019-12-22 18:51:50'),
-(2, 14, 'Car 4', 'car-4', '<p>Car 4 adasd</p>\r\n', 1, NULL, NULL, 11.00, '', '', '', '', NULL, NULL, 0, 1, 1, NULL, NULL, '969.png', NULL, '2019-12-22 18:45:53', '2019-12-22 18:45:53'),
+(2, 13, 'Car 3', 'car-3', '<p>Car 3 asdad ada</p>\r\n', 1, NULL, NULL, 111.00, '', '', '', '', NULL, NULL, 2, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:45:33', '2019-12-22 18:51:50'),
+(2, 14, 'Car 4', 'car-4', '<p>Car 4 adasd</p>\r\n', 1, NULL, NULL, 11.00, '', '', '', '', NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:45:53', '2019-12-22 18:45:53'),
 (2, 15, 'Sathish Posted', '', 'Sathish Posted Description asd adasd', 1, NULL, NULL, 22.00, '', '', '', '', NULL, NULL, 2, 1, 2, NULL, NULL, '', NULL, '2019-12-22 18:53:33', '2019-12-22 20:01:00'),
-(1, 16, 'Rock', '', 'Rock ada', 1, NULL, NULL, 21.00, '', '', '', '', NULL, NULL, 0, 1, 2, NULL, NULL, '', NULL, '2019-12-22 20:00:00', '2019-12-22 20:00:00');
+(1, 16, 'Rock', '', 'Rock ada', 1, NULL, NULL, 21.00, '', '', '', '', NULL, NULL, 0, 1, 2, NULL, NULL, '', NULL, '2019-12-22 20:00:00', '2019-12-22 20:00:00'),
+(17, 17, 'Jeans', 'jeans-tag', '<p>asdads ad</p>\r\n', 103, NULL, NULL, 499.00, '', '', '', '', NULL, NULL, 0, 1, 1, NULL, NULL, '517.png', NULL, '2020-01-04 04:45:10', '2020-01-04 04:46:29'),
+(41, 18, 'Tin Bear', 'tin-bear', '<p>Tin Bear asd dasa</p>\r\n', 103, NULL, NULL, 0.00, 'TN', 'Chennai', 'Anaka puthur', '600028', '9876', NULL, 0, 1, 1, NULL, NULL, '484.jpg', NULL, '2020-01-05 06:20:02', '2020-01-05 06:20:02');
 
 -- --------------------------------------------------------
 
@@ -453,7 +455,7 @@ CREATE TABLE IF NOT EXISTS `item_images` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `item_images`
@@ -469,7 +471,11 @@ INSERT INTO `item_images` (`id`, `image`, `s3key`, `item_id`, `published`, `crea
 (7, '', NULL, 15, 1, '2019-12-22 18:53:33', '2019-12-22 18:53:33'),
 (8, '', NULL, 15, 1, '2019-12-22 18:53:33', '2019-12-22 18:53:33'),
 (9, '', NULL, 16, 1, '2019-12-22 20:00:00', '2019-12-22 20:00:00'),
-(10, '', NULL, 16, 1, '2019-12-22 20:00:00', '2019-12-22 20:00:00');
+(10, '', NULL, 16, 1, '2019-12-22 20:00:00', '2019-12-22 20:00:00'),
+(11, '517.png', NULL, 17, 1, '2020-01-04 04:45:56', '2020-01-04 04:45:56'),
+(12, '701.jpg', NULL, 1, 1, '2020-01-04 04:50:05', '2020-01-04 04:50:05'),
+(13, '851.jpg', NULL, 2, 1, '2020-01-04 04:50:45', '2020-01-04 04:50:45'),
+(14, '484.jpg', NULL, 18, 1, '2020-01-05 06:20:02', '2020-01-05 06:20:02');
 
 -- --------------------------------------------------------
 
@@ -552,15 +558,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `avatar`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@admin.com', '$2y$10$KP.q57FF60/AXPuu5WttxuhIf6bCOW6Iu3rMib1R8E49aVujqBck6', NULL, NULL, 'admin', '1eC8TsxWRZ6lwVQoTQwOE0cLTSF96JGQAwwnEBTsjlcTkn0FmaCuUngqbwmR', '2019-12-22 18:35:04', '2019-12-22 20:59:34'),
-(2, 'sathish', 'sathish@cobrasoftwares.in', '$2y$10$KP.q57FF60/AXPuu5WttxuhIf6bCOW6Iu3rMib1R8E49aVujqBck6', NULL, NULL, 'user', 'BnZiUyK3psvJFXFXheiCi9z5k4AelhhQ4udtWWX64d5UdxSvgmn4zVl43xue', '2019-12-22 18:40:33', '2019-12-22 19:54:33');
+(1, 'Admin', 'admin@admin.com', '$2y$10$KP.q57FF60/AXPuu5WttxuhIf6bCOW6Iu3rMib1R8E49aVujqBck6', NULL, NULL, 'admin', 'hreM2sb279HLE4fnmafIqSj0anyu2YgwbQnERuUtfU7o6eJo5i7CxrRHojBl', '2019-12-22 18:35:04', '2020-01-04 04:35:13'),
+(2, 'sathish', 'sathish@cobrasoftwares.in', '$2y$10$KP.q57FF60/AXPuu5WttxuhIf6bCOW6Iu3rMib1R8E49aVujqBck6', NULL, NULL, 'user', 'BnZiUyK3psvJFXFXheiCi9z5k4AelhhQ4udtWWX64d5UdxSvgmn4zVl43xue', '2019-12-22 18:40:33', '2019-12-22 19:54:33'),
+(3, 'Rakesh', 'rakesh@gg.com', '$2y$10$8QRexcyFKWZSvrKTcYmy2.bvNklmzI/YPoKocf/hOSRQjh6o8sX.y', NULL, NULL, 'user', 'LlzjqMZJm1trvreHebZCeZI5yA7tt7YAVDtCHD8xB12w4HF0YF0776dlpvF2', '2020-01-03 10:49:07', '2020-01-03 10:49:21');
 
 --
 -- Constraints for dumped tables
