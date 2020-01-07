@@ -1,19 +1,24 @@
-@extends('frontend.layouts.forms')
-@section('content-head')
-Edit Profile
-@endsection
 
-@section('footer-script')
-
-@endsection
-
-@section('header-style')
- {!! Html::style('angularjs/tags/ng-tags-input.min.css') !!} 
-@endsection
- 
+@extends('layouts.app')
+{!! Html::style('angularjs/tags/ng-tags-input.min.css') !!} 
 
 @section('content')
 
+<!-- breadcrumbs -->
+<div class="w3layouts-breadcrumbs text-center">
+		<div class="container">
+			<span class="agile-breadcrumbs">
+			<a href="index.html"><i class="fa fa-home home_1"></i></a> / 
+			<a href="categories.html">Categories</a> / 
+			<span>Mobiles</span></span>
+		</div>
+	</div>
+	<!-- //breadcrumbs -->
+    <!-- Mobiles -->
+	<div class="total-ads main-grid-border">
+		<div class="container">
+    <br/><br/>
+			
     @if($errors->has())
       <div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -24,7 +29,7 @@ Edit Profile
       </div>
     @endif  
 
-    
+
     {!! Form::open(['route' => 'frontend.user.update','files' => true , 'class' =>'form-horizontal','id' =>'profile-form']) !!}              
       <div class="box-body">
 
@@ -87,17 +92,19 @@ Edit Profile
     <!-- /.box-footer -->
     {!! Form::close() !!}
 
+		</div>	
+	</div>
+	<!-- // Mobiles -->
 @endsection
 
-@section('header-inline-script')
+@section('footer-script')
+
 <script type="text/javascript">
  if( typeof(laralist) == 'undefined')
     var laralist={};
 
     laralist.queueLimit= 1;
 </script>
-@endsection
 
-@section('footer-inline-script')
 {!! JsValidator::formRequest('App\Http\Requests\UserRequest',  '#profile-form') !!}
 @endsection

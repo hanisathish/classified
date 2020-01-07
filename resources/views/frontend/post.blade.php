@@ -146,6 +146,8 @@
  
 @endsection
 
+@section('footer-script')
+
 <script type="text/javascript">
   if( typeof(laralist) == 'undefined')
     var laralist={};
@@ -154,3 +156,5 @@
 </script>
 
 {!! JsValidator::formRequest('App\Http\Requests\ItemRequest',  '#item-form') !!}
+
+@endsection

@@ -40,7 +40,7 @@
 									<a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
 									<a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
 								</div> -->
-								<div class="sort">
+								<!-- <div class="sort">
 								   <div class="sort-by">
 										<label>Sort By : </label>
 										<select>
@@ -49,7 +49,7 @@
 														<option value="">Price: Rs High to Low</option>
 										</select>
 									   </div>
-									 </div>
+									 </div> -->
 								<div class="clearfix"></div>
 							<ul class="list">
 

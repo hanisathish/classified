@@ -1,12 +1,22 @@
-@extends('frontend.layouts.forms')
-@section('title',$item->title)
-@section('content-head')
- <h1>Blog Post Title</h1>
-  <hr>
-@endsection
+
+@extends('layouts.app')
 
 @section('content')
 
+<!-- breadcrumbs -->
+<div class="w3layouts-breadcrumbs text-center">
+		<div class="container">
+			<span class="agile-breadcrumbs">
+			<a href="index.html"><i class="fa fa-home home_1"></i></a> / 
+			<a href="categories.html">Categories</a> / 
+			<span>Mobiles</span></span>
+		</div>
+	</div>
+	<!-- //breadcrumbs -->
+    <!-- Mobiles -->
+	<div class="total-ads main-grid-border">
+		<div class="container">
+    <br/><br/>
     @if($errors->has())
       <div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -16,6 +26,7 @@
           @endforeach
       </div>
     @endif  
+
 
     
     {!! Form::open(['route' => 'frontend.post.update','files' => true , 'class' =>'form-horizontal']) !!}    
@@ -130,11 +141,12 @@
 
     <!-- /.box-footer -->
     {!! Form::close() !!}
-
+		</div>	
+	</div>
+	<!-- // Mobiles -->
 @endsection
+@section('footer-script')
 
-
-@section('footer-inline-script')
 <script type="text/javascript">
 
 if( typeof(laralist) == 'undefined')
@@ -149,4 +161,4 @@ if( typeof(laralist) == 'undefined')
   <?php } ?>
    imageitems = objects;
 </script>
-@endsection
+@endsection       

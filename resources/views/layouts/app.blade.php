@@ -184,7 +184,9 @@
         <!-- //here ends scrolling icon -->
         
 
-
+        <!-- Footer script -->
+        @yield('footer-script')
+       
  
 
                  
