@@ -20,7 +20,7 @@
 			<div class="product-desc">
 				<div class="col-md-7 product-view">
 					<h2>{!!$item->title!!}</h2>
-          <p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">state</a>, <a href="#">city</a>| Added at 06:55 pm, Ad ID: 987654321</p>
+          <p> @if( $item->region_id)<i class="glyphicon glyphicon-map-marker"></i><a href="#">{!! $item->region_id!!}</a>@endif @if( $item->address2), <a href="#"> {!! $item->address2!!}</a>@endif | Added at {{date('dS M, Y g:i a',strtotime($allItemValue->created_at))}} </p> <!--06:55 pm, Ad ID: 987654321-->
           <div class="flexslider">
             <ul class="slides">
           @if(count($item_images) >1)
@@ -57,11 +57,13 @@
 				</div>
 				<div class="col-md-5 product-details-grid">
 					<div class="item-price">
+						@if( $item->show_price == 1) 
 						<div class="product-price">
 							<p class="p-price">Price</p>
 							<h3 class="rate">{!!$defaultCountry->symbol!!} {!!$item->price!!}</h3>
 							<div class="clearfix"></div>
 						</div>
+						@endif
 						<!-- <div class="condition">
 							<p class="p-price">Condition</p>
 							<h4>Good</h4>
@@ -75,7 +77,7 @@
 					</div>
 					<div class="interested text-center">
 						<h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
-            <p><i class="glyphicon glyphicon-earphone"></i>{!! $item->address1!!}</p>
+            <p><i class="glyphicon glyphicon-earphone"></i>&nbsp;<a href="tel:{!! $item->phone!!}">{!! $item->phone!!}</a></p>
             <address>
               @if( $item->address1) 
             <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>  
@@ -86,7 +88,7 @@
               @if( $item->zipcode) {!! $item->zipcode!!}<br>@endif               
             </address>
 					</div>
-						<div class="tips">
+						<!-- <div class="tips">
 						<h4>Safety Tips for Buyers</h4>
 							<ol>
 								<li><a href="#">Contrary to popular belief.</a></li>
@@ -99,7 +101,7 @@
 								<li><a href="#">Contrary to popular belief.</a></li>
 								<li><a href="#">Contrary to popular belief.</a></li>
 							</ol>
-						</div>
+						</div> -->
 				</div>
 			<div class="clearfix"></div>
 			</div>

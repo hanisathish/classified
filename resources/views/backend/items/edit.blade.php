@@ -90,6 +90,14 @@ Edit Item
                         <input type="radio" name="show_price" class="minimal" value="0" @if($item->show_price ==0) {{ 'checked' }} @endif> No
                       </div>
                     </div>
+
+                    <div class="form-group">
+                    {!! Form::label('inputFeatured', 'Featured', array('class'=> 'col-sm-2 control-label')) !!}
+                      <div class="col-sm-10">
+                        <input type="radio" name="isfeatured" class="minimal"  value="1" @if($item->isfeatured ==1) {{ 'checked' }} @endif > Yes 
+                        <input type="radio" name="isfeatured" class="minimal" value="0" @if($item->isfeatured ==0) {{ 'checked' }} @endif> No
+                      </div>
+                    </div>
                     
                     <div class="form-group">
                      {!! Form::label('inputPrice', 'Price', array('class'=> 'col-sm-2 control-label')) !!}

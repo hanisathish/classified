@@ -28,7 +28,7 @@
             }
 
             .box.large {
-                height: 200px;
+                height: 120px;
 
                 margin: auto;
                 display: flex;
@@ -136,8 +136,12 @@
                     @php ($itemImageDisp = "dummy.png")
                 @endif
                 <div class="col-md-3 ">
-                    <div class="focus-grid w3layouts-boder12 img-wrapper">
+                    <?php
+                    if($allItemValue->isfeatured == 1){$img_wrapper_featured="img-wrapper";}else{$img_wrapper_featured="";}
+                    ?>
+                    <div class="focus-grid w3layouts-boder12 <?php echo $img_wrapper_featured;?>">
                         <div class="box large">
+                        {!! Html::linkRoute('frontend.item.show', 'View', array($allItemValue->id) ,['class' => "btn btn-primary"]) !!} 
                             <a href="#" class=" ">
                                 <img class="child" src="{{ URL::asset('uploads/'.$itemImageDisp)}}" 
                                  alt="Card image cap">
@@ -146,8 +150,19 @@
                         <div class="focus-grid  column-custom-title">
                             <div class="focus-layout" >
                                 <table class="focustable">
-                                    <tr><td class="tdleft pricetag">&#x20b9; {{$allItemValue->price}}</td></tr>
+                                    @if( $allItemValue->show_price == 1) 
+                                        <tr><td class="tdleft pricetag">&#x20b9; {{$allItemValue->price}}</td></tr>
+                                    @else
+                                        <tr><td class="tdleft pricetag">&nbsp;</td></tr>
+                                    @endif
                                     <tr><td class="tdleft titletag">{{$allItemValue->title}}</td></tr>
+                                    <tr><td class="tdleft titletag"><i class="glyphicon glyphicon-earphone"></i>&nbsp;&nbsp;<a href="tel:{!! $allItemValue->phone!!}">{!! $allItemValue->phone!!}</a></td></tr>
+                                    <tr><td class="tdleft titletag">
+                                    @if( $allItemValue->address1) {!! substr($allItemValue->address1,0,30)!!}<br> @else <br> @endif
+                                    @if( $allItemValue->address2) {!! substr($allItemValue->address2,0,30)!!}<br> @else <br> @endif
+                                    @if( $allItemValue->address3) {!! substr($allItemValue->address3,0,30)!!}<br> @else <br> @endif
+                                    @if( $allItemValue->zipcode) {!! $allItemValue->zipcode!!}<br> @else <br> @endif 
+                                    </td></tr>
                                     <tr><td class="tdright">{{date('dS M, Y g:i a',strtotime($allItemValue->created_at))}}</td></tr>
                                 </table>
                                 

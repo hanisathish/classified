@@ -11,7 +11,7 @@ class Item extends Model
     protected $fillable = [
          'category_id', 'id', 'title', 'alias', 'description', 'country_id', 'region_id', 
          'ispricable', 'price', 'address1', 'address2', 'address3', 'zipcode', 'phone', 'tags', 
-         'views', 'published', 'user_id', 'lat', 'lng', 'image', 's3key', 'show_price', 'created_at', 'updated_at'
+         'views', 'published', 'user_id', 'lat', 'lng', 'image', 's3key', 'show_price', 'isfeatured', 'created_at', 'updated_at'
     ];
 
     public static function boot() { 
