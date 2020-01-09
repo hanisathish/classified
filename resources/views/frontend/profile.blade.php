@@ -9,8 +9,8 @@
 		<div class="container">
 			<span class="agile-breadcrumbs">
 			<a href="index.html"><i class="fa fa-home home_1"></i></a> / 
-			<a href="categories.html">Categories</a> / 
-			<span>Mobiles</span></span>
+			<a href="categories.html">Profile</a>
+      </span>
 		</div>
 	</div>
 	<!-- //breadcrumbs -->

@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
--- https://www.phpmyadmin.net/
+-- version 4.0.10deb1ubuntu0.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 27, 2019 at 12:36 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.1.18
+-- Host: localhost
+-- Generation Time: Jan 09, 2020 at 09:18 AM
+-- Server version: 5.6.33-0ubuntu0.14.04.1
+-- PHP Version: 7.1.20-1+ubuntu14.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `classified`
@@ -28,16 +26,17 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
-CREATE TABLE `categories` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `alias` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) NOT NULL,
   `published` tinyint(4) NOT NULL,
   `logo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=64 ;
 
 --
 -- Dumping data for table `categories`
@@ -114,16 +113,17 @@ INSERT INTO `categories` (`id`, `title`, `alias`, `parent_id`, `published`, `log
 -- Table structure for table `countries`
 --
 
-CREATE TABLE `countries` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `countries` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `country_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `published` tinyint(4) NOT NULL,
   `currency` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `symbol` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=250 ;
 
 --
 -- Dumping data for table `countries`
@@ -184,7 +184,7 @@ INSERT INTO `countries` (`id`, `name`, `country_code`, `published`, `currency`, 
 (52, 'Congo, the Democratic Republic of the', 'COD', 1, 'CDF', 'CDFr', '2019-12-22 18:35:07', NULL),
 (53, 'Cook Islands', 'COK', 1, 'NZD', '$', '2019-12-22 18:35:07', NULL),
 (54, 'Costa Rica', 'CRI', 1, 'CRC', '₡', '2019-12-22 18:35:07', NULL),
-(55, 'Côte d\'Ivoire', 'CIV', 1, 'XOF', 'franc', '2019-12-22 18:35:07', NULL),
+(55, 'Côte d''Ivoire', 'CIV', 1, 'XOF', 'franc', '2019-12-22 18:35:07', NULL),
 (56, 'Croatia', 'HRV', 1, 'HRK', 'HRK', '2019-12-22 18:35:07', NULL),
 (57, 'Cuba', 'CUB', 1, 'CUC', '$', '2019-12-22 18:35:07', NULL),
 (58, 'Curaçao', 'CUW', 1, 'ANG', '$', '2019-12-22 18:35:07', NULL),
@@ -247,11 +247,11 @@ INSERT INTO `countries` (`id`, `name`, `country_code`, `published`, `currency`, 
 (115, 'Kazakhstan', 'KAZ', 1, 'KZT', 'KZT', '2019-12-22 18:35:07', NULL),
 (116, 'Kenya', 'KEN', 1, 'KES', 'KSh', '2019-12-22 18:35:07', NULL),
 (117, 'Kiribati', 'KIR', 1, 'AUD', '$', '2019-12-22 18:35:07', NULL),
-(118, 'Korea, Democratic People\'s Republic of', 'PRK', 1, 'KPW', '₩', '2019-12-22 18:35:07', NULL),
+(118, 'Korea, Democratic People''s Republic of', 'PRK', 1, 'KPW', '₩', '2019-12-22 18:35:07', NULL),
 (119, 'Korea, Republic of', 'KOR', 1, 'KPW', '₩', '2019-12-22 18:35:07', NULL),
 (120, 'Kuwait', 'KWT', 1, 'KWD', 'د.ك', '2019-12-22 18:35:07', NULL),
 (121, 'Kyrgyzstan', 'KGZ', 1, 'KGS', 'KGS', '2019-12-22 18:35:07', NULL),
-(122, 'Lao People\'s Democratic Republic', 'LAO', 1, 'LAK', '₭', '2019-12-22 18:35:07', NULL),
+(122, 'Lao People''s Democratic Republic', 'LAO', 1, 'LAK', '₭', '2019-12-22 18:35:07', NULL),
 (123, 'Latvia', 'LVA', 1, 'LVL', 'Ls', '2019-12-22 18:35:07', NULL),
 (124, 'Lebanon', 'LBN', 1, 'LBP', 'ل.ل', '2019-12-22 18:35:07', NULL),
 (125, 'Lesotho', 'LSO', 1, 'LSL', 'L', '2019-12-22 18:35:07', NULL),
@@ -386,9 +386,9 @@ INSERT INTO `countries` (`id`, `name`, `country_code`, `published`, `currency`, 
 -- Table structure for table `items`
 --
 
-CREATE TABLE `items` (
-  `category_id` int(10) UNSIGNED NOT NULL,
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `items` (
+  `category_id` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
@@ -404,36 +404,43 @@ CREATE TABLE `items` (
   `tags` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `views` tinyint(4) NOT NULL,
   `published` int(11) NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
   `lat` double DEFAULT NULL,
   `lng` double DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `s3key` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `show_price` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=Show,2=Hide',
+  `isfeatured` tinyint(1) NOT NULL DEFAULT '2' COMMENT '1=Featured,2=Not featured',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `items_category_id_foreign` (`category_id`),
+  KEY `items_user_id_foreign` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`category_id`, `id`, `title`, `alias`, `description`, `country_id`, `region_id`, `ispricable`, `price`, `address1`, `address2`, `address3`, `zipcode`, `phone`, `tags`, `views`, `published`, `user_id`, `lat`, `lng`, `image`, `s3key`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Toyota Pickup Truck', 'toyota-pickup-truck', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.</p>\r\n', 1, NULL, NULL, 250.00, '', '', '', '', NULL, NULL, 1, 1, 1, NULL, NULL, '193.png', NULL, '2019-12-22 18:35:08', '2019-12-22 18:47:54'),
-(2, 2, 'Farari', 'farari', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 1, NULL, NULL, 2000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(57, 3, 'Mobile Computer', 'mobile-computer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 10, NULL, NULL, 50.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(11, 4, 'Freezer', 'freezer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 5, NULL, NULL, 550.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(11, 5, 'Appliances', 'appliances', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 5, NULL, NULL, 470.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(50, 6, 'Labardoodles', 'labardoodles', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 400.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(50, 7, 'Australian Shepherd', 'australian-shepherd', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 350.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(26, 8, 'Furnished Ac Flats', 'furnished-ac-flats', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 14000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(26, 9, 'Marathalli serviced apartments', 'marathalli-serviced-apartments', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 22000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(39, 10, 'Programming Experts', 'programming-experts', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 10000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(35, 11, 'Composite Process Engineer', 'composite-process-engineer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 11, NULL, NULL, 10000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(35, 12, 'Laraevl Developer', 'laraevl-developer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 25, NULL, NULL, 10000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, '2019-12-22 18:35:08', NULL),
-(2, 13, 'Car 3', 'car-3', '<p>Car 3 asdad ada</p>\r\n', 1, NULL, NULL, 111.00, '', '', '', '', NULL, NULL, 2, 1, 1, NULL, NULL, '862.jpg', NULL, '2019-12-22 18:45:33', '2019-12-22 18:51:50'),
-(2, 14, 'Car 4', 'car-4', '<p>Car 4 adasd</p>\r\n', 1, NULL, NULL, 11.00, '', '', '', '', NULL, NULL, 0, 1, 1, NULL, NULL, '969.png', NULL, '2019-12-22 18:45:53', '2019-12-22 18:45:53'),
-(2, 15, 'Sathish Posted', '', 'Sathish Posted Description asd adasd', 1, NULL, NULL, 22.00, '', '', '', '', NULL, NULL, 2, 1, 2, NULL, NULL, '', NULL, '2019-12-22 18:53:33', '2019-12-22 20:01:00'),
-(1, 16, 'Rock', '', 'Rock ada', 1, NULL, NULL, 21.00, '', '', '', '', NULL, NULL, 0, 1, 2, NULL, NULL, '', NULL, '2019-12-22 20:00:00', '2019-12-22 20:00:00');
+INSERT INTO `items` (`category_id`, `id`, `title`, `alias`, `description`, `country_id`, `region_id`, `ispricable`, `price`, `address1`, `address2`, `address3`, `zipcode`, `phone`, `tags`, `views`, `published`, `user_id`, `lat`, `lng`, `image`, `s3key`, `show_price`, `isfeatured`, `created_at`, `updated_at`) VALUES
+(2, 1, 'Toyota Pickup Truck', '', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.</p>\r\n', 1, NULL, NULL, 250.00, 'Kar', 'Manga', 'Dedede', '567', '123', NULL, 1, 1, 1, NULL, NULL, '701.jpg', NULL, 1, 2, '2019-12-22 18:35:08', '2020-01-08 22:15:58'),
+(2, 2, 'Farari-New', 'farari', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.</p>\r\n', 1, NULL, NULL, 2000.00, '', '', '', '', NULL, NULL, 0, 1, 1, NULL, NULL, '851.jpg', NULL, 1, 2, '2019-12-22 18:35:08', '2020-01-04 04:50:45'),
+(57, 3, 'Mobile Computer', 'mobile-computer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 10, NULL, NULL, 50.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:35:08', NULL),
+(11, 4, 'Freezer', 'freezer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 5, NULL, NULL, 550.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:35:08', NULL),
+(11, 5, 'Appliances', 'appliances', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 5, NULL, NULL, 470.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:35:08', NULL),
+(50, 6, 'Labardoodles', 'labardoodles', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 400.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:35:08', NULL),
+(50, 7, 'Australian Shepherd', 'australian-shepherd', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 350.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:35:08', NULL),
+(26, 8, 'Furnished Ac Flats', 'furnished-ac-flats', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 14000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:35:08', NULL),
+(26, 9, 'Marathalli serviced apartments', 'marathalli-serviced-apartments', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 22000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:35:08', NULL),
+(39, 10, 'Programming Experts', 'programming-experts', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 15, NULL, NULL, 10000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:35:08', NULL),
+(35, 11, 'Composite Process Engineer', 'composite-process-engineer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 11, NULL, NULL, 10000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:35:08', NULL),
+(35, 12, 'Laraevl Developer', 'laraevl-developer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mattis quam mauris, a consectetur enim dapibus a. In ullamcorper luctus feugiat. Ut velit libero, rhoncus eget fermentum ac, finibus non lorem. Sed id lectus elit.', 25, NULL, NULL, 10000.00, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:35:08', NULL),
+(2, 13, 'Car 3', 'car-3', '<p>Car 3 asdad ada</p>\r\n', 1, NULL, NULL, 111.00, '', '', '', '', NULL, NULL, 2, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:45:33', '2019-12-22 18:51:50'),
+(2, 14, 'Car 4', '', '<p>Car 4 adasd</p>\r\n', 1, NULL, NULL, 11.00, '', '', '', '', NULL, NULL, 0, 1, 1, NULL, NULL, NULL, NULL, 1, 2, '2019-12-22 18:45:53', '2020-01-08 22:15:43'),
+(2, 15, 'Sathish Posted', '', 'Sathish Posted Description asd adasd', 1, NULL, NULL, 22.00, '', '', '', '', NULL, NULL, 2, 1, 2, NULL, NULL, '', NULL, 2, 2, '2019-12-22 18:53:33', '2019-12-22 20:01:00'),
+(1, 16, 'Rock', '', 'Rock ada', 1, NULL, NULL, 21.00, '', '', '', '', NULL, NULL, 0, 1, 2, NULL, NULL, '', NULL, 1, 2, '2019-12-22 20:00:00', '2019-12-22 20:00:00'),
+(17, 17, 'Jeans', 'jeans-tag', '<p>asdads ad</p>\r\n', 103, NULL, NULL, 499.00, '', '', '', '', NULL, NULL, 0, 1, 1, NULL, NULL, '517.png', NULL, 1, 2, '2020-01-04 04:45:10', '2020-01-04 04:46:29'),
+(41, 18, 'Tin Bear', 'tin-bear', '<p>Tin Bear asd dasa</p>\r\n', 103, NULL, NULL, 0.00, 'TN', 'Chennai', 'Anaka puthur', '600028', '9876', NULL, 0, 1, 1, NULL, NULL, '484.jpg', NULL, 1, 2, '2020-01-05 06:20:02', '2020-01-05 06:20:02');
 
 -- --------------------------------------------------------
 
@@ -441,15 +448,16 @@ INSERT INTO `items` (`category_id`, `id`, `title`, `alias`, `description`, `coun
 -- Table structure for table `item_images`
 --
 
-CREATE TABLE `item_images` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `item_images` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `s3key` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `item_id` int(11) NOT NULL,
   `published` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `item_images`
@@ -465,7 +473,14 @@ INSERT INTO `item_images` (`id`, `image`, `s3key`, `item_id`, `published`, `crea
 (7, '', NULL, 15, 1, '2019-12-22 18:53:33', '2019-12-22 18:53:33'),
 (8, '', NULL, 15, 1, '2019-12-22 18:53:33', '2019-12-22 18:53:33'),
 (9, '', NULL, 16, 1, '2019-12-22 20:00:00', '2019-12-22 20:00:00'),
-(10, '', NULL, 16, 1, '2019-12-22 20:00:00', '2019-12-22 20:00:00');
+(10, '', NULL, 16, 1, '2019-12-22 20:00:00', '2019-12-22 20:00:00'),
+(11, '517.png', NULL, 17, 1, '2020-01-04 04:45:56', '2020-01-04 04:45:56'),
+(12, '701.jpg', NULL, 1, 1, '2020-01-04 04:50:05', '2020-01-04 04:50:05'),
+(13, '851.jpg', NULL, 2, 1, '2020-01-04 04:50:45', '2020-01-04 04:50:45'),
+(14, '484.jpg', NULL, 18, 1, '2020-01-05 06:20:02', '2020-01-05 06:20:02'),
+(15, '{{item.formData.filename}}', NULL, 15, 1, '2020-01-08 22:12:37', '2020-01-08 22:12:37'),
+(16, '', NULL, 14, 1, '2020-01-08 22:15:43', '2020-01-08 22:15:43'),
+(17, '', NULL, 1, 1, '2020-01-08 22:15:58', '2020-01-08 22:15:58');
 
 -- --------------------------------------------------------
 
@@ -473,15 +488,16 @@ INSERT INTO `item_images` (`id`, `image`, `s3key`, `item_id`, `published`, `crea
 -- Table structure for table `mailtemplates`
 --
 
-CREATE TABLE `mailtemplates` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `mailtemplates` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `event` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `body` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `published` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `mailtemplates`
@@ -496,7 +512,7 @@ INSERT INTO `mailtemplates` (`id`, `title`, `event`, `body`, `published`, `creat
 -- Table structure for table `migrations`
 --
 
-CREATE TABLE `migrations` (
+CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -520,10 +536,12 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- Table structure for table `password_resets`
 --
 
-CREATE TABLE `password_resets` (
+CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`),
+  KEY `password_resets_token_index` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -532,8 +550,8 @@ CREATE TABLE `password_resets` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
@@ -542,106 +560,19 @@ CREATE TABLE `users` (
   `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'user',
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `avatar`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@admin.com', '$2y$10$KP.q57FF60/AXPuu5WttxuhIf6bCOW6Iu3rMib1R8E49aVujqBck6', NULL, NULL, 'admin', '1DE9FhHVEm8A6sCxNcGYTVrpfRKRD916pP6WfigwMjDQLewkOkPYfBFAnPRy', '2019-12-22 18:35:04', '2019-12-25 22:45:23'),
-(2, 'sathish', 'sathish@cobrasoftwares.in', '$2y$10$KP.q57FF60/AXPuu5WttxuhIf6bCOW6Iu3rMib1R8E49aVujqBck6', NULL, NULL, 'user', 'BnZiUyK3psvJFXFXheiCi9z5k4AelhhQ4udtWWX64d5UdxSvgmn4zVl43xue', '2019-12-22 18:40:33', '2019-12-22 19:54:33');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `countries`
---
-ALTER TABLE `countries`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `items`
---
-ALTER TABLE `items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `items_category_id_foreign` (`category_id`),
-  ADD KEY `items_user_id_foreign` (`user_id`);
-
---
--- Indexes for table `item_images`
---
-ALTER TABLE `item_images`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `mailtemplates`
---
-ALTER TABLE `mailtemplates`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`),
-  ADD KEY `password_resets_token_index` (`token`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT for table `countries`
---
-ALTER TABLE `countries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
-
---
--- AUTO_INCREMENT for table `items`
---
-ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `item_images`
---
-ALTER TABLE `item_images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `mailtemplates`
---
-ALTER TABLE `mailtemplates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+(1, 'Admin', 'admin@admin.com', '$2y$10$KP.q57FF60/AXPuu5WttxuhIf6bCOW6Iu3rMib1R8E49aVujqBck6', NULL, NULL, 'admin', 'C6ZPLTBfoHCm2qQK29YIBYfYEunmwfChpNwYMqMmAQhxXRB9Ov8ouAj4Vy9o', '2019-12-22 18:35:04', '2020-01-08 19:38:25'),
+(2, 'sathish', 'sathish@cobrasoftwares.in', '$2y$10$KP.q57FF60/AXPuu5WttxuhIf6bCOW6Iu3rMib1R8E49aVujqBck6', NULL, NULL, 'user', 'nW86rkZkBGZVOPvYe5tVTjNBkOnn9Ae9guMvpSyNW0BIgsQPlWVGeRntsvsg', '2019-12-22 18:40:33', '2020-01-08 22:14:19'),
+(3, 'Rakesh', 'rakesh@gg.com', '$2y$10$8QRexcyFKWZSvrKTcYmy2.bvNklmzI/YPoKocf/hOSRQjh6o8sX.y', NULL, NULL, 'user', 'LlzjqMZJm1trvreHebZCeZI5yA7tt7YAVDtCHD8xB12w4HF0YF0776dlpvF2', '2020-01-03 10:49:07', '2020-01-03 10:49:21');
 
 --
 -- Constraints for dumped tables
@@ -653,7 +584,6 @@ ALTER TABLE `users`
 ALTER TABLE `items`
   ADD CONSTRAINT `items_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `items_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

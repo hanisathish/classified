@@ -42,7 +42,8 @@ class UserController extends Controller
                     ->where('user_id',$user_id)
                     ->paginate(5);   
 
-        return view('frontend.myitems', compact('items'));
+        $defaultCountry = Country::find(Config('laralist.default_country'));            
+        return view('frontend.myitems', compact('items','defaultCountry'));
     }
 
     public function updateProfile(UserRequest $request){

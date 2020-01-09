@@ -11,10 +11,24 @@
 							@if(Auth::user()->hasRole('admin'))
 								<a href="{{URL::asset('/admin/dashboard')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin</a>
 							@else
-								<a href="{{URL::asset('/post')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Post an Ads</a>
-								<a href="{{URL::asset('/profile')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Profile</a>
-								<a href="{{URL::asset('/user/myitems')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> My Ads</a>
+								
 								<!-- <a href="{{URL::asset('/item/sendmessage')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Messages</a> -->
+								@if (Auth::guest())
+                        
+			                    @else
+			                        <li class="dropdown">
+			                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+			                                {{ Auth::user()->name }} <span class="caret"></span>
+			                            </a>
+
+			                            <ul class="dropdown-menu" role="menu">
+			                            	<li><a style="color: #000 !important;" href="{{URL::asset('/post')}}"><i class="fa fa-btn fa-clipboard"></i>Post An Ads</a></li>
+			                            	<li><a style="color: #000 !important;" href="{{ url('/profile') }}"><i class="fa fa-btn fa-user"></i>Profile</a></li>
+			                            	<li><a style="color: #000 !important;" href="{{ url('/user/myitems') }}"><i class="fa fa-btn fa-list"></i>My Ads</a></li>
+			                                <li><a style="color: #000 !important;" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+			                            </ul>
+			                        </li>
+			                    @endif
 							@endif
 						@else
 							<a href="{{URL::asset('/login')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
@@ -94,7 +108,7 @@
 							<i class="fa fa-search" aria-hidden="true"> </i>
 						</button>
 					</form>
-				<a class="post-w3layouts-ad" href="post-ad.html">Post Free Ad</a>
+				<a class="post-w3layouts-ad" href="{{URL::asset('/post')}}">Post Free Ad</a>
 				</div>	
 				<div class="clearfix"></div>
 			</div>

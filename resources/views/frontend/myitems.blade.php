@@ -8,8 +8,8 @@
 		<div class="container">
 			<span class="agile-breadcrumbs">
 			<a href="index.html"><i class="fa fa-home home_1"></i></a> / 
-			<a href="categories.html">Categories</a> / 
-			<span>Mobiles</span></span>
+			<a href="categories.html">My Ads</a>
+			</span>
 		</div>
 	</div>
 	<!-- //breadcrumbs -->
@@ -25,7 +25,7 @@
 					  <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
 						<li role="presentation" class="active">
 						  <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
-							<span class="text">All Ads</span>
+							<span class="text">My Ads</span>
 						  </a>
 						</li>
             
@@ -65,12 +65,21 @@
                 </a>
                 <section class="list-left">
 									<h5 class="title"><a href="{!!URL::route('frontend.item.show',$item->id)!!}">{!! $item->title !!}</a></h5>
-									<span class="adprice">{{$item->price}}</span>
-									<p class="catpath">Mobile Phones » Brand</p>
+									@if( $item->show_price == 1) 
+									<span class="adprice">{!!$defaultCountry->symbol!!} {{$item->price}}</span>
+									@else
+									<br/>
+									@endif
+									<p class="catpath">{{$item->category}} </p>
 									</section>
 									<section class="list-right">
-									<span class="date">{{$item->price}}</span>
-									<span class="cityname">{{$item->price}}</span>
+									<span class="date">{{date('dS M, Y g:i a',strtotime($item->created_at))}}</span>
+									<span class="cityname">
+										@if( $item->region_id)<i class="glyphicon glyphicon-map-marker"></i> {!! $item->region_id!!}
+										@else
+										&nbsp;
+										@endif
+									</span>
                   </section>
                   {!! Html::linkRoute('frontend.post.edit', 'Edit', array($item->id) ,['class' => "btn btn-info"]) !!} 
                   {!! Html::linkRoute('frontend.post.delete', 'Delete', array($item->id) ,['class' => "btn btn-danger"]) !!} 

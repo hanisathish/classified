@@ -102,14 +102,16 @@
                 font-size: 12px !important;
                 
             }
-            
+            .itemviewlink{
+                color:#000;
+            }
         </style>
         <!-- <div class="row row-eq-height"> -->
         
         <!-- <div class="col-md-3 ">
             <div class="focus-grid w3layouts-boder12 img-wrapper">
                 <div class="box large">
-                    <a href="#" class=" ">
+                    <a href="#" class="itemviewlink">
                         <img class="child" src="http://localhost/kishore/classified/public/uploads/4.jpg" alt="Card image cap">
                     </a>
                 </div>
@@ -141,8 +143,8 @@
                     ?>
                     <div class="focus-grid w3layouts-boder12 <?php echo $img_wrapper_featured;?>">
                         <div class="box large">
-                        {!! Html::linkRoute('frontend.item.show', 'View', array($allItemValue->id) ,['class' => "btn btn-primary"]) !!} 
-                            <a href="#" class=" ">
+                        <!-- {!! Html::linkRoute('frontend.item.show', 'View', array($allItemValue->id) ,['class' => "btn btn-primary"]) !!}  -->
+                            <a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">
                                 <img class="child" src="{{ URL::asset('uploads/'.$itemImageDisp)}}" 
                                  alt="Card image cap">
                             </a>
@@ -151,19 +153,19 @@
                             <div class="focus-layout" >
                                 <table class="focustable">
                                     @if( $allItemValue->show_price == 1) 
-                                        <tr><td class="tdleft pricetag">&#x20b9; {{$allItemValue->price}}</td></tr>
+                                        <tr><td class="tdleft pricetag"><a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">&#x20b9; {{$allItemValue->price}}</a></td></tr>
                                     @else
                                         <tr><td class="tdleft pricetag">&nbsp;</td></tr>
                                     @endif
-                                    <tr><td class="tdleft titletag">{{$allItemValue->title}}</td></tr>
+                                    <tr><td class="tdleft titletag"><a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">{{$allItemValue->title}}</a></td></tr>
                                     <tr><td class="tdleft titletag"><i class="glyphicon glyphicon-earphone"></i>&nbsp;&nbsp;<a href="tel:{!! $allItemValue->phone!!}">{!! $allItemValue->phone!!}</a></td></tr>
-                                    <tr><td class="tdleft titletag">
+                                    <tr><td class="tdleft titletag"><a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">
                                     @if( $allItemValue->address1) {!! substr($allItemValue->address1,0,30)!!}<br> @else <br> @endif
                                     @if( $allItemValue->address2) {!! substr($allItemValue->address2,0,30)!!}<br> @else <br> @endif
                                     @if( $allItemValue->address3) {!! substr($allItemValue->address3,0,30)!!}<br> @else <br> @endif
-                                    @if( $allItemValue->zipcode) {!! $allItemValue->zipcode!!}<br> @else <br> @endif 
+                                    @if( $allItemValue->zipcode) {!! $allItemValue->zipcode!!}<br> @else <br> @endif </a>
                                     </td></tr>
-                                    <tr><td class="tdright">{{date('dS M, Y g:i a',strtotime($allItemValue->created_at))}}</td></tr>
+                                    <tr><td class="tdright"><a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">{{date('dS M, Y g:i a',strtotime($allItemValue->created_at))}}</a></td></tr>
                                 </table>
                                 
                                 
@@ -178,7 +180,7 @@
         <div class="col-md-3 ">
             <div class="focus-grid w3layouts-boder12 img-wrapper">
                 <div class="box large">
-                    <a href="#" class=" ">
+                    <a href="#" class="itemviewlink">
                         <img class="child" src="http://localhost/kishore/classified/public/uploads/1.jpg" alt="Card image cap">
                     </a>
                 </div>
@@ -192,7 +194,7 @@
         <div class="col-md-3 ">
             <div class="focus-grid w3layouts-boder12 img-wrapper">
                 <div class="box large">
-                    <a href="#" class=" ">
+                    <a href="#" class="itemviewlink">
                         <img class="child" src="http://localhost/kishore/classified/public/uploads/2.jpg" alt="Card image cap">
                     </a>
                 </div>
@@ -206,7 +208,7 @@
         <div class="col-md-3 ">
             <div class="focus-grid w3layouts-boder12 img-wrapper">
                 <div class="box large">
-                    <a href="#" class=" ">
+                    <a href="#" class="itemviewlink">
                         <img class="child" src="http://localhost/kishore/classified/public/uploads/3.jpg" alt="Card image cap">
                     </a>
                 </div>
@@ -220,7 +222,7 @@
         <div class="col-md-3 ">
             <div class="focus-grid w3layouts-boder12 img-wrapper">
                 <div class="box large">
-                    <a href="#" class=" ">
+                    <a href="#" class="itemviewlink">
                         <img class="child" src="http://localhost/kishore/classified/public/uploads/5.jpg" alt="Card image cap">
                     </a>
                 </div>
