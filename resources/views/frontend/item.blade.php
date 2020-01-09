@@ -7,10 +7,11 @@
 <div class="w3layouts-breadcrumbs text-center">
 		<div class="container">
 			<span class="agile-breadcrumbs">
-			<a href="index.html"><i class="fa fa-home home_1"></i></a> / 
-			<a href="all-classifieds.html">All Ads</a> / 
-			<a href="cars.html">Cars</a> / 
-			<span>Car name</span></span>
+			<a href=""><i class="fa fa-home home_1"></i></a> / 
+			<a href="">All Ads</a> /  <!-- all-classifieds.html-->
+			<!-- <a href="cars.html">Cars</a> / 
+			<span>Car name</span> -->
+		</span>
 		</div>
 	</div>
 	<!-- //breadcrumbs -->
@@ -20,8 +21,9 @@
 			<div class="product-desc">
 				<div class="col-md-7 product-view">
 					<h2>{!!$item->title!!}</h2>
-          <p> @if( $item->region_id)<i class="glyphicon glyphicon-map-marker"></i><a href="#">{!! $item->region_id!!}</a>@endif @if( $item->address2), <a href="#"> {!! $item->address2!!}</a>@endif | Added at {{date('dS M, Y g:i a',strtotime($allItemValue->created_at))}} </p> <!--06:55 pm, Ad ID: 987654321-->
+          <p> @if( $item->region_id)<i class="glyphicon glyphicon-map-marker"></i><a href="#">{!! $item->region_id!!}</a>@endif @if( $item->address2), <a href="#"> {!! $item->address2!!}</a>@endif | Added at {{date('dS M, Y g:i a',strtotime($item->created_at))}} </p> <!--06:55 pm, Ad ID: 987654321-->
           <div class="flexslider">
+			  
             <ul class="slides">
           @if(count($item_images) >1)
           {{--*/ $i = 0 /*--}}
@@ -75,7 +77,7 @@
 							<div class="clearfix"></div>
 						</div> -->
 					</div>
-					<div class="interested text-center">
+					<div class="interested text-left">
 						<h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
             <p><i class="glyphicon glyphicon-earphone"></i>&nbsp;<a href="tel:{!! $item->phone!!}">{!! $item->phone!!}</a></p>
             <address>

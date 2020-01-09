@@ -94,7 +94,7 @@
 		<div class="container">
 			<div class="agile-its-header">
 				<div class="logo">
-					<h1><a href="index.html"><span>K</span>infraindustries</a></h1>
+					<h1><a href="{{URL::asset('/')}}"><span>K</span>infraindustries</a></h1>
 				</div>
 				<div class="agileits_search">
 					<form action="#" method="post">

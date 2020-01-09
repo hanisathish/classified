@@ -84,6 +84,10 @@
           {!! Form::textarea('address3',null,['id' => 'inputAddress3' ,'size' => '75x5']) !!}                        
           <div class="clearfix"></div>
 
+          {!! Form::label('inputPhone', 'Mobile', array('class'=> '')) !!}
+          {!! Form::text('phone', null, ['class'=>'', 'placeholder'=>'Enter Mobile', 'id'=>'inputPhone']) !!}                        
+          <div class="clearfix"></div>
+
           {!! Form::label('inputTags', 'Tags', array('class'=> '')) !!}
           @include('frontend.angular-tags')    
           <div class="clearfix"></div>
