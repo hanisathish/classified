@@ -44,6 +44,7 @@ class PostController extends Controller
 
     public function store( ItemRequest $request ){    
 
+
         $item = new Item;
         $item->title = $request['title'];
         $item->alias = str_slug($request['alias']);
@@ -57,6 +58,7 @@ class PostController extends Controller
         $item->zipcode = $request['zipcode'];
         $item->published = $request['published'];
         $item->user_id = $request->user()->id;
+        $item->phone = $request['phone'];
 
         $country = Country::find($request['country_id']);
         $address  = $request['zipcode'];
@@ -66,32 +68,44 @@ class PostController extends Controller
         $address .= empty($address) ? $country->country_code : ','.$country->country_code;
 
 
-        $google_api= 'https://maps.googleapis.com/maps/api/geocode/json?address='.$address.'&key='.config('laralist.google_map_api_key');
+        // $google_api= 'https://maps.googleapis.com/maps/api/geocode/json?address='.$address.'&key='.config('laralist.google_map_api_key');
 
-        $response = Listcurl::get($google_api);
-        $data = json_decode($response);
-        if( isset($data->results[0]->geometry->location->lng)){
-         $item->lng = $data->results[0]->geometry->location->lng;
-        }
+        // $response = Listcurl::get($google_api);
+
+        // $data = json_decode($response);
+        // if( isset($data->results[0]->geometry->location->lng)){
+        //  $item->lng = $data->results[0]->geometry->location->lng;
+        // }
       
 
-        if(isset($data->results[0]->geometry->location->lat)){
-         $item->lat = $data->results[0]->geometry->location->lat;
-        }
+        // if(isset($data->results[0]->geometry->location->lat)){
+        //  $item->lat = $data->results[0]->geometry->location->lat;
+        // }
+
+
+        $request['image'] = $_FILES['image'];
 
         if($request['image']){
-             $item->image = $request['image'][0];          
+             $item->image = $request['image']['name'][0];          
         }
 
         if( $item->save() ){
 
-            if($request['image']){
-                
-                $item->image = $request['image'][0];
+            if($request['image']){ 
 
-                foreach ($request['image'] as $image) {
+                $images = $request->file('image');
+                //foreach ($request['image']['name'] as $imagename) {
+                for($i=0;$i<count($images);$i++){
+ 
+                    $image = $request->file('image')[$i];
+                    $extension = $image->getClientOriginalExtension();
+                    //dd($extension);
+                    $uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
+                    $filename = $request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+                    $image->move($uploadPath, $filename);   
+
                     $item_image = new Item_Images;
-                    $item_image->image = $image;
+                    $item_image->image = $filename;
                     $item_image->item_id = $item->id;
                     $item_image->published = 1;
                     $item_image->save();
@@ -130,24 +144,35 @@ class PostController extends Controller
         $item->address3 = $request['address3'];
         $item->zipcode = $request['zipcode'];
         $item->published = $request['published'];
-
+        $item->phone = $request['phone'];
+        $request['image'] = $_FILES['image'];
+        //dd($request['image']['name'][0]);
+        //dd($request['image'][0]['originalName']);
         if(!$request['existimage'] && $request['image']){
             
-            $item->image = $request['image'][0];          
+            $item->image = $request['image']['name'][0];          
             
         }else if(!$request['existimage'] && !$request['image']){
             $item->image = '';
         }
 
         if( $item->save() ){
-
+             
             if($request['image']){
-                
-                $item->image = $request['image'][0];
+               
+                $images = $request->file('image');
+                //foreach ($request['image']['name'] as $imagename) {
+                for($i=0;$i<count($images);$i++){
+ 
+                    $image = $request->file('image')[$i];
+                    $extension = $image->getClientOriginalExtension();
+                    //dd($extension);
+                    $uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
+                    $filename = $request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+                    $image->move($uploadPath, $filename);   
 
-                foreach ($request['image'] as $image) {
                     $item_image = new Item_Images;
-                    $item_image->image = $image;
+                    $item_image->image = $filename;
                     $item_image->item_id = $item->id;
                     $item_image->published = 1;
                     $item_image->save();

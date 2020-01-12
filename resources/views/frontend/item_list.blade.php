@@ -279,7 +279,7 @@ h5 {
                             <!-- <figure class="profile">
                                 <img src="https://picsum.photos/200/150/?random" class="profile-avatar" alt="">
                             </figure> -->
-                            <h4 class="card-title mt-3">{{$allItemValue->title}}</h4>
+                            <h4 class="card-title mt-3">{{substr($allItemValue->title,0,28)}}</h4>
 
                             <h6 class="card-title mt-3">
                                 @if( $allItemValue->show_price == 1) 
@@ -289,7 +289,7 @@ h5 {
                                 @endif
                             </h6>
                             <div class="meta">
-                                @if( $allItemValue->address1)<i class="glyphicon glyphicon-earphone"></i>&nbsp;&nbsp;<a href="tel:{!! $allItemValue->phone!!}">{!! $allItemValue->phone!!}</a> @else &nbsp; @endif
+                                @if( $allItemValue->address1)<a href="tel:{!! $allItemValue->phone!!}"><i class="glyphicon glyphicon-earphone"></i>&nbsp;&nbsp;{!! $allItemValue->phone!!}</a> @else &nbsp; @endif
                             </div>
                             <div class="card-text">
                                 <a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">

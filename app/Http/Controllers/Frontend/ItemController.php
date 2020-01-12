@@ -37,11 +37,11 @@ class ItemController extends Controller
         $category = Category::find($item->category_id);
         if($category->parent_id == 0){
              
-             $ids = Category::select('id')->where('parent_id', $item->category_id)->where('parent_id','!=',0)->get();
+             $cat_ids = Category::select('id')->where('parent_id', $item->category_id)->where('parent_id','!=',0)->get();
              $array = array();
 
-             foreach ($ids as $id) {            
-                $array[] = (int) $id->id;
+             foreach ($cat_ids as $cat_id) {            
+                $array[] = (int) $cat_id->id;
              }                
              $items = Item::select('*')->whereIn('category_id',$array)->whereNotIn('id', [$item->id])->get();  
 

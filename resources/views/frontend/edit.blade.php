@@ -127,9 +127,11 @@
         <div class="form-group">
           {!! Form::label('inputImage', 'Image', array('class'=> 'col-sm-2 control-label')) !!}
           <div class="col-sm-10">           
-               @include('frontend.angular-image')      
+            <input type="file" name="image[]" multiple="">
+
+          <!--      @include('frontend.angular-image')      
               <br>
-               @include('frontend.angular-upload')      
+               @include('frontend.angular-upload')       -->
 
           </div>
         </div>

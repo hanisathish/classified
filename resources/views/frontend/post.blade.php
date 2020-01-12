@@ -88,12 +88,15 @@
           {!! Form::text('phone', null, ['class'=>'', 'placeholder'=>'Enter Mobile', 'id'=>'inputPhone']) !!}                        
           <div class="clearfix"></div>
 
-          {!! Form::label('inputTags', 'Tags', array('class'=> '')) !!}
+          <!-- {!! Form::label('inputTags', 'Tags', array('class'=> '')) !!}
           @include('frontend.angular-tags')    
-          <div class="clearfix"></div>
+          <div class="clearfix"></div> -->
 
           {!! Form::label('inputImage', 'Image', array('class'=> '')) !!}
-          @include('frontend.angular-upload')           
+          <input type="file" name="image[]" multiple="" >
+
+          <br/>
+          <div id="image_preview"></div>
           <div class="clearfix"></div>
 
           {!! Form::submit( 'Save', ['class'=>'btn btn-info pull-right']) !!}
@@ -153,6 +156,22 @@
 @section('footer-script')
 
 <script type="text/javascript">
+
+  $("#uploadFile").change(function(){
+     //$('#image_preview').html("");
+     var total_file=document.getElementById("uploadFile").files.length;
+
+
+     for(var i=0;i<total_file;i++)
+     {
+      console.log(document.getElementById("uploadFile").files[i]);
+      $('#image_preview').append("<br/><input type='text' name='multifileshere[]' value='"+document.getElementById("uploadFile").files[i].name+"'/><img style='width:50px;height:50px;' src='"+URL.createObjectURL(event.target.files[i])+"'>");
+     }
+
+
+  });
+
+
   if( typeof(laralist) == 'undefined')
     var laralist={};
 
