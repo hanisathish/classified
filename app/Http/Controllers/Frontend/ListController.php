@@ -45,7 +45,16 @@ class ListController extends Controller
         Meta::meta('title', 'Items');
         Meta::meta('description', 'Classified Item list');
         
-        return view('frontend.list', compact('items'));       
+        $Category = new Category;
+        $allCategories = $Category->getCategories();  
+        //dd($category);
+        // if($allCategories->count() > 0){
+        //     foreach ($allCategories as $allCategoriesvalue) {
+        //         # code...
+        //     }
+        // }
+
+        return view('frontend.list', compact('items','allCategories','category'));       
     }
 
     public function countryitems($countryid){

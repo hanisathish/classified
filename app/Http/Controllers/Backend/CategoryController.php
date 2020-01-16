@@ -45,6 +45,7 @@ class CategoryController extends Controller
         $category->alias = str_slug($request['alias']);
         $category->parent_id = $request['parent_id'];    
         $category->published = $request['published'];
+        $category->fa_icons = $request['fa_icons'];
 
         $image = $request->file('logo');
         $filename=null;
@@ -83,7 +84,8 @@ class CategoryController extends Controller
         $category->alias = str_slug($request['alias']);     
         $category->parent_id = $request['parent_id'];
         $category->published = $request['published'];
-
+        $category->fa_icons = $request['fa_icons'];
+        
         $filename=null;
 
         $image = $request->file('logo');

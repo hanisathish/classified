@@ -22,6 +22,14 @@
     <!--fonts-->
     <link href='//fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="{{asset('frontend/js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('frontend/js/jquery.uls.core.js')}}"></script>
+    <link rel="stylesheet" href="{{ URL::asset('frontend/css/easy-responsive-tabs.css') }}">
+
+
+    <script type="text/javascript" src="{{asset('frontend/js/easyResponsiveTabs.js')}}"></script>
+
     <!--//fonts-->  
 </head>
 <body>
@@ -48,7 +56,7 @@
             <script type="text/javascript" src="{{asset('frontend/js/classie.js')}}"></script>
         <!-- //Navigation-Js-->
         <!-- js -->
-        <script type="text/javascript" src="{{asset('frontend/js/jquery.min.js')}}"></script>
+        
         <!-- js -->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="{{asset('frontend/js/bootstrap.js')}}"></script>

@@ -7,6 +7,9 @@
 			<div class="w3ls-header-right">
 				<ul>
 					<li class="dropdown head-dpdn">
+						<a href="{{URL::asset('/listing')}}"><i class="fa fa-list" aria-hidden="true"></i> All Categories</a>
+					</li>
+					<li class="dropdown head-dpdn">
 						@if(Auth::user())
 							@if(Auth::user()->hasRole('admin'))
 								<a href="{{URL::asset('/admin/dashboard')}}" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin</a>

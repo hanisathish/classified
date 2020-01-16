@@ -116,4 +116,5 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'web'], function () {
     Route::get('citems/{country}', 'ListController@countryitems')->name('frontend.countryitems');
 
      Route::post('item/sendmessage', 'ItemController@sendmessage')->name('frontend.item.sendmessage'); 
+    Route::get('listing', 'HomeController@category_index')->name('frontend.listing'); 
  });

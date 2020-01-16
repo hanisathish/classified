@@ -82,6 +82,13 @@ New Category
                           </div>  
                       </div> 
 
+                      <div class="form-group">
+                       {!! Form::label('fa_icons', 'Icon Name', array('class'=> 'col-sm-2 control-label')) !!}
+                        <div class="col-sm-10">
+                         {!! Form::text('fa_icons', null, ['class'=>'form-control', 'placeholder'=>'Enter Icon Name', 'id'=>'fa_icons']) !!}
+                        </div>
+                      </div>
+
                     <div class="form-group">
                     {!! Form::label('logo', 'Image', array('class'=> 'col-sm-2 control-label')) !!}
                       <div class="col-sm-10">

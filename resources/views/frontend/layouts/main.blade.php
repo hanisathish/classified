@@ -9,7 +9,8 @@
     
     <title>{!! Meta::meta('title')!!}</title>
 
-<link rel="stylesheet" href="{{ URL::asset('frontend/css/bootstrap.min.css') }}"><!-- bootstrap-CSS -->
+<link rel="stylesheet" href="{{ URL::asset('frontend/css/bootstrap.min.css') }}">
+<!-- bootstrap-CSS -->
 <link rel="stylesheet" href="{{ URL::asset('frontend/css/bootstrap-select.css') }}"><!-- bootstrap-select-CSS -->
 <link href="{{ URL::asset('frontend/css/style.css') }}" rel="stylesheet" type="text/css" media="all" /><!-- style.css') }} -->
 <link rel="stylesheet" href="{{ URL::asset('frontend/css/flexslider.css') }}" type="text/css" media="screen" /><!-- flexslider-CSS -->
@@ -25,6 +26,15 @@
 <link href='//fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!--//fonts-->	
+
+<script type="text/javascript" src="{{asset('frontend/js/jquery.uls.core.js')}}"></script>
+
+
+<link rel="stylesheet" href="{{ URL::asset('frontend/css/easy-responsive-tabs.css') }}">
+
+
+<script type="text/javascript" src="{{asset('frontend/js/easyResponsiveTabs.js')}}"></script>
+
 </head>
 <body>	
         

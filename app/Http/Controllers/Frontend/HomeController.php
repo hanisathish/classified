@@ -29,4 +29,15 @@ class HomeController extends Controller
         //dd($allItem->count());
         return view('frontend.home', compact('allCategories','allItem'));
     }
+
+    public function category_index()
+    {
+        $Category = new Category;
+        $allCategories = $Category->getCategories();  
+        //Config::write('laralist.item_per_page', 'http://octobercms.com');
+
+        $allItem = Item::where('published',1)->get();
+        //dd($allItem->count());
+        return view('frontend.category_listing', compact('allCategories','allItem'));
+    }
 }
