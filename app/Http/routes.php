@@ -117,4 +117,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'web'], function () {
 
      Route::post('item/sendmessage', 'ItemController@sendmessage')->name('frontend.item.sendmessage'); 
     Route::get('listing', 'HomeController@category_index')->name('frontend.listing'); 
+
+    Route::get('detail_list/{category?}/{subcategory?}', 'ListController@detailList')->name('frontend.detail.list');
+    //Route::get('detailed_list', 'ListController@detailList')->name('frontend.detailed.list');
  });

@@ -79,7 +79,7 @@
 					</div>
 					<div class="interested text-left">
 						<h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
-            <p><i class="glyphicon glyphicon-earphone"></i>&nbsp;<a href="tel:{!! $item->phone!!}">{!! $item->phone!!}</a></p>
+            <p><a href="tel:{!! $item->phone!!}"><i class="glyphicon glyphicon-earphone"></i>&nbsp;{!! $item->phone!!}</a></p>
             <address>
               @if( $item->address1) 
             <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>  

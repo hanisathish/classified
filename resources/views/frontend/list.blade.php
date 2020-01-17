@@ -59,7 +59,7 @@
                 <div class="category-info">
                   <h4>{{$category->title}}</h4>
                   <!-- <span>{{$category->itemCount}} Ads</span> -->
-                  <a href="all-classifieds.html">View all Ads</a>
+                  <a href="">View all Ads</a>
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -71,7 +71,7 @@
                       @foreach($categoryData->subCategory as $subcategory)
                         
                         <!-- @if($categoryData->id === $subcategory->parent_id) -->
-                          <li><a href="">{!!$subcategory->title!!} <span class="badge">{!!$subcategory->itemCount!!}</span></a></li>
+                          <li><a href="{!!route('frontend.detail.list',array($category->id,$subcategory->id))!!}">{!!$subcategory->title!!} <span class="badge">{!!$subcategory->itemCount!!}</span></a></li>
                         <!-- @endif -->
                       @endforeach
                     @endif  
