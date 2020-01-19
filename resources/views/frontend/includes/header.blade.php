@@ -1,9 +1,9 @@
 
 <header>
 		<div class="w3ls-header"><!--header-one--> 
-			<!-- <div class="w3ls-header-left">
-				<p><a href="mobileapp.html"><i class="fa fa-download" aria-hidden="true"></i>Download Mobile App </a></p>
-			</div> -->
+			<div class="w3ls-header-left" style="">
+				<p>&nbsp;</p>
+			</div>
 			<div class="w3ls-header-right">
 				<ul>
 					<li class="dropdown head-dpdn">
@@ -46,7 +46,7 @@
 					<li class="dropdown head-dpdn">
 						<div class="header-right">			
 	<!-- Large modal -->
-			<div class="agile-its-selectregion">
+			<div class="agile-its-selectregion" style="display: none;">
 				<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 				<i class="fa fa-globe" aria-hidden="true"></i>Select City</button>
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -100,13 +100,15 @@
 					<h1><a href="{{URL::asset('/')}}"><span>K</span>infraindustries</a></h1>
 				</div>
 				<div class="agileits_search">
-					<form action="#" method="post">
-						<input name="Search" type="text" placeholder="How can we help you today?" required="" />
+					{!! Form::open(['route' => 'frontend.item.search', 'method' =>'get',  'files' => true , 'class' =>'form-horizontal']) !!}             
+						<input type="text" class="" placeholder="e.g. house" name="q" value="@if( isset($searchQuery) && !empty($searchQuery)){{$searchQuery}}@endif" required=""> 
 						<select id="agileinfo_search" name="agileinfo_search" required="">
 							<option value="">All Categories</option>
 							<option value="Mobiles">Mobiles</option>
 							
 						</select>
+
+
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
 						</button>

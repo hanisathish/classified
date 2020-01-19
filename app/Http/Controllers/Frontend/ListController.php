@@ -64,39 +64,44 @@ class ListController extends Controller
 
     public function detailList($category=null,$subcategory=null)
     {
-        
-        
-
-        $category = Category::find($subcategory);
-        
-        if($category->parent_id == 0){
-             
-             $ids = Category::select('id')->where('parent_id', $subcategory)->where('parent_id','!=',0)->get();
-             $array = array();
-
-             foreach ($ids as $id) {            
-                $array[] = (int) $id->id;
-             }                
-             $items = Item::whereIn('category_id',$array)->paginate(5);  
-
+        $catId = null;
+        $subCatId = null;
+        //dd($category,$subcategory);
+        if($category == "" || $subcategory == ""){
+            $items =  Item::where('published' ,1)->paginate(5);    
         }else{
-            $items =  Item::where('category_id' ,$subcategory)->paginate(5);    
+            $catId = $category;
+            $subCatId = $subcategory;
+            $category = Category::find($subcategory);
+            if($category->parent_id == 0){
+                 
+                $ids = Category::select('id')->where('parent_id', $subcategory)->where('parent_id','!=',0)->get();
+                $array = array();
+
+                foreach ($ids as $id) {            
+                $array[] = (int) $id->id;
+                }                
+                $items = Item::whereIn('category_id',$array)->paginate(5);  
+
+            }else{
+                $items =  Item::where('category_id' ,$subcategory)->paginate(5);    
+            }    
         }
         
-        dd($items);
+        
+        //dd($items->count());
+        $defaultCountry = Country::find(Config('laralist.default_country'));
+        //dd($defaultCountry);
         Meta::meta('title', 'Items');
         Meta::meta('description', 'Classified Item list');
         
         $Category = new Category;
         $allCategories = $Category->getCategories();  
-        //dd($category);
-        // if($allCategories->count() > 0){
-        //     foreach ($allCategories as $allCategoriesvalue) {
-        //         # code...
-        //     }
-        // }
-
-        return view('frontend.detail_listing', compact('items','allCategories','category'));
+        
+        $featuredItems =  Item::where('isfeatured' ,1)->get();
+        $searchQuery="";
+        //dd($featuredItems);
+        return view('frontend.detail_listing', compact('items','allCategories','category','defaultCountry','featuredItems','catId','subCatId','searchQuery'));
     }
 
 }

@@ -3875,12 +3875,12 @@ span.adprice {
     margin: 5px 0 0 0;
 }
 #container .list li .list-left {
-    width: 60%;
+    width: 50%;
     margin-left: 3%;
     float: left;
 }
 #container .list li .list-right{
-    width: 17%;
+    width: 25%;
     float: right;
     text-align: right;
 }

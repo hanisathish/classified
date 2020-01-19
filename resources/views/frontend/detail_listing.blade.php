@@ -8,7 +8,7 @@
     <div class="container">
         <span class="agile-breadcrumbs">
         <a href=""><i class="fa fa-home home_1"></i></a> / 
-        <a href="">All Ads</a>   <!-- all-classifieds.html-->
+        <a href="">@if($searchQuery) Search Results @else All Ads @endif</a>   <!-- all-classifieds.html-->
         <!-- <a href="cars.html">Cars</a> / 
         <span>Car name</span> -->
     </span>
@@ -17,46 +17,54 @@
 <!-- Products -->
 <div class="total-ads main-grid-border">
     <div class="container">
-      <div class="select-box">
-        <!-- <div class="select-city-for-local-ads ads-list">
-          <label>Select your city to see local ads</label>
-            <select>
-                              
-                  </select>
-        </div> -->
-        @if($allCategories->count() > 0)
-          
-          <div class="browse-category ads-list">
-            <label>Browse Categories</label>
-            <select class="selectpicker show-tick" data-live-search="true">
-              <option data-tokens="" value="">All</option>
-                
-              @foreach($allCategories as $categoryData)
-                <option data-tokens="{!!$categoryData->id!!}" value="{!!$categoryData->id!!}">{!!$categoryData->title!!}</option>
-                
-              @endforeach
-            </select>
+      {!! Form::open(['route' => 'frontend.item.search', 'method' =>'get',  'files' => true , 'class' =>'form-horizontal']) !!}             
+        <div class="select-box">
+          <!-- <div class="select-city-for-local-ads ads-list">
+            <label>Select your city to see local ads</label>
+              <select>
+                                
+                    </select>
+          </div> -->
+          @if($allCategories->count() > 0)
             
-          </div>
+            <div class="browse-category ads-list">
+              <label>Browse Categories</label>
+              <select class="selectpicker show-tick" data-live-search="true" name="categorySearchId" id="categorySearchId">
+                <option data-tokens="" value="">All</option>
+                  
+                @foreach($allCategories as $categoryData)
+                  <option value="{!!$categoryData->id!!}" @if($catId == $categoryData->id ) {{ 'selected' }} @endif >{!!$categoryData->title!!}</option>
+                @endforeach
+              </select>
+              
+            </div>
 
-        @endif
-        <div class="search-product ads-list">
-          <label>Search for a specific product</label>
-          <div class="search">
-            <div id="custom-search-input">
-            <div class="input-group">
-              <input type="text" class="form-control input-lg" placeholder="Buscar" />
-              <span class="input-group-btn">
-                <button class="btn btn-info btn-lg" type="button">
-                  <i class="glyphicon glyphicon-search"></i>
-                </button>
-              </span>
+          @endif
+          <div class="search-product ads-list">
+            <label>Search for a specific product</label>
+            <div class="search">
+              <div id="custom-search-input">
+              <div class="input-group">
+                <!-- <input type="text" class="form-control input-lg" placeholder=" " /> -->
+                <input type="text" class="form-control input-lg" placeholder="e.g. house" name="q" value="@if( isset($searchQuery) && !empty($searchQuery)){{$searchQuery}}@endif" > 
+
+                <span class="input-group-btn">
+                  <button class="btn btn-info btn-lg" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
             </div>
           </div>
+          <div class="search-product ads-list">
+            <label>&nbsp;</label>
+            <h2><a href="{{URL::asset('detail_list')}}"><span class="label label-danger"><i class="glyphicon glyphicon-refresh"></i> Reset Filter</span></a></h2>
+             
           </div>
+          <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
-      </div>
+      </form>
       <!-- <div class="all-categories">
         <h3> Select your category and find the perfect ad</h3>
         <ul class="all-cat-list">
@@ -112,42 +120,26 @@
         </div>
         <div class="w3ls-featured-ads">
           <h2 class="sear-head fer">Featured Ads</h2>
-          <div class="w3l-featured-ad">
-            <a href="single.html">
-              <div class="w3-featured-ad-left">
-                <img src="images/f1.jpg" title="ad image" alt="" />
+          @if($featuredItems->count() > 0)
+            @foreach($featuredItems as $item)
+              <div class="w3l-featured-ad">
+                <a href="{{URL::asset('/item/'.$item->id)}}">
+                  <div class="w3-featured-ad-left">
+                    @if(empty($item->image))  
+                        <img alt="{!!$item->title!!}" src="http://placehold.it/60X50?text=Image" data-holder-rendered="true" style="display: block;">
+                      @else
+                        <img alt="{!!$item->title!!}" src="{!!asset('uploads/'.$item->image) !!}" data-holder-rendered="true" style="display: block;">
+                      @endif
+                  </div>
+                  <div class="w3-featured-ad-right">
+                    <h4>{!! str_limit($item->title, 100)!!}</h4>
+                    <p>{!!$defaultCountry->symbol!!} {!! $item->price!!}</p>
+                  </div>
+                  <div class="clearfix"></div>
+                </a>
               </div>
-              <div class="w3-featured-ad-right">
-                <h4>Lorem Ipsum is simply dummy text of the printing industry</h4>
-                <p>$ 450</p>
-              </div>
-              <div class="clearfix"></div>
-            </a>
-          </div>
-          <div class="w3l-featured-ad">
-            <a href="single.html">
-              <div class="w3-featured-ad-left">
-                <img src="images/f2.jpg" title="ad image" alt="" />
-              </div>
-              <div class="w3-featured-ad-right">
-                <h4>Lorem Ipsum is simply dummy text of the printing industry</h4>
-                <p>$ 380</p>
-              </div>
-              <div class="clearfix"></div>
-            </a>
-          </div>
-          <div class="w3l-featured-ad">
-            <a href="single.html">
-              <div class="w3-featured-ad-left">
-                <img src="images/f3.jpg" title="ad image" alt="" />
-              </div>
-              <div class="w3-featured-ad-right">
-                <h4>Lorem Ipsum is simply dummy text of the printing industry</h4>
-                <p>$ 560</p>
-              </div>
-              <div class="clearfix"></div>
-            </a>
-          </div>
+            @endforeach  
+          @endif    
           <div class="clearfix"></div>
         </div>
         </div>
@@ -192,604 +184,48 @@
                    </div>
                 <div class="clearfix"></div>
               <ul class="list">
-                <a href="">
-                  <li>
-                  <img src="images/m1.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
-                  <span class="adprice">$290</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:55</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
+                @if($items->count() > 0)
+                  @foreach($items as $item)
+                  
+                
+                    <a href="{{URL::asset('/item/'.$item->id)}}">
+                      <li>
+                      @if(empty($item->image))  
+                        <img alt="{!!$item->title!!}" src="http://placehold.it/100X80?text=Image" data-holder-rendered="true" style="display: block;">
+                      @else
+                        <img alt="{!!$item->title!!}" src="{!!asset('uploads/'.$item->image) !!}" data-holder-rendered="true" style="display: block;">
+                      @endif
+
+                      <section class="list-left" >
+                      <h5 class="title">{!! str_limit($item->title, 100)!!}</h5>
+                      <span class="adprice">{!!$defaultCountry->symbol!!} {!! $item->price!!}</span>
+                      <p class="catpath">{!! $item->category->title !!}</p>
+                      </section>
+
+                      <section class="list-right" >
+                      <span class="date">{{date('dS M, Y g:i a',strtotime($item->created_at))}}</span>
+                      <span class="cityname">{!! $item->address1!!}</span>
+                      </section>
+                      @if(Auth::user())
+                        @if(Auth::user()->id == $item->user_id)
+                            {!! Html::linkRoute('frontend.post.edit', 'Edit', array($item->id) ,['class' => "btn btn-default"]) !!}                               
+                        @endif
+                      @endif
+                      <div class="clearfix"></div>
+                      </li> 
+                    </a>
+                  @endforeach
+                @else
+                  No Data 
+                @endif  
 
               </ul>
             </div>
               </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-             <div>
-                        <div id="container">
-                <div class="view-controls-list" id="viewcontrols">
-                  <label>view :</label>
-                  <a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
-                  <a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
-                </div>
-                <div class="sort">
-                   <div class="sort-by">
-                    <label>Sort By : </label>
-                    <select>
-                            <option value="">Most recent</option>
-                            <option value="">Price: Rs Low to High</option>
-                            <option value="">Price: Rs High to Low</option>
-                    </select>
-                     </div>
-                   </div>
-                <div class="clearfix"></div>
-              <ul class="list">
-                <a href="single.html">
-                  <li>
-                  <img src="images/m1.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
-                  <span class="adprice">$290</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:55</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m2.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">It is a long established fact that a reader long established</h5>
-                  <span class="adprice">$310</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:45</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m3.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">Contrary to popular belief, Lorem Ipsum is not</h5>
-                  <span class="adprice">$190</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:30</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m4.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">The standard chunk of Lorem Ipsum used since the</h5>
-                  <span class="adprice">$480</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:25</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m5.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</h5>
-                  <span class="adprice">$859</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:24</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m6.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">But I must explain to you how all this mistaken idea of denouncing</h5>
-                  <span class="adprice">$1299</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:22</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m1.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</h5>
-                  <span class="adprice">$1099</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:21</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m7.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">On the other hand, we denounce with righteous dislike men</h5>
-                  <span class="adprice">$290</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:20</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m8.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
-                  <span class="adprice">$899</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:05</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m9.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">ducimus qui blanditiis praesentium voluptatum quos dolores et qua</h5>
-                  <span class="adprice">$199</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:04</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m10.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
-                  <span class="adprice">$250</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:03</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m11.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">who are so beguiled and demoralized by the charms of pleasure of the moment</h5>
-                  <span class="adprice">$189</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:03</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m12.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">you need to be sure there isn't anything embarrassing hidden</h5>
-                  <span class="adprice">$1090</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:03</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m13.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">looked up one of the more obscure Latin words</h5>
-                  <span class="adprice">$599</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:02</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                <div class="clearfix"></div>
-                </a>
-              </ul>
-            </div>
-              </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="samsa" aria-labelledby="samsa-tab">
-              <div>
-                        <div id="container">
-                <div class="view-controls-list" id="viewcontrols">
-                  <label>view :</label>
-                  <a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
-                  <a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
-                </div>
-                <div class="sort">
-                   <div class="sort-by">
-                    <label>Sort By : </label>
-                    <select>
-                            <option value="">Most recent</option>
-                            <option value="">Price: Rs Low to High</option>
-                            <option value="">Price: Rs High to Low</option>
-                    </select>
-                     </div>
-                   </div>
-                <div class="clearfix"></div>
-              <ul class="list">
-                <a href="single.html">
-                  <li>
-                  <img src="images/m1.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
-                  <span class="adprice">$290</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:55</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m2.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">It is a long established fact that a reader long established</h5>
-                  <span class="adprice">$310</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:45</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m3.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">Contrary to popular belief, Lorem Ipsum is not</h5>
-                  <span class="adprice">$190</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:30</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m4.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">The standard chunk of Lorem Ipsum used since the</h5>
-                  <span class="adprice">$480</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:25</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m5.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</h5>
-                  <span class="adprice">$859</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:24</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m6.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">But I must explain to you how all this mistaken idea of denouncing</h5>
-                  <span class="adprice">$1299</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:22</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m12.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">you need to be sure there isn't anything embarrassing hidden</h5>
-                  <span class="adprice">$1090</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:03</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m1.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</h5>
-                  <span class="adprice">$1099</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:21</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m7.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">On the other hand, we denounce with righteous dislike men</h5>
-                  <span class="adprice">$290</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:20</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m8.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
-                  <span class="adprice">$899</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:05</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m13.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">looked up one of the more obscure Latin words</h5>
-                  <span class="adprice">$599</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:02</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m9.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">ducimus qui blanditiis praesentium voluptatum quos dolores et qua</h5>
-                  <span class="adprice">$199</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:04</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m10.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
-                  <span class="adprice">$250</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:03</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m12.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">you need to be sure there isn't anything embarrassing hidden</h5>
-                  <span class="adprice">$1090</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:03</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m11.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">who are so beguiled and demoralized by the charms of pleasure of the moment</h5>
-                  <span class="adprice">$189</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:03</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                
-                <a href="single.html">
-                  <li>
-                  <img src="images/m4.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">The standard chunk of Lorem Ipsum used since the</h5>
-                  <span class="adprice">$480</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:25</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m9.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">ducimus qui blanditiis praesentium voluptatum quos dolores et qua</h5>
-                  <span class="adprice">$199</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:04</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m8.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">There are many variations of passages of Lorem Ipsum</h5>
-                  <span class="adprice">$899</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:05</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m12.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">you need to be sure there isn't anything embarrassing hidden</h5>
-                  <span class="adprice">$1090</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:03</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                
-                <a href="single.html">
-                  <li>
-                  <img src="images/m11.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">who are so beguiled and demoralized by the charms of pleasure of the moment</h5>
-                  <span class="adprice">$189</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:03</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                </a>
-                <a href="single.html">
-                  <li>
-                  <img src="images/m13.jpg" title="" alt="" />
-                  <section class="list-left">
-                  <h5 class="title">looked up one of the more obscure Latin words</h5>
-                  <span class="adprice">$599</span>
-                  <p class="catpath">Mobile Phones » Brand</p>
-                  </section>
-                  <section class="list-right">
-                  <span class="date">Today, 17:02</span>
-                  <span class="cityname">City name</span>
-                  </section>
-                  <div class="clearfix"></div>
-                  </li> 
-                <div class="clearfix"></div>
-                </a>
-              </ul>
-            </div>
-              </div>
-            </div>
-            <ul class="pagination pagination-sm">
+            
+            {!! $items->links() !!}      
+            <!-- <ul class="pagination pagination-sm">
               <li><a href="#">Prev</a></li>
               <li><a href="#">1</a></li>
               <li><a href="#">2</a></li>
@@ -800,7 +236,7 @@
               <li><a href="#">7</a></li>
               <li><a href="#">8</a></li>
               <li><a href="#">Next</a></li>
-            </ul>
+            </ul> -->
             </div>
           </div>
         </div>
