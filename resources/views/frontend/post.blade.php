@@ -93,10 +93,14 @@
           <div class="clearfix"></div> -->
 
           {!! Form::label('inputImage', 'Image', array('class'=> '')) !!}
-          <input type="file" name="image[]" multiple="" >
+          <input type="file" name="image[]" id="image" multiple="" >
 
           <br/>
-          <div id="image_preview"></div>
+		  
+		  <!--<label for="profile_image"></label>
+          <img id="preview_img" src="{{asset('uploads/NoImage.png')}}" class="" width="200" height="150"/>-->
+			
+          <div id="image_preview" align="center"></div>
           <div class="clearfix"></div>
 
           {!! Form::submit( 'Save', ['class'=>'btn btn-info pull-right']) !!}
@@ -155,21 +159,100 @@
 
 @section('footer-script')
 
+<style>
+input[type="file"] {
+  display: block;
+}
+.imageThumb {
+  max-height: 75px;
+  border: 2px solid;
+  padding: 1px;
+  cursor: pointer;
+}
+.pip {
+  display: inline-block;
+  margin: 10px 10px 0 0;
+}
+.remove {
+  display: block;
+  background: #444;
+  border: 1px solid black;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.remove:hover {
+  background: white;
+  color: black;
+}
+</style>
+
+
 <script type="text/javascript">
+$(document).ready(function() {
+  if (window.File && window.FileList && window.FileReader) {
+    $("#image").on("change", function(e) {
+      var files = e.target.files,
+        filesLength = files.length;
+      for (var i = 0; i < filesLength; i++) {
+        var f = files[i]
+        var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<img style='width:60px; height:60px;' class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<br/><span class=\"remove\">Remove image</span>" +
+            "</span>").insertAfter("#image");
+          $(".remove").click(function(){
+            $(this).parent(".pip").remove();
+          });          
+        });
+        fileReader.readAsDataURL(f);
+      }
+    });
+  } else {
+    alert("Your browser doesn't support to File API")
+  }
+});
 
-  $("#uploadFile").change(function(){
-     //$('#image_preview').html("");
-     var total_file=document.getElementById("uploadFile").files.length;
 
+ 
+	/*
+	
+	 // Image Preview
+	 
+	 function loadPreview(input, id) {	
+		id = id || '#preview_img';
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+	 
+			reader.onload = function (e) {
+				$(id)
+						.attr('src', e.target.result)
+						.width(200)
+						.height(150);
+			};
+	 
+			reader.readAsDataURL(input.files[0]);
+		}
+	 }
+	 
+    */
+  
+	
+   /* $("#image").change(function(){
+	  
+	//$('#image_preview').html("");
+	 
+	 var total_file = document.getElementById("image").files.length;
 
-     for(var i=0;i<total_file;i++)
-     {
-      console.log(document.getElementById("uploadFile").files[i]);
-      $('#image_preview').append("<br/><input type='text' name='multifileshere[]' value='"+document.getElementById("uploadFile").files[i].name+"'/><img style='width:50px;height:50px;' src='"+URL.createObjectURL(event.target.files[i])+"'>");
-     }
+	 for(var i=0;i<total_file;i++)
+	 {
+	  console.log(document.getElementById("image").files[i]);
+	  $('#image_preview').append("<br/><input type='hidden' name='multifileshere[]' value='"+document.getElementById("image").files[i].name+"' readonly /><img style='width:80px;height:80px;' src='"+URL.createObjectURL(event.target.files[i])+"'><br/>");
+	 }
 
-
-  });
+	});*/
 
 
   if( typeof(laralist) == 'undefined')
