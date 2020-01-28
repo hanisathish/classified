@@ -37,7 +37,11 @@
 
 </head>
 <body>	
-        
+    <?php
+
+    $allCategoriesListing = app\Category::select('*')->where('published', 1)->where('parent_id', 0)->get();
+    
+    ?>    
     <!-- Navigation -->
     @include('frontend.includes.navbar')
     <!-- Header-->

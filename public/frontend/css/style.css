@@ -245,7 +245,7 @@ header {
 	width:75%;
 }
 .agileits_search input[type="text"] {
-    width: 66%;
+    width: 50%;
 }
 a.post-w3layouts-ad {
     text-decoration: none;
@@ -4544,7 +4544,7 @@ label {
 
 @media (max-width: 1440px){
 	.agileits_search input[type="text"] {
-		width: 64%;
+		width: 50%;
 	}
 	#agileinfo_search {
 		width: 27%;
@@ -4630,7 +4630,7 @@ label {
 		width: 50%;
 	}
 	.agileits_search input[type="text"] {
-		width: 62%;
+		width: 50%;
 	}
 	.w3layouts-partners ul {
 		width: 90%;
@@ -4959,7 +4959,7 @@ label {
 		padding: 10px 15px;
 	}
 	.agileits_search input[type="text"] {
-		width: 58%;
+		width: 50%;
 		padding: 9px;
 	}
 	#agileinfo_search {
@@ -6287,7 +6287,7 @@ label {
 		width: 100%;
 	}
 	.agileits_search input[type="text"] {
-		width: 57%;
+		width: 50%;
 	}
 	.header-right {
 		width: 100%;
@@ -6625,7 +6625,7 @@ label {
 		margin-left: 0;
 	}
 	.agileits_search input[type="text"] {
-		width: 56%;
+		width: 50%;
 	}
 	.wthree-mobile-app form input[type="submit"] {
 		padding: 13px 0px;

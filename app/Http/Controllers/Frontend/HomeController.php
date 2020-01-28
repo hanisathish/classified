@@ -37,6 +37,7 @@ class HomeController extends Controller
         //Config::write('laralist.item_per_page', 'http://octobercms.com');
 
         $allItem = Item::where('published',1)->get();
+        
         //dd($allItem->count());
         return view('frontend.category_listing', compact('allCategories','allItem'));
     }

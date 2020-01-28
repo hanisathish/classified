@@ -43,6 +43,7 @@ class UserController extends Controller
                     ->paginate(5);   
 
         $defaultCountry = Country::find(Config('laralist.default_country'));            
+        
         return view('frontend.myitems', compact('items','defaultCountry'));
     }
 

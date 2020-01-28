@@ -33,7 +33,11 @@
     <!--//fonts-->  
 </head>
 <body>
+    <?php
 
+    $allCategoriesListing = App\Category::select('*')->where('published', 1)->where('parent_id', 0)->get();
+     ///dd($allCategoriesListing);
+    ?>    
     <!-- Navigation -->
     @include('frontend.includes.navbar')
     <!-- Header-->

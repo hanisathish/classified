@@ -101,17 +101,25 @@
 				</div>
 				<div class="agileits_search">
 					{!! Form::open(['route' => 'frontend.item.search', 'method' =>'get',  'files' => true , 'class' =>'form-horizontal']) !!}             
-						<input type="text" class="" placeholder="e.g. house" name="q" value="@if( isset($searchQuery) && !empty($searchQuery)){{$searchQuery}}@endif" required=""> 
-						<select id="agileinfo_search" name="agileinfo_search" required="">
-							<option value="">All Categories</option>
-							<option value="Mobiles">Mobiles</option>
-							
-						</select>
+						<input type="text" class="" placeholder="e.g. house" name="q" value="@if( isset($searchQuery) && !empty($searchQuery)){{$searchQuery}}@endif" > 
+						
+						@if($allCategoriesListing->count() > 0)
+							<select id="agileinfo_search" name="categorySearchId" >
+								<option value="">All</option>
+									
+								@foreach($allCategoriesListing as $categoryData)
+									<option value="{!!$categoryData->id!!}" >{!!$categoryData->title!!}</option>
+								@endforeach						
+							</select>
+						@endif
 
-
-						<button type="submit" class="btn btn-default" aria-label="Left Align">
+						<button type="submit" class="btn btn-default" title="Search" aria-label="Left Align">
 							<i class="fa fa-search" aria-hidden="true"> </i>
 						</button>
+						
+						<a href="{!!route('frontend.home')!!}"  title="Reset Search">
+							<i class="fa fa-refresh"  > </i>
+						</a>
 					</form>
 				<a class="post-w3layouts-ad" href="{{URL::asset('/post')}}">Post Free Ad</a>
 				</div>	

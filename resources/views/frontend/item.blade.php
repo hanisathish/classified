@@ -25,7 +25,7 @@
           <div class="flexslider">
 			  
             <ul class="slides">
-          @if(count($item_images) >1)
+          @if(count($item_images) > 0)
           {{--*/ $i = 0 /*--}}
             @foreach($item_images as $item_image)
 						
