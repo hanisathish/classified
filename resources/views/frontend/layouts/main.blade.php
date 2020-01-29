@@ -100,6 +100,10 @@
 			});
 		  });
 		</script>
+		<script>
+        var siteUrl = '<?php echo url('/'); ?>';
+        </script>
+	
 		<!-- language-select -->
 		<script type="text/javascript" src="{{asset('frontend/js/jquery.leanModal.min.js')}}"></script>
 		<link href="{{ URL::asset('frontend/css/jquery.uls.css') }}" rel="stylesheet"/>

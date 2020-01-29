@@ -51,8 +51,8 @@ class ItemController extends Controller
     }
 
     public function store( ItemRequest $request ){
-
-        $image = $request->file('image');
+		
+		/*$image = $request->file('image');
         $filename=null;
         $s3key = null;
 
@@ -70,7 +70,8 @@ class ItemController extends Controller
                     'SourceFile' =>  $uploadPath.'/'. $filename,
                 ));
             }    
-        }
+        }*/
+
 
         $item = new Item;
         $item->title = $request['title'];
@@ -89,18 +90,41 @@ class ItemController extends Controller
         $item->phone = $request['phone'];
         $item->published = $request['published'];
         $item->user_id = $request['user_id'];
-        $item->image = $filename;
-        $item->s3key = $s3key;
+        //$item->image = $filename;
+        //$item->s3key = $s3key;
         $item->show_price = $request['show_price'];
 
+        $request['image'] = $_FILES['image'];
+
+        if($request['image']){
+             $item->image = $request['image']['name'][0];          
+        }
+		
+
         if($item->save()){
-            if(!is_null($filename)) {
+			
+			
+            if($request['image']){ 
+			
+			 $images = $request->file('image');
+			 
+			 for($i=0;$i<count($images);$i++){
+				 
+				$image = $request->file('image')[$i];
+				$extension = $image->getClientOriginalExtension();
+				//dd($extension);
+				$uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
+				$filename = $request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+				$image->move($uploadPath, $filename);  
+				
                 $item_image = new Item_Images;
                 $item_image->image = $filename;
                 $item_image->item_id = $item->id;
                 $item_image->published = 1;
-                $item_image->s3key = $s3key;
+                //$item_image->s3key = $s3key;
                 $item_image->save();
+				
+			   }
             }
 
             $request->session()->flash('alert-success','Item added successfully.');
@@ -126,10 +150,11 @@ class ItemController extends Controller
     public function update( ItemRequest $request){
         
         $item = Item::find( $request['id'] );
-        $filename=null;
+
+        /*
+		$filename=null;
 
         $image = $request->file('image');
-        
         if($request->hasFile('image'))
         {
             if($image->isValid()){
@@ -139,7 +164,27 @@ class ItemController extends Controller
                 $image->move($uploadPath, $filename);   
             }
         }
-
+		*/
+		
+		
+		
+		$request['image'] = $_FILES['image'];
+		
+		$image = $request->file('image');
+		
+		//dd($image);
+		
+		if($image[0] == null){
+			
+			$filename = $item->image;
+			
+		} else {
+			
+			$filename = $request['image']['name'][0];
+		}
+		
+		
+		
 
         $item->title = $request['title'];
         if( empty( $request['alias']) ) {
@@ -157,17 +202,41 @@ class ItemController extends Controller
         $item->phone = $request['phone'];
         $item->published = $request['published'];
         $item->user_id = $request['user_id'];
-        $item->image = $filename? $filename: $item->image;
+        $item->image = $filename;
         $item->show_price = $request['show_price'];
+		
+		$request['image'] = $_FILES['image'];
+		
+        //dd($image[0]);
+        //dd($filename);
+        //dd($request['image']);
+        //dd($request['image'][0]['originalName']);
+		
 
         if($item->save()){
+			
 
-            if(!is_null($filename)){
+             if($request->hasFile('image')){
+				
+                $images = $request->file('image');
+				
+				for($i=0;$i<count($images);$i++){
+ 
+				$image = $request->file('image')[$i];
+				$extension = $image->getClientOriginalExtension();
+				//dd($extension);
+				$uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
+				$filename = $request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+				$image->move($uploadPath, $filename); 
+   				
                 $item_image = new Item_Images;
                 $item_image->image = $filename;
                 $item_image->item_id = $item->id;
                 $item_image->published = 1;
                 $item_image->save();
+				
+			  }
+				
             }
 
             $request->session()->flash('alert-success','Item updated successfully.');

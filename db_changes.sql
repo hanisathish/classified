@@ -15,3 +15,8 @@ UPDATE `categories` SET `fa_icons` = 'fa fa-home', `updated_at` = NULL WHERE `ca
 UPDATE `categories` SET `fa_icons` = 'fa fa-users', `updated_at` = NULL WHERE `categories`.`id` = 29; 
 UPDATE `categories` SET `fa_icons` = 'fa fa-paw', `updated_at` = NULL WHERE `categories`.`id` = 46; 
 UPDATE `categories` SET `fa_icons` = 'fa fa-list-ol', `updated_at` = NULL WHERE `categories`.`id` = 53;
+
+
+-- Santhosh 29 Jan 2020
+
+ALTER TABLE `users` ADD `createdBy` INT(11) NULL AFTER `created_at`, ADD `updatedBy` INT(11) NULL AFTER `updated_at`, ADD `deletedBy` INT(11) NULL AFTER `updatedBy`, ADD `deleted_at` DATETIME NULL AFTER `deletedBy`;

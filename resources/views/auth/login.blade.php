@@ -41,9 +41,44 @@
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         <h3 class="w3ls-password">Get Password</h3>     
                                         <p class="get-pw">Enter your email address below and we'll send you an email with instructions.</p>
-                                        <form action="#" method="post">
-                                            <input type="text" class="user" name="email" placeholder="Email" required="">
-                                            <input type="submit" value="Submit">
+                                            <div>
+                                            @if ($errors->any())
+                                                <div class="error">
+                                                    <ul style="list-style: none;padding: 0">
+                                                    @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                    @endforeach
+                                                    </ul>
+                                                </div>
+                                                @endif
+                                                
+                                                
+                                                @if(session()->has('message'))
+                                                    <div class="alert alert-success">
+                                                        {{ session()->get('message') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                    <span id="msg"></span>
+                                                </span>
+                                            </label>
+                                            </div>
+
+                                    <form action="/user/forgot_password" method="post">
+                 <!--{!! Form::open(array('id'=>'forgotPasswordForm','name'=>'forgotPasswordForm','method' => 'post', 'url' => url('/user/forgot_password'), 'class' => '')) !!}-->
+                                           
+                                            {!! csrf_field() !!}
+
+      
+                                            <input type="text" class="user" name="email" id="email" placeholder="Email" required="">
+                                            <!--<input type="submit" class="" value="Submit">  -->                                          
+                                            <!--<input type="button" class="" id="changePwd" value="Submit"> -->
+                                            <button type="button" id="changePwd" class="">Submit</button>
+
                                         </form>
                                     </div>
                                 </div>
@@ -121,4 +156,80 @@
         </div>
     </div>
 </div> -->
+
+
+<script type='text/javascript'>
+
+var siteUrl = '<?php echo url('/'); ?>';
+
+$("#changePwd").click(function() {
+	
+    //alert('clicked');
+	
+    var email = $("#email").val();
+
+    var dataString = 'email=' + encodeURIComponent(email);
+    
+	//alert(dataString);
+	
+	//alert(siteUrl);
+	
+	
+    $.ajax({
+        type: "POST",
+        async: false,
+        data: dataString,
+        url: siteUrl + '/forgot_password',
+        dataType: "JSON", 
+        success: function(data)
+        {
+            if (data.status === false)
+            {
+                var errorsHtml = '';
+                var errors = data.errors;
+                var type = "";
+                $.each(errors, function(key, value) {
+                    
+                    if (key == 'error') {
+                        errorsHtml = "<span class='error'>"+value+"</span>";
+                        type = 'error';
+                    }
+                    else if(key == 'success') {
+                        errorsHtml = value;
+                        type = 'success';
+                        $("#msg").css({"color": "green"});
+                        $("#email").val('');
+                    }
+                    else {
+                        errorsHtml += "<span class='error'>"+value[0]+"</span>";
+                        type = 'error';
+                        $("#msg").css({"color": "red"});
+                    }
+                    
+                });
+
+                $("#msg").html(errorsHtml);
+               
+            }
+
+
+        },
+        error: function(data)
+        {
+            var errors = '';
+            for (datas in data.responseJSON) {
+                errors += data.responseJSON[datas] + '<br>';
+            }
+            $("#msg").addClass('error');
+            $('#msg').show().html(errors); //this is my div with messages            
+            //console.log(errors);
+        }
+
+    });
+    return false;
+
+});
+</script>
+
+
 @endsection
