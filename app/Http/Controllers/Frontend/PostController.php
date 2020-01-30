@@ -13,6 +13,10 @@ use App\Http\Requests\ItemRequest;
 use File;
 use Meta;
 use Listcurl;
+use PDO;
+use DB;
+
+
 
 class PostController extends Controller
 {    
@@ -132,7 +136,30 @@ class PostController extends Controller
     }
 
     public function update( ItemRequest $request ){
+		
+		
         $item = Item::find($request['id']);
+		
+		$item_id = $request['id'];
+		
+		//dd($item_id);
+		
+		$request['image'] = $_FILES['image'];
+		
+		$image = $request->file('image');
+		
+		//dd($image);		
+		//if($image[0] == null){
+			
+		if($request->hasFile('image')){
+			
+			$filename = $request['image']['name'][0];
+			
+		} else {
+			
+			$filename = $item->image;
+		}
+		
         $item->title = $request['title'];
         $item->alias = str_slug($request['alias']);
         $item->country_id = $request['country_id'];
@@ -145,20 +172,42 @@ class PostController extends Controller
         $item->zipcode = $request['zipcode'];
         $item->published = $request['published'];
         $item->phone = $request['phone'];
+		$item->image = $filename;
         $request['image'] = $_FILES['image'];
         //dd($request['image']['name'][0]);
         //dd($request['image'][0]['originalName']);
-        if(!$request['existimage'] && $request['image']){
+        /*if(!$request['existimage'] && $request['image']){
             
             $item->image = $request['image']['name'][0];          
             
         }else if(!$request['existimage'] && !$request['image']){
             $item->image = '';
-        }
+        }*/
+		
+		$request['image'] = $_FILES['image'];
 
         if( $item->save() ){
              
-            if($request['image']){
+            if($request->hasFile('image')){
+				
+				 // Delete Existing Images
+				 
+				  Item_Images::where('item_id',$item_id)->delete();
+				  
+				  /*
+				  $image = Item_Images::find($item_id);
+				  
+				  $path = public_path().DIRECTORY_SEPARATOR . 'uploads'.DIRECTORY_SEPARATOR. $image->image;
+
+				  if( File::delete($path) ){
+					  
+					$image->delete(); 
+				   
+				  }
+				  */
+				
+				
+				// Insert new Images
                
                 $images = $request->file('image');
                 //foreach ($request['image']['name'] as $imagename) {
@@ -190,7 +239,7 @@ class PostController extends Controller
 
         if( $item->delete()) {
 
-            $image = Item_Images::find( $id);
+            $image = Item_Images::find($id);
 
             $path = public_path().DIRECTORY_SEPARATOR . 'uploads'.DIRECTORY_SEPARATOR. $image->image;
 

@@ -149,8 +149,12 @@ class ItemController extends Controller
 
     public function update( ItemRequest $request){
         
-        $item = Item::find( $request['id'] );
-
+        $item = Item::find($request['id']);
+        
+		$item_id = $request['id'];
+		
+		//dd($request['id']);
+		
         /*
 		$filename=null;
 
@@ -174,16 +178,24 @@ class ItemController extends Controller
 		
 		//dd($image);
 		
-		if($image[0] == null){
+		/*if($image[0] == null){
 			
 			$filename = $item->image;
 			
 		} else {
 			
 			$filename = $request['image']['name'][0];
-		}
+		}*/
 		
 		
+		if($request->hasFile('image')){
+			
+			$filename = $request['image']['name'][0];
+			
+		} else {
+			
+			$filename = $item->image;
+		}		
 		
 
         $item->title = $request['title'];
@@ -217,6 +229,25 @@ class ItemController extends Controller
 			
 
              if($request->hasFile('image')){
+				 
+				 
+				  // Delete Existing Images
+				
+				  Item_Images::where('item_id',$item_id)->delete();
+
+				  /*$image = Item_Images::find($item_id);
+				  
+				  $path = public_path().DIRECTORY_SEPARATOR . 'uploads'.DIRECTORY_SEPARATOR. $image->image;
+
+				  if( File::delete($path) ){
+					  
+					$image->delete(); 
+				   
+				  }
+				  */			
+				
+
+                // Insert New Images
 				
                 $images = $request->file('image');
 				

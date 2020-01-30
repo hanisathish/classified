@@ -97,6 +97,10 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::group(['namespace' => 'Frontend', 'middleware' => 'web'], function () {
     //Route::auth();
     Route::get('/', 'HomeController@index')->name('frontend.home');
+	
+	Route::get('contactus', 'HomeController@contactus')->name('frontend.contactus');	
+	Route::post('contactus/sendmail', 'HomeController@sendMail')->name('frontend.contactus.sendmail');
+	
     Route::get('post', 'PostController@create')->name('frontend.post');
     Route::post('post/store', 'PostController@store')->name('frontend.post.store');
     Route::post('post/update', 'PostController@update')->name('frontend.post.update');
