@@ -26,7 +26,7 @@
 
 			                            <ul class="dropdown-menu" role="menu">
 			                            	<li><a style="color: #000 !important;" href="{{URL::asset('/post')}}"><i class="fa fa-btn fa-clipboard"></i>Post An Ads</a></li>
-			                            	<li><a style="color: #000 !important;" href="{{ url('/profile') }}"><i class="fa fa-btn fa-user"></i>Profile</a></li>
+			                            	<li><a style="color: #000 !important;" href="{{ url('/profile/profile') }}"><i class="fa fa-btn fa-user"></i>Profile</a></li>
 			                            	<li><a style="color: #000 !important;" href="{{ url('/user/myitems') }}"><i class="fa fa-btn fa-list"></i>My Ads</a></li>
 			                                <li><a style="color: #000 !important;" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
 			                            </ul>

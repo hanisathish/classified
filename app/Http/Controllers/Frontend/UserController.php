@@ -31,6 +31,11 @@ class UserController extends Controller
     {
        return view('frontend.profile');
     }
+	
+	public function profile(){
+		
+		return view('frontend.profile');
+	}
 
     public function items(){
         $user_id = Auth()->user()->id;
@@ -59,10 +64,24 @@ class UserController extends Controller
         $user->email =  $request['email'];
         $user->phone =  $request['phone'];
        
-         if($request['image']){
+        /*if($request['image']){
              $user->avatar = $request['image'][0];          
-        }
+        }*/
+        
+		if($request->hasFile('image')){
+			
+			$image = $request->file('image');			 
+			$extension = $image->getClientOriginalExtension();
+			$imageName = basename($image->getClientOriginalName(),("." . $extension));
+			$imageName .= "_" . time() . '.' . $extension;
+			$uploadPath = public_path(). DIRECTORY_SEPARATOR. 'profile' . DIRECTORY_SEPARATOR;
+			$image->move($uploadPath, $imageName);				
+		  
+		}else {
+			$imageName = $user->avatar;			
+		}
 
+        $user->avatar = $imageName;
 
         if(!empty($request['password'])){
             $password = bcrypt($request['password']);

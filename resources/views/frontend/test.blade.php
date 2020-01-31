@@ -70,7 +70,7 @@
 
 
 
-        <!--<div class="form-group">
+        <div class="form-group">
           {!! Form::label('inputImage', 'Image', array('class'=> 'col-sm-2 control-label')) !!}
           <div class="col-sm-10" >
            @if(Auth::user()->avatar)
@@ -81,14 +81,8 @@
            <br /><br />
             @include('frontend.angular-upload')           
           </div>
-        </div>-->
-
-        <div class="form-group">
-          {!! Form::label('inputImage', 'Image', array('class'=> 'col-sm-2 control-label')) !!}
-          <div class="col-sm-10">
-            <input type="file" name="image" id="image">
-          </div>
         </div>
+
 
         <div class="box-footer">
           {!! Form::submit( 'Save', ['class'=>'btn btn-info pull-right']) !!}

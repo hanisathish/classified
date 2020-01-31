@@ -115,6 +115,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'web'], function () {
 
     Route::get('profile', 'UserController@index')->name('frontend.user.profile');
     Route::post('profile/update', 'UserController@updateprofile')->name('frontend.user.update');
+    Route::get('profile/profile', 'UserController@profile')->name('frontend.user.profile');
 
     Route::post('media/upload', 'MediaController@upload')->name('media.upload');
     Route::get('media/delete/{delete}', 'MediaController@destroy')->name('frontend.media.delete');
