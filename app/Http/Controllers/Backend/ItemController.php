@@ -96,9 +96,9 @@ class ItemController extends Controller
 
         $request['image'] = $_FILES['image'];
 
-        if($request['image']){
+        /*if($request['image']){
              $item->image = $request['image']['name'][0];          
-        }
+        }*/
 		
 
         if($item->save()){
@@ -114,7 +114,7 @@ class ItemController extends Controller
 				$extension = $image->getClientOriginalExtension();
 				//dd($extension);
 				$uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
-				$filename = $request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+				$filename = time()."_".$request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
 				$image->move($uploadPath, $filename);  
 				
                 $item_image = new Item_Images;
@@ -137,14 +137,22 @@ class ItemController extends Controller
     }
 
     public function edit( $id ){
+		
         $item =Item::find($id);
+		
         $users = User::all();
+		
         $countires = Country::all();
-        $categories = Category::all();
+		
+        $categories = Category::all();		
         $categories = $this->get_options($categories);
+		
+		$item_image = new Item_Images;
+		$images = $item_image->where('item_id' , $item->id)->get();
+		
         $defaultCountry = Country::find(Config('laralist.default_country'));
 
-         return view('backend.items.edit', compact('users', 'item', 'countires', 'categories','defaultCountry'));
+         return view('backend.items.edit', compact('users', 'item', 'countires', 'categories','images','defaultCountry'));
     }
 
     public function update( ItemRequest $request){
@@ -229,23 +237,6 @@ class ItemController extends Controller
 			
 
              if($request->hasFile('image')){
-				 
-				 
-				  // Delete Existing Images
-				
-				  Item_Images::where('item_id',$item_id)->delete();
-
-				  /*$image = Item_Images::find($item_id);
-				  
-				  $path = public_path().DIRECTORY_SEPARATOR . 'uploads'.DIRECTORY_SEPARATOR. $image->image;
-
-				  if( File::delete($path) ){
-					  
-					$image->delete(); 
-				   
-				  }
-				  */			
-				
 
                 // Insert New Images
 				
@@ -257,7 +248,7 @@ class ItemController extends Controller
 				$extension = $image->getClientOriginalExtension();
 				//dd($extension);
 				$uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
-				$filename = $request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+				$filename = time()."_".$request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
 				$image->move($uploadPath, $filename); 
    				
                 $item_image = new Item_Images;
@@ -278,6 +269,24 @@ class ItemController extends Controller
         return redirect()->route('admin.items');
     }
 
+
+    public function deleteItemIdByAdmin(Request $request)
+    {
+        //print '<pre>';
+		//print_r($request->all());
+        $item_id = $request->get('itemId');
+		//return $item_id;
+
+		$image = Item_Images::find($item_id);
+		$path = public_path().DIRECTORY_SEPARATOR . 'uploads'.DIRECTORY_SEPARATOR. $image->image;
+
+		if( File::delete($path) ){
+			$image->delete();             
+		}
+		
+        Item_Images::where('item_id',$item_id)->delete();
+    }
+	
 
     public function publish(Request $request){
 

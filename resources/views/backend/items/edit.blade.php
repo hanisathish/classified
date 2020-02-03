@@ -192,16 +192,17 @@ Edit Item
                     </div> 
 
 
-
+                 @foreach($images as $item)
                     @if( $item->image)  
                     <div class="form-group">
                     {!! Form::label('inputImage', 'Existing Image', array('class'=> 'col-sm-2 control-label')) !!}
                       <div class="col-sm-10">
-                        <img src="{!!asset('/uploads/'. $item->image )!!}" style="width:15%" />                   
+                        <img src="{!!asset('/uploads/'. $item->image )!!}" style="width:15%" />
+                        <a class="btn btn-danger delete_image" href="javascript:void(0);" id="{{$item->id}}">Delete</a>						
                       </div>
                     </div>
                     @endif
-
+                 @endforeach
 
 
                     <div class="form-group">
@@ -283,6 +284,43 @@ $(document).ready(function() {
     alert("Your browser doesn't support to File API")
   }
 });
+
+var siteUrl = '<?php echo url('/'); ?>';
+
+$('.delete_image').click(function(){
+	
+  if( confirm('Are you sure?') )
+  {
+    var id = $(this).attr('id');
+	
+	var token = $( "input[name*='_token']" ).attr('value');	
+	//var dataString = 'itemId=' + id + '&token='+token;
+	
+	var dataString = 'itemId='+id;	
+	//alert(dataString);	
+	//alert(siteUrl);
+	
+	 $.ajax({
+		url: siteUrl + '/admin/image/delete_items',
+		async: true,
+		type: "GET",
+		data: dataString,
+		dataType: "html",
+		contentType: false,
+		cache: false,
+		processData: false,
+		success: function (data)
+		{
+			//alert(data);
+			location.reload();
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+		   alert('error: ' + jqXHR.responseText + textStatus +  errorThrown);
+		}
+     });
+  }
+});
+
 </script>	
 	
 @endsection

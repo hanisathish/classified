@@ -89,24 +89,26 @@ class PostController extends Controller
 
         $request['image'] = $_FILES['image'];
 
-        if($request['image']){
-             $item->image = $request['image']['name'][0];          
-        }
+        //if($request['image']){
+             //$item->image = $request['image']['name'][0];          
+        //}
 
         if( $item->save() ){
 
-            if($request['image']){ 
+            if($request->hasFile('image')){ 
 
                 $images = $request->file('image');
-                //foreach ($request['image']['name'] as $imagename) {
+
                 for($i=0;$i<count($images);$i++){
- 
+					
                     $image = $request->file('image')[$i];
                     $extension = $image->getClientOriginalExtension();
                     //dd($extension);
                     $uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
-                    $filename = $request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
-                    $image->move($uploadPath, $filename);   
+                    $filename = time()."_".$request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+                    $image->move($uploadPath, $filename); 
+
+   					
 
                     $item_image = new Item_Images;
                     $item_image->image = $filename;
@@ -122,14 +124,16 @@ class PostController extends Controller
 
 
     public function edit($id){
+		
         $item = Item::find($id);
+			
         $countires = Country::all();
         
         $Category = new Category;
         $categories = $Category->getCategories();
 
-         $item_image = new Item_Images;
-         $images =$item_image->where('item_id' , $item->id)->get();
+		$item_image = new Item_Images;
+		$images = $item_image->where('item_id' , $item->id)->get();
 
         return view('frontend.edit', compact('item', 'countires', 'categories', 'images'));
 
@@ -151,6 +155,7 @@ class PostController extends Controller
 		//dd($image);		
 		//if($image[0] == null){
 			
+		/*
 		if($request->hasFile('image')){
 			
 			$filename = $request['image']['name'][0];
@@ -159,6 +164,7 @@ class PostController extends Controller
 			
 			$filename = $item->image;
 		}
+		*/
 		
         $item->title = $request['title'];
         $item->alias = str_slug($request['alias']);
@@ -172,8 +178,9 @@ class PostController extends Controller
         $item->zipcode = $request['zipcode'];
         $item->published = $request['published'];
         $item->phone = $request['phone'];
-		$item->image = $filename;
-        $request['image'] = $_FILES['image'];
+		
+		//$item->image = $filename;
+        //$request['image'] = $_FILES['image'];
         //dd($request['image']['name'][0]);
         //dd($request['image'][0]['originalName']);
         /*if(!$request['existimage'] && $request['image']){
@@ -189,24 +196,7 @@ class PostController extends Controller
         if( $item->save() ){
              
             if($request->hasFile('image')){
-				
-				 // Delete Existing Images
-				 
-				  Item_Images::where('item_id',$item_id)->delete();
-				  
-				  /*
-				  $image = Item_Images::find($item_id);
-				  
-				  $path = public_path().DIRECTORY_SEPARATOR . 'uploads'.DIRECTORY_SEPARATOR. $image->image;
-
-				  if( File::delete($path) ){
-					  
-					$image->delete(); 
-				   
-				  }
-				  */
-				
-				
+						
 				// Insert new Images
                
                 $images = $request->file('image');
@@ -217,7 +207,7 @@ class PostController extends Controller
                     $extension = $image->getClientOriginalExtension();
                     //dd($extension);
                     $uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
-                    $filename = $request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+                    $filename = time()."_".$request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
                     $image->move($uploadPath, $filename);   
 
                     $item_image = new Item_Images;
@@ -234,6 +224,25 @@ class PostController extends Controller
         
     }
 
+
+    public function deleteItemById( Request $request)
+    {
+        //print '<pre>';
+		//print_r($request->all());
+        $item_id = $request->get('itemId');
+		//return $item_id;
+
+		$image = Item_Images::find($item_id);
+		$path = public_path().DIRECTORY_SEPARATOR . 'uploads'.DIRECTORY_SEPARATOR. $image->image;
+
+		if( File::delete($path) ){
+			$image->delete();             
+		}
+		
+        Item_Images::where('item_id',$item_id)->delete();
+    }
+	
+	
     public function destrory($id){
         $item = Item::find($id);
 

@@ -24,6 +24,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
     Route::post('items/publish', 'ItemController@publish')->name('admin.items.publish');
     Route::post('items/unpublish', 'ItemController@unpublish')->name('admin.items.unpublish'); 
     Route::post('items/destroy', 'ItemController@destroy')->name('admin.items.destroy');  
+	Route::get("/image/delete_items/", 'ItemController@deleteItemIdByAdmin');
 
     Route::get('categories', 'CategoryController@index')->name('admin.categories'); 
     Route::post('categories/publish', 'CategoryController@publish')->name('admin.categories.publish');
@@ -106,7 +107,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'web'], function () {
     Route::post('post/update', 'PostController@update')->name('frontend.post.update');
     Route::get('post/{item}', 'PostController@edit')->name('frontend.post.edit');
     Route::get('post/delete/{delete}', 'PostController@destrory')->name('frontend.post.delete');
-    
+    Route::get("/image/items_delete/", 'PostController@deleteItemById');
+	
     Route::get('item/{item}', 'ItemController@show')->name('frontend.item.show');
     Route::get('search', 'ItemController@search')->name('frontend.item.search');
    

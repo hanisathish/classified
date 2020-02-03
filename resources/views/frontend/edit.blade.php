@@ -122,15 +122,19 @@
             {!! Form::textarea('address3',$item->address3,['id' => 'inputAddress3' ,'size' => '75x5']) !!}                        
           </div>
         </div>
-
-	    @if( $item->image)  
-		<div class="form-group">
-		{!! Form::label('inputImage', 'Existing Image', array('class'=> 'col-sm-2 control-label')) !!}
-		  <div class="col-sm-10">
-			<img src="{!!asset('/uploads/'. $item->image )!!}" style="width:15%" />                   
-		  </div>
-		</div>
-		@endif 
+		
+		@foreach($images as $item)
+			@if( $item->image)  
+			<div class="form-group">
+			{!! Form::label('inputImage', 'Existing Image', array('class'=> 'col-sm-2 control-label')) !!}
+			  <div class="col-sm-10">
+				<img src="{!!asset('/uploads/'. $item->image )!!}" style="width:15%" />
+                <a class="btn btn-danger delete_images" href="javascript:void(0);" id="{{$item->id}}">Delete</a>	
+			  </div>
+			</div>
+			@endif 
+		@endforeach
+		
 
         <div class="form-group">
           {!! Form::label('inputImage', 'Image', array('class'=> 'col-sm-2 control-label')) !!}
@@ -212,6 +216,51 @@ $(document).ready(function() {
     alert("Your browser doesn't support to File API")
   }
 });
+
+var siteUrl = '<?php echo url('/'); ?>';
+
+$('.delete_images').click(function(){
+	
+  if( confirm('Are you sure?') )
+  {
+    var id = $(this).attr('id');
+	
+	//alert(id);
+	
+	var token = $( "input[name*='_token']" ).attr('value');
+	
+	//var dataString = 'itemId=' + id + '&token='+token;
+	
+	var dataString = 'itemId=' + id;
+	
+	//alert(dataString);
+	
+	//alert(siteUrl);
+	
+	
+	
+	 $.ajax({
+		url: siteUrl + '/image/items_delete',
+		async: true,
+		type: "GET",
+		data: dataString,
+		dataType: "html",
+		contentType: false,
+		cache: false,
+		processData: false,
+		success: function (data)
+		{
+			//alert(data);
+			location.reload();
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+		   //alert('error: ' + jqXHR.responseText + textStatus +  errorThrown);
+		}
+     });
+  }
+});
+
+
 </script>
 
 <script type="text/javascript">
