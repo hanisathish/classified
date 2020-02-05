@@ -99,6 +99,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => 'web'], function () {
     //Route::auth();
     Route::get('/', 'HomeController@index')->name('frontend.home');
 	
+	Route::get('aboutus', 'HomeController@aboutus')->name('frontend.aboutus');	
+	Route::get('privacy', 'HomeController@privacypolicy')->name('frontend.privacy');	
 	Route::get('contactus', 'HomeController@contactus')->name('frontend.contactus');	
 	Route::post('contactus/sendmail', 'HomeController@sendMail')->name('frontend.contactus.sendmail');
 	

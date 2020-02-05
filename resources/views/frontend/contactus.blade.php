@@ -29,9 +29,13 @@
           <input type="text" name="email" id="email" placeholder="Enter Email" required>		  
           <div class="clearfix"></div>
 		  
+		  {!! Form::label('inputPhone', 'Phone', array('class'=> '')) !!}
+          <input type="text" name="phone" id="phone" placeholder="Enter Phone" required>	  
+          <div class="clearfix"></div>
+		  
 
           {!! Form::label('inputMessage', 'Message', array('class'=> '')) !!} 		  
-          <textarea rows="4" cols="50" name="message" required></textarea>             
+          <textarea rows="4" cols="50" name="message" required placeholder="Your message goes here..."></textarea>         
           <div class="clearfix"></div>        
 
           {!! Form::submit( 'Send', ['class'=>'btn btn-info pull-right']) !!}

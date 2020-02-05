@@ -96,9 +96,9 @@ class ItemController extends Controller
 
         $request['image'] = $_FILES['image'];
 
-        /*if($request['image']){
-             $item->image = $request['image']['name'][0];          
-        }*/
+        if($request['image']){
+             $item->image = time()."_".$request['image']['name'][0];       
+        }
 		
 
         if($item->save()){
@@ -198,7 +198,7 @@ class ItemController extends Controller
 		
 		if($request->hasFile('image')){
 			
-			$filename = $request['image']['name'][0];
+			$filename = time()."_".$request['image']['name'][0];
 			
 		} else {
 			

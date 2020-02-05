@@ -45,6 +45,20 @@ class HomeController extends Controller
         return view('frontend.category_listing', compact('allCategories','allItem'));
     }
 	
+	
+	public function aboutus(){
+        
+        return view('frontend.aboutus');
+		
+    }
+		
+	public function privacypolicy(){
+        
+        return view('frontend.privacypolicy');
+		
+    }
+	
+	
 	public function contactus(){
         
         return view('frontend.contactus');
@@ -56,22 +70,21 @@ class HomeController extends Controller
      * @Function name : sendMail
      * @Purpose : sendMail
      * @Added by : Santhosh    
-     * @Added Date : Jan 30, 2020
+     * @Added Date : Feb 05, 2020
      */
     
     public function sendMail(Request $request)
     {
     
         $form_post = $request->all();
-
-        //print_r($form_post);
-        //exit;
-		       
+	       
         if($form_post) {
 			
-			$email = $form_post['email'];                		        
-			$form_message = $form_post['message'];                		        
-			$name = $form_post['name'];                		        
+			           		        
+			$name = $form_post['name'];   
+            $email = $form_post['email'];  
+            $phone = $form_post['phone'];    			
+			$form_message = $form_post['message'];          		        
 
 			$subject = "Contact Us";
 			$to_email= 'dummyproj007@gmail.com';
@@ -79,9 +92,10 @@ class HomeController extends Controller
 			
 		
 			$message ="<h3>Contact Us</h3>"."<br/>";
-			$message.= $form_message."<br/>";
+			$message.= $form_message."<br/><br/>";
 			$message.= 'Thanks!<br />';
 			$message.= $name."<br/>";
+			$message.= "Phone :".$phone."<br/>";
 
 			//print_r($message);
 			//exit;

@@ -89,9 +89,9 @@ class PostController extends Controller
 
         $request['image'] = $_FILES['image'];
 
-        //if($request['image']){
-             //$item->image = $request['image']['name'][0];          
-        //}
+        if($request['image']){
+             $item->image = time()."_".$request['image']['name'][0];          
+        }
 
         if( $item->save() ){
 
@@ -155,16 +155,16 @@ class PostController extends Controller
 		//dd($image);		
 		//if($image[0] == null){
 			
-		/*
+		
 		if($request->hasFile('image')){
 			
-			$filename = $request['image']['name'][0];
+			$filename = time()."_".$request['image']['name'][0];
 			
 		} else {
 			
 			$filename = $item->image;
 		}
-		*/
+		
 		
         $item->title = $request['title'];
         $item->alias = str_slug($request['alias']);
@@ -177,9 +177,9 @@ class PostController extends Controller
         $item->address3 = $request['address3'];
         $item->zipcode = $request['zipcode'];
         $item->published = $request['published'];
-        $item->phone = $request['phone'];
+        $item->phone = $request['phone'];		
+		$item->image = $filename;
 		
-		//$item->image = $filename;
         //$request['image'] = $_FILES['image'];
         //dd($request['image']['name'][0]);
         //dd($request['image'][0]['originalName']);

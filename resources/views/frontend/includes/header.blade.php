@@ -40,6 +40,15 @@
 					<li class="dropdown head-dpdn">
 						<a href=""><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
 					</li>
+					<li class="dropdown head-dpdn">
+						<a href="{{URL::asset('aboutus')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> About Us</a>
+					</li>
+					<li class="dropdown head-dpdn">
+						<a href="{{URL::asset('contactus')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> Contact Us</a>
+					</li>
+					<li class="dropdown head-dpdn">
+						<a href="{{URL::asset('privacy')}}"><i class="fa fa-clipboard" aria-hidden="true"></i> Privacy Policy</a>
+					</li>
 					<!-- <li class="dropdown head-dpdn">
 						<a href="#"><span class="active uls-trigger"><i class="fa fa-language" aria-hidden="true"></i>languages</span></a>
 					</li> -->
