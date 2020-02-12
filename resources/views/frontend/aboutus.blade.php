@@ -18,7 +18,9 @@
 	<div class="privacy main-grid-border">
 		<div class="container">
 			<h2 class="w3-head">About Us</h2>
-				<p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur.</p>
+				<p>KINFRAIND   is a free classified Global ads site and leading local business directory and search engine, which help to find information about businesses in their local community. It's free and simple to make your Business profile. Once your Business profile is made it will be accessible to a huge number of potential clients over the globe.</p>
+				<p>Business Listing is known to all as a wonderful method for getting quality incoming links. Even the inexperienced SEO professionals know that incoming links play a vital function in search engine optimization. Better the class of incoming links, the higher is your visibility on the web and your search engine rankings. Business Listing is the easiest way to obtain excellent incoming links. A simple search on the web allows you to know plenty about how a business listing can enhance the search engine positions.</p>
+				<p>We offer free business listing  at kinfraind , your listing will be approved within 24 hours by manually reviewing. </p>
 		</div>	
 	</div>
  

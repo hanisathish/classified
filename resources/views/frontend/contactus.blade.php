@@ -18,6 +18,7 @@
 	<div class="submit-ad main-grid-border">
 		<div class="container">
 			<h2 class="w3-head">Contact Us</h2>
+			<p>Contact Kinfraind for any of your genuine concerns. Your questions relating to companies listing will be addressed as soon as possible. Our directory leads management system is that of world class. Your business query gets loaded to our automatic lead management software, and will match to the verified businesses. Please note Spam messages IP will be blocked without notice.</p>
 			<div class="post-ad-form">
         {!! Form::open(['route' => 'frontend.contactus.sendmail','files' => true , 'class' =>'form-horizontal','id' =>'item-form']) !!}              
           

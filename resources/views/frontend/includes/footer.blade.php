@@ -31,21 +31,26 @@
 						</div>
 						<div class="col-md-3 wthree-footer-grid">
 							<h4 class="footer-head">Contact Us</h4>
-							<span class="hq">Our headquarters</span>
+							<span class="hq">kinfraind.com</span>
 							<address>
 								<ul class="location">
 									<li><span class="glyphicon glyphicon-map-marker"></span></li>
-									<li>CENTER FOR FINANCIAL ASSISTANCE TO DEPOSED NIGERIAN ROYALTY</li>
+									<li>Seethangoli Kasaragod</li>
 								</ul>	
 								<div class="clearfix"> </div>
 								<ul class="location">
 									<li><span class="glyphicon glyphicon-earphone"></span></li>
-									<li>+0 561 111 235</li>
+									<li>+91 9539908668</li>
+								</ul>	
+								<div class="clearfix"> </div>
+								<ul class="location">
+									<li><span class="glyphicon glyphicon-earphone"></span></li>
+									<li>+91 9847570486</li>
 								</ul>	
 								<div class="clearfix"> </div>
 								<ul class="location">
 									<li><span class="glyphicon glyphicon-envelope"></span></li>
-									<li><a href="mailto:info@example.com">mail@example.com</a></li>
+									<li><a href="mailto:info@example.com">contactus@kinfraind.com</a></li>
 								</ul>						
 							</address>
 						</div>
