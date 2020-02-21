@@ -122,6 +122,9 @@ h5 {
     color: #000;/*rgba(0, 0, 0, .87);*/
 }
 </style>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	
 <!-- card ends-->
 <div class="w3-categories">
     <h3>Browse Items</h3>
@@ -256,6 +259,8 @@ h5 {
         src="http://localhost/kishore/classified/public/uploads/4.jpg"
     -->
     <div class="row">
+	   <?php //echo $count = count($allItem ); ?>
+		
         @if($allItem->count() > 0)
             @foreach($allItem as $allItemValue)
                 @if($allItemValue->image)
@@ -268,7 +273,7 @@ h5 {
                 if($allItemValue->isfeatured == 1){$img_wrapper_featured="img-wrapper";}else{$img_wrapper_featured="";}
                 ?>
                  
-                <div class="col-sm-6 col-md-4 col-lg-3 mt-4 " style="padding-bottom: 10px !important;">
+                <div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important; display: none;">
                     <div class="card <?php echo $img_wrapper_featured;?>">
                         <div class="box large">
                             <a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">
@@ -293,9 +298,9 @@ h5 {
                             </div>
                             <div class="card-text">
                                 <a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">
-                                @if( $allItemValue->address1) {!! substr($allItemValue->address1,0,30)!!}<br> @else <br> @endif
-                                @if( $allItemValue->address2) {!! substr($allItemValue->address2,0,30)!!}<br> @else <br> @endif
-                                @if( $allItemValue->address3) {!! substr($allItemValue->address3,0,30)!!}<br> @else <br> @endif
+                                @if( $allItemValue->address1) {!! substr($allItemValue->address1,0,20)!!}<br> @else <br> @endif
+                                @if( $allItemValue->address2) {!! substr($allItemValue->address2,0,20)!!}<br> @else <br> @endif
+                                @if( $allItemValue->address3) {!! substr($allItemValue->address3,0,20)!!}<br> @else <br> @endif
                                 @if( $allItemValue->zipcode) {!! $allItemValue->zipcode!!}<br> @else <br> @endif </a>
                             </div>
                         </div>
@@ -307,7 +312,10 @@ h5 {
                 </div>
             @endforeach
         @endif
+	  
     </div>
+	
+
         <!-- 
         <div class="col-md-3 ">
             <div class="focus-grid w3layouts-boder12 img-wrapper">
@@ -370,5 +378,27 @@ h5 {
         <div class="clearfix"></div>
         <!-- </div> -->
     </div>
+	
+	<div id="loadMore" style="padding-left: 380px;">
+         <a href="#">Load More</a>
+    </div>
+	  
 
     <br /><br /><br />
+	
+
+   <script>
+    $(document).ready(function() {
+	  $(".moreBox").slice(0, 10).show();
+	  if ($(".blogBox:hidden").length != 0) {
+		$("#loadMore").show();
+	  }
+	  $("#loadMore").on('click', function(e) {
+		e.preventDefault();
+		$(".moreBox:hidden").slice(0, 20).slideDown();
+		if ($(".moreBox:hidden").length == 0) {
+		  $("#loadMore").fadeOut('slow');
+		}
+	  });
+    });
+	</script>

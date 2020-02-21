@@ -24,6 +24,7 @@ class HomeController extends Controller
     public function index()
     {
 		//dd('ssss'); 
+		//echo 'ssssss';
         $Category = new Category;
         $allCategories = $Category->getCategories();  
         //Config::write('laralist.item_per_page', 'http://octobercms.com');
