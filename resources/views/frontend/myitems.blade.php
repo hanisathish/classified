@@ -51,9 +51,11 @@
 									 </div> -->
 								<div class="clearfix"></div>
 							<ul class="list">
-
+<?php
+//print_r($items);
+?>
               @foreach($items as $item)
-              
+			  
                 <a href="#">
                   <li>
                   @if( $item->image)
@@ -63,7 +65,7 @@
                 @endif 	
                 </a>
                 <section class="list-left">
-									<h5 class="title"><a href="{!!URL::route('frontend.item.show',$item->id)!!}">{!! $item->title !!}</a></h5>
+									<h5 class="title"><a href="{!!URL::route('frontend.item.show',array($item->id,$item->alias))!!}">{!! $item->title !!}</a></h5>
 									@if( $item->show_price == 1) 
 									<span class="adprice">{!!$defaultCountry->symbol!!} {{$item->price}}</span>
 									@else
@@ -80,7 +82,7 @@
 										@endif
 									</span>
                   </section>
-                  {!! Html::linkRoute('frontend.post.edit', 'Edit', array($item->id) ,['class' => "btn btn-info"]) !!} 
+                  {!! Html::linkRoute('frontend.post.edit', 'Edit', array($item->id,$item->alias) ,['class' => "btn btn-info"]) !!} 
                   {!! Html::linkRoute('frontend.post.delete', 'Delete', array($item->id) ,['class' => "btn btn-danger"]) !!} 
 									<div class="clearfix"></div>
               

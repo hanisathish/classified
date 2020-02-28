@@ -125,9 +125,6 @@ h5 {
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 	
-
-
-	 
 <!-- card ends-->
 <div class="w3-categories">
     <h3>Browse Items</h3>
@@ -261,14 +258,8 @@ h5 {
         </div> 
         src="http://localhost/kishore/classified/public/uploads/4.jpg"
     -->
-	 <?php
-        //echo"<pre>";	   
-	    //echo $count = count($allItem ); 
-		//print_r($allItem);
-	 ?>
-	 
     <div class="row">
-	   
+	   <?php //echo $count = count($allItem ); ?>
 		
         @if($allItem->count() > 0)
             @foreach($allItem as $allItemValue)
