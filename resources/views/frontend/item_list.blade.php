@@ -294,7 +294,7 @@ h5 {
                                 @endif
                             </h6>
                             <div class="meta">
-                                @if( $allItemValue->address1)<a href="tel:{!! $allItemValue->phone!!}"><i class="glyphicon glyphicon-earphone"></i>&nbsp;&nbsp;{!! $allItemValue->phone!!}</a> @else &nbsp; @endif
+                                @if( $allItemValue->address1)<a href="tel:{!! $allItemValue->phone!!}"><i class="glyphicon glyphicon-earphone"></i>&nbsp;&nbsp;{!!substr( $allItemValue->phone,0,26)!!}</a> @else &nbsp; @endif
                             </div>
                             <div class="card-text">
                                 <a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">
@@ -379,8 +379,8 @@ h5 {
         <!-- </div> -->
     </div>
 	
-	<div id="loadMore" style="padding-left: 380px;">
-         <a href="#">Load More</a>
+	<div id="loadMore" class="" style="text-align: center;">
+         <a href="#" class="btn btn-danger">Load More <i class="fa fa-refresh" aria-hidden="true"></i></a>
     </div>
 	  
 
@@ -389,13 +389,13 @@ h5 {
 
    <script>
     $(document).ready(function() {
-	  $(".moreBox").slice(0, 10).show();
+	  $(".moreBox").slice(0, 8).show();
 	  if ($(".blogBox:hidden").length != 0) {
 		$("#loadMore").show();
 	  }
 	  $("#loadMore").on('click', function(e) {
 		e.preventDefault();
-		$(".moreBox:hidden").slice(0, 20).slideDown();
+		$(".moreBox:hidden").slice(0, 16).slideDown();
 		if ($(".moreBox:hidden").length == 0) {
 		  $("#loadMore").fadeOut('slow');
 		}
