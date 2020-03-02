@@ -51,7 +51,7 @@ class PostController extends Controller
 
         $item = new Item;
         $item->title = $request['title'];
-        $item->alias = str_slug($request['alias']);
+        $item->alias = str_slug($request['title']);
         $item->country_id = $request['country_id'];
         $item->category_id = $request['category_id'];
         $item->price = $request['price'];
@@ -116,7 +116,12 @@ class PostController extends Controller
                     $item_image->published = 1;
                     $item_image->save();
                 }
-            }            
+            }
+          
+		     //$alias = str_slug($request['title']."-".$item->id);
+		     $alias = str_slug($request['title']);
+		     DB::table('items')->where('id', $item->id)->update(array('alias' => $alias));
+             		  
         }
         return redirect()->route('frontend.user.myitems');
 
@@ -167,7 +172,7 @@ class PostController extends Controller
 		
 		
         $item->title = $request['title'];
-        $item->alias = str_slug($request['alias']);
+        $item->alias = str_slug($request['title']);
         $item->country_id = $request['country_id'];
         $item->category_id = $request['category_id'];
         $item->price = $request['price'];
@@ -218,6 +223,10 @@ class PostController extends Controller
                 }
             }
             
+			//$alias = str_slug($request['title']."-".$item->id);
+		     $alias = str_slug($request['title']);
+		     DB::table('items')->where('id', $item->id)->update(array('alias' => $alias));
+			 
         }
 
          return redirect()->route('frontend.user.myitems');
