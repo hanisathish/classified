@@ -24,15 +24,105 @@ class HomeController extends Controller
     public function index()
     {
 		//dd('ssss'); 
-		//echo 'ssssss';
         $Category = new Category;
         $allCategories = $Category->getCategories();  
         //Config::write('laralist.item_per_page', 'http://octobercms.com');
 
-        $allItem = Item::where('published',1)->get();
+        //$allItem = Item::where('published',1)->get();
+		
+        $allItem = Item::orderBy('created_at','DESC')->limit(8)->get();
+		
         //dd($allItem->count());
         return view('frontend.home', compact('allCategories','allItem'));
     }
+	
+	
+	public function DataAjaxload(Request $request)
+    {
+        
+		$set_output = '';
+        $id = $request->id;
+        
+        $allItem = Item::where('id','<',$id)->orderBy('created_at','DESC')->limit(8)->get();
+        
+
+        if(!$allItem->isEmpty())
+        {
+            foreach($allItem as $allItemValue)
+            {
+				
+				if($allItemValue->image)
+					
+                    $itemImageDisp = $allItemValue->image;
+                else
+                    $itemImageDisp = "dummy.png";
+                
+				if($allItemValue->isfeatured == 1){$img_wrapper_featured="img-wrapper";}else{$img_wrapper_featured="";}
+				
+				$url = url('/');
+                $url2 = ('/item/'.$allItemValue->id);				
+				$img = ('/uploads/'.$itemImageDisp);
+				
+				$linkurl = $url.$url2;				
+				$imgurl = $url.$img;
+				
+				echo $img_wrapper_featured;
+				 
+                $set_output .= '<div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important;">
+								<div class="card '.$img_wrapper_featured.'">
+								<div class="box large">
+									<a href="'.$linkurl.'" class="itemviewlink">
+										<img class="child" src="'.$imgurl.'" alt="'.substr($allItemValue->title,0,25).'">
+									</a>
+							    </div>								
+								<div class="card-block">
+								<h4 class="card-title mt-3">'.substr($allItemValue->title,0,28).'</h4>
+								<h6 class="card-title mt-3">';
+								if( $allItemValue->show_price == 1) {
+				 $set_output .= '<a href="'.$linkurl.'" class="itemviewlink">&#x20b9;'.$allItemValue->price.'</a>';
+								}
+				 $set_output .= '</h6>
+				                <div class="meta">';
+		                         if( $allItemValue->address1) {
+				 $set_output .='<a href="tel:'.$allItemValue->phone.'"><i class="glyphicon glyphicon-earphone"></i>&nbsp;&nbsp;'. $allItemValue->phone.'</a>';
+								 }
+	             $set_output .='</div>
+				                <div class="card-text">
+								<a href="'.$linkurl.'" class="itemviewlink">';
+								if( $allItemValue->address1) { 
+						$set_output.='<p>'.substr($allItemValue->address1,0,20).'</p>';
+								} 
+								if( $allItemValue->address2) { 
+						$set_output.='<p>'.substr($allItemValue->address2,0,20).'</p>';
+								} 
+								if( $allItemValue->address3) { 
+						$set_output.='<p>'.substr($allItemValue->address3,0,20).'</p>';
+								}
+								if( $allItemValue->zipcode)  { 
+						$set_output.='<p>'.$allItemValue->zipcode.'</p>';
+								}
+				$set_output .='</a>';
+				$set_output .='</div>
+							   </div>
+							   <div class="card-footer">
+	                           <small><a href="'.$linkurl.'" class="itemviewlink">'.date('dS M, Y g:i a',strtotime($allItemValue->created_at)).'</a></small>
+							   <a href="'.$linkurl.'" class=" float-right badge badge-info">show</a>
+							   </div>
+							   </div>
+							   </div>'; 
+
+			}
+			
+            $set_output .= '<div id="remove-row">
+                               <button id="btn-more" data-id="'.$allItemValue->id.'" class="">Load More</button>
+                            </div>';
+            
+            echo $set_output;
+        
+    }
+	
+    }
+	
 
     public function category_index()
     {

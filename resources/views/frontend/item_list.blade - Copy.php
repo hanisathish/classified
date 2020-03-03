@@ -267,7 +267,7 @@ h5 {
 		//print_r($allItem);
 	      ?>
 	 
-    <div class="row" id="load-data"> 
+    <div class="row">
 	   
 		
         @if($allItem->count() > 0)
@@ -282,7 +282,7 @@ h5 {
                 if($allItemValue->isfeatured == 1){$img_wrapper_featured="img-wrapper";}else{$img_wrapper_featured="";}
                 ?>
                  
-                <div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important;">
+                <div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important; display: none;">
                     <div class="card <?php echo $img_wrapper_featured;?>">
                         <div class="box large">
                             <a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">
@@ -321,11 +321,7 @@ h5 {
                 </div>
             @endforeach
         @endif
-	
-    <div id="remove-row" style="padding-left: 380px;">
-		<button id="btn-more" data-id="{{ $allItemValue->id}}"> Load More </button>
-	</div>
- 	
+	  
     </div>
 	
 
@@ -392,66 +388,26 @@ h5 {
         <!-- </div> -->
     </div>
 	
-	
-		
-		
-	<!--<div id="loadMore" style="padding-left: 380px;">
+	<div id="loadMore" style="padding-left: 380px;">
          <a href="#">Load More</a>
-    </div>-->
+    </div>
 	  
 
     <br /><br /><br />
 	
-   <script>
-	$(document).ready(function(){
-		
-	   // call function on #btn-more
-	   $(document).on('click','#btn-more',function(){
-		   // set id value	
-		   var id = $(this).data('id');	
-   
-		   //alert(id);
-		   
-		   $("#btn-more").html("Loading....");
-		   
-		   // call ajax with post method
-		   $.ajax({
-			   method : "POST", 	
-			   url : '{{ url("item/loaditems") }}',           
-			   data : {id:id, _token:"{{csrf_token()}}"},
-			   dataType : "text",
-			   success : function (datas)
-			   {  // ajax success
-				  if(datas != '') {
-					  // remove row
-					  $('#remove-row').remove();
-					  // append result 
-					  $('#load-data').append(datas);
-				  }
-				  else
-				  {	  
-					   // no data found
-					  $('#btn-more').html("No Data");
-				  }
-			   }
-		   });
-	   });  
-	   
-	}); 
-</script>
 
-<!--<script>
-$(document).ready(function() {
-  $(".moreBox").slice(0, 10).show();
-  if ($(".blogBox:hidden").length != 0) {
-	$("#loadMore").show();
-  }
-  $("#loadMore").on('click', function(e) {
-	e.preventDefault();
-	$(".moreBox:hidden").slice(0, 20).slideDown();
-	if ($(".moreBox:hidden").length == 0) {
-	  $("#loadMore").fadeOut('slow');
-	}
-  });
-});
-</script>-->
+   <script>
+    $(document).ready(function() {
+	  $(".moreBox").slice(0, 10).show();
+	  if ($(".blogBox:hidden").length != 0) {
+		$("#loadMore").show();
+	  }
+	  $("#loadMore").on('click', function(e) {
+		e.preventDefault();
+		$(".moreBox:hidden").slice(0, 20).slideDown();
+		if ($(".moreBox:hidden").length == 0) {
+		  $("#loadMore").fadeOut('slow');
+		}
+	  });
+    });
+	</script>
