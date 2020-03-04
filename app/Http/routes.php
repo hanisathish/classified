@@ -97,7 +97,13 @@ Route::group(['namespace' => 'Auth'], function () {
 
 Route::group(['namespace' => 'Frontend', 'middleware' => 'web'], function () {
     //Route::auth();
+	
     Route::get('/', 'HomeController@index')->name('frontend.home');
+	Route::post('item/loaditems','HomeController@DataAjaxload');
+	
+	Route::get('item/loaddata','PageLoadController@Dataload'); 
+    Route::post('item/loaddata','PageLoadController@DataAjaxload');
+	  
 	
 	Route::get('aboutus', 'HomeController@aboutus')->name('frontend.aboutus');	
 	Route::get('privacy', 'HomeController@privacypolicy')->name('frontend.privacy');	
