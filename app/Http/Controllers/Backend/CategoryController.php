@@ -48,12 +48,17 @@ class CategoryController extends Controller
         $category->fa_icons = $request['fa_icons'];
 
         $image = $request->file('logo');
+
         $filename=null;
-         if($image->isValid()){
-            $extension = $image->getClientOriginalExtension();
-            $uploadPath = public_path(). '/uploads';
-            $filename = rand(111,999). '.'. $extension;
-            $image->move($uploadPath, $filename);   
+        if($_FILES['logo']['error'] == 0)
+        {
+            if($image->isValid()){
+            
+                $extension = $image->getClientOriginalExtension();
+                $uploadPath = public_path(). '/uploads';
+                $filename = rand(111,999). '.'. $extension;
+                $image->move($uploadPath, $filename);   
+            }
         }
         $category->logo = $filename;
         

@@ -69,13 +69,15 @@ class UserController extends Controller
         }*/
         
 		if($request->hasFile('image')){
-			
-			$image = $request->file('image');			 
-			$extension = $image->getClientOriginalExtension();
-			$imageName = basename($image->getClientOriginalName(),("." . $extension));
-			$imageName .= "_" . time() . '.' . $extension;
-			$uploadPath = public_path(). DIRECTORY_SEPARATOR. 'profile' . DIRECTORY_SEPARATOR;
-			$image->move($uploadPath, $imageName);				
+            if($_FILES['image']['error'] == 0)
+            {
+    			$image = $request->file('image');			 
+    			$extension = $image->getClientOriginalExtension();
+    			$imageName = basename($image->getClientOriginalName(),("." . $extension));
+    			$imageName .= "_" . time() . '.' . $extension;
+    			$uploadPath = public_path(). DIRECTORY_SEPARATOR. 'profile' . DIRECTORY_SEPARATOR;
+    			$image->move($uploadPath, $imageName);				
+            }
 		  
 		}else {
 			$imageName = $user->avatar;			

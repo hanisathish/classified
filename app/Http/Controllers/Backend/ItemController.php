@@ -103,28 +103,30 @@ class ItemController extends Controller
 
         if($item->save()){
 			
-			
-            if($request['image']){ 
-			
-			 $images = $request->file('image');
-			 
-			 for($i=0;$i<count($images);$i++){
-				 
-				$image = $request->file('image')[$i];
-				$extension = $image->getClientOriginalExtension();
-				//dd($extension);
-				$uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
-				$filename = time()."_".$request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
-				$image->move($uploadPath, $filename);  
-				
-                $item_image = new Item_Images;
-                $item_image->image = $filename;
-                $item_image->item_id = $item->id;
-                $item_image->published = 1;
-                //$item_image->s3key = $s3key;
-                $item_image->save();
-				
-			   }
+			if($_FILES['image']['error'] == 0)
+            {    
+                if($request['image']){ 
+    			
+    			 $images = $request->file('image');
+    			 
+    			 for($i=0;$i<count($images);$i++){
+    				 
+    				$image = $request->file('image')[$i];
+    				$extension = $image->getClientOriginalExtension();
+    				//dd($extension);
+    				$uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
+    				$filename = time()."_".$request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+    				$image->move($uploadPath, $filename);  
+    				
+                    $item_image = new Item_Images;
+                    $item_image->image = $filename;
+                    $item_image->item_id = $item->id;
+                    $item_image->published = 1;
+                    //$item_image->s3key = $s3key;
+                    $item_image->save();
+    				
+    			   }
+                }
             }
 
             $request->session()->flash('alert-success','Item added successfully.');

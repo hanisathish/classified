@@ -95,26 +95,29 @@ class PostController extends Controller
 
         if( $item->save() ){
 
-            if($request->hasFile('image')){ 
+            if($_FILES['image']['error'] == 0)
+            {
+                if($request->hasFile('image')){ 
 
-                $images = $request->file('image');
+                    $images = $request->file('image');
 
-                for($i=0;$i<count($images);$i++){
-					
-                    $image = $request->file('image')[$i];
-                    $extension = $image->getClientOriginalExtension();
-                    //dd($extension);
-                    $uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
-                    $filename = time()."_".$request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
-                    $image->move($uploadPath, $filename); 
+                    for($i=0;$i<count($images);$i++){
+    					
+                        $image = $request->file('image')[$i];
+                        $extension = $image->getClientOriginalExtension();
+                        //dd($extension);
+                        $uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
+                        $filename = time()."_".$request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+                        $image->move($uploadPath, $filename); 
 
-   					
+       					
 
-                    $item_image = new Item_Images;
-                    $item_image->image = $filename;
-                    $item_image->item_id = $item->id;
-                    $item_image->published = 1;
-                    $item_image->save();
+                        $item_image = new Item_Images;
+                        $item_image->image = $filename;
+                        $item_image->item_id = $item->id;
+                        $item_image->published = 1;
+                        $item_image->save();
+                    }
                 }
             }
           
@@ -199,30 +202,31 @@ class PostController extends Controller
 		$request['image'] = $_FILES['image'];
 
         if( $item->save() ){
-             
-            if($request->hasFile('image')){
-						
-				// Insert new Images
-               
-                $images = $request->file('image');
-                //foreach ($request['image']['name'] as $imagename) {
-                for($i=0;$i<count($images);$i++){
- 
-                    $image = $request->file('image')[$i];
-                    $extension = $image->getClientOriginalExtension();
-                    //dd($extension);
-                    $uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
-                    $filename = time()."_".$request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
-                    $image->move($uploadPath, $filename);   
+            if($_FILES['image']['error'] == 0)
+            { 
+                if($request->hasFile('image')){
+    						
+    				// Insert new Images
+                   
+                    $images = $request->file('image');
+                    //foreach ($request['image']['name'] as $imagename) {
+                    for($i=0;$i<count($images);$i++){
+     
+                        $image = $request->file('image')[$i];
+                        $extension = $image->getClientOriginalExtension();
+                        //dd($extension);
+                        $uploadPath = public_path(). DIRECTORY_SEPARATOR. 'uploads' . DIRECTORY_SEPARATOR;
+                        $filename = time()."_".$request['image']['name'][$i];//strtotime(date('Y-m-d H:i:s')).'_'.rand(111,999).'.'. $extension;
+                        $image->move($uploadPath, $filename);   
 
-                    $item_image = new Item_Images;
-                    $item_image->image = $filename;
-                    $item_image->item_id = $item->id;
-                    $item_image->published = 1;
-                    $item_image->save();
+                        $item_image = new Item_Images;
+                        $item_image->image = $filename;
+                        $item_image->item_id = $item->id;
+                        $item_image->published = 1;
+                        $item_image->save();
+                    }
                 }
             }
-            
 			//$alias = str_slug($request['title']."-".$item->id);
 		     $alias = str_slug($request['title']);
 		     DB::table('items')->where('id', $item->id)->update(array('alias' => $alias));
