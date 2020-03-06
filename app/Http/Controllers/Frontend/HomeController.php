@@ -43,7 +43,7 @@ class HomeController extends Controller
 		$set_output = '';
         $id = $request->id;
         
-        $allItem = Item::where('id','<',$id)->orderBy('created_at','DESC')->limit(8)->get();
+        $allItem = Item::where('id','<',$id)->where('published',1)->orderBy('created_at','DESC')->limit(8)->get();
         
 
         if(!$allItem->isEmpty())
@@ -60,7 +60,8 @@ class HomeController extends Controller
 				if($allItemValue->isfeatured == 1){$img_wrapper_featured="img-wrapper";}else{$img_wrapper_featured="";}
 				
 				$url = url('/');
-                $url2 = ('/item/'.$allItemValue->id);				
+                //$url2 = ('/item/'.$allItemValue->id);				
+                $url2 = ('/item/'.$allItemValue->alias);
 				$img = ('/uploads/'.$itemImageDisp);
 				
 				$linkurl = $url.$url2;				
@@ -76,7 +77,7 @@ class HomeController extends Controller
 									</a>
 							    </div>								
 								<div class="card-block">
-								<h4 class="card-title mt-3">'.substr($allItemValue->title,0,28).'</h4>
+								<h4 class="card-title mt-3">'.substr($allItemValue->title,0,24).'</h4>
 								<h6 class="card-title mt-3">';
 								if( $allItemValue->show_price == 1) {
 				 $set_output .= '<a href="'.$linkurl.'" class="itemviewlink">&#x20b9;'.$allItemValue->price.'</a>';

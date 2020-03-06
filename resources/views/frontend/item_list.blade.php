@@ -280,12 +280,14 @@ h5 {
                 
                 <?php
                 if($allItemValue->isfeatured == 1){$img_wrapper_featured="img-wrapper";}else{$img_wrapper_featured="";}
+
+                $url_al=$allItemValue->alias;
                 ?>
                  
                 <div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important;">
                     <div class="card <?php echo $img_wrapper_featured;?>">
                         <div class="box large">
-                            <a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">
+                            <a href="{{URL::asset('/item/'.$url_al)}}" class="itemviewlink">
                                 <img class="child" src="{{ URL::asset('uploads/'.$itemImageDisp)}}" alt="Card image cap">
                             </a>
                         </div>
@@ -293,11 +295,11 @@ h5 {
                             <!-- <figure class="profile">
                                 <img src="https://picsum.photos/200/150/?random" class="profile-avatar" alt="">
                             </figure> -->
-                            <h4 class="card-title mt-3">{{substr($allItemValue->title,0,28)}}</h4>
+                            <h4 class="card-title mt-3">{{substr($allItemValue->title,0,24)}}</h4>
 
                             <h6 class="card-title mt-3">
                                 @if( $allItemValue->show_price == 1) 
-                                    <a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">&#x20b9; {{$allItemValue->price}}</a>
+                                    <a href="{{URL::asset('/item/'.$url_al)}}" class="itemviewlink">&#x20b9; {{$allItemValue->price}}</a>
                                 @else
                                     &nbsp;
                                 @endif
@@ -306,7 +308,7 @@ h5 {
                                 @if( $allItemValue->address1)<a href="tel:{!! $allItemValue->phone!!}"><i class="glyphicon glyphicon-earphone"></i>&nbsp;&nbsp;{!!substr( $allItemValue->phone,0,26)!!}</a> @else &nbsp; @endif
                             </div>
                             <div class="card-text">
-                                <a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">
+                                <a href="{{URL::asset('/item/'.$url_al)}}" class="itemviewlink">
                                 @if( $allItemValue->address1) {!! substr($allItemValue->address1,0,20)!!}<br> @else <br> @endif
                                 @if( $allItemValue->address2) {!! substr($allItemValue->address2,0,20)!!}<br> @else <br> @endif
                                 @if( $allItemValue->address3) {!! substr($allItemValue->address3,0,20)!!}<br> @else <br> @endif
@@ -314,8 +316,8 @@ h5 {
                             </div>
                         </div>
                         <div class="card-footer">
-                            <small><a href="{{URL::asset('/item/'.$allItemValue->id)}}" class="itemviewlink">{{date('dS M, Y g:i a',strtotime($allItemValue->created_at))}}</a></small>
-                            <a href="{{URL::asset('/item/'.$allItemValue->id)}}" class=" float-right badge badge-info">show</a>
+                            <small><a href="{{URL::asset('/item/'.$url_al)}}" class="itemviewlink">{{date('dS M, Y g:i a',strtotime($allItemValue->created_at))}}</a></small>
+                            <a href="{{URL::asset('/item/'.$url_al)}}" class=" float-right badge badge-info">show</a>
                         </div>
                     </div>
                 </div>

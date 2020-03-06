@@ -26,7 +26,13 @@ class ItemController extends Controller
     
     public function show($id)
     {
-        $item =  Item::find($id);
+        //$item =  Item::find($id);
+
+        $item_al =  Item::select('*')->where('alias', $id)->get();
+
+        $item =  Item::find($item_al[0]->id);
+
+        //dd($item);
 
         if($item){
             
