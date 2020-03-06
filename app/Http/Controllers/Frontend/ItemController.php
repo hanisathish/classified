@@ -56,7 +56,7 @@ class ItemController extends Controller
             $items =  Item::select('*')->where('category_id' ,$item->category_id)->whereNotIn('id', [$item->id])->get();    
         }
 
-        $item_images = Item_Images::where('item_id',$id)->get();
+        $item_images = Item_Images::where('item_id',$item_al[0]->id)->get();
         Meta::meta('title', $item->title);
         Meta::meta('description', $item->description);
         $defaultCountry = Country::find(Config('laralist.default_country'));
