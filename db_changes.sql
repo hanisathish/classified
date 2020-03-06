@@ -20,3 +20,8 @@ UPDATE `categories` SET `fa_icons` = 'fa fa-list-ol', `updated_at` = NULL WHERE 
 -- Santhosh 29 Jan 2020
 
 ALTER TABLE `users` ADD `createdBy` INT(11) NULL AFTER `created_at`, ADD `updatedBy` INT(11) NULL AFTER `updated_at`, ADD `deletedBy` INT(11) NULL AFTER `updatedBy`, ADD `deleted_at` DATETIME NULL AFTER `deletedBy`;
+
+
+-- Santhosh 06 Mar 2020
+
+ALTER TABLE `advt` ADD `published` TINYINT(4) NULL DEFAULT NULL AFTER `advt_url`;

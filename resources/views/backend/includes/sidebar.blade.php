@@ -17,6 +17,12 @@
             <i class="fa fa-files-o"></i> <span>Categories</span>
           </a>
         </li>
+		
+		<li {!! strpos($current_route_name, 'admin.advt')!== false? 'class="active"':'' !!}> 
+          <a href="{!! url('admin/advt') !!}">
+            <i class="fa fa-files-o"></i> <span>Advertisement</span>
+          </a>
+        </li>
 
          <li {!! strpos($current_route_name, 'admin.countries')!== false? 'class="active"':'' !!}>
           <a href="{!! url('admin/countries') !!}">

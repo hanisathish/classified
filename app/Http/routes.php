@@ -33,9 +33,17 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
     Route::get('categories/create', 'CategoryController@create')->name('admin.categories.create'); 
     Route::post('categories/store', 'CategoryController@store')->name('admin.categories.store'); 
     Route::get('categories/edit/{edit}', 'CategoryController@edit')->name('admin.categories.edit');
-    Route::post('categories/update', 'CategoryController@update')->name('admin.categories.update');   
+    Route::post('categories/update', 'CategoryController@update')->name('admin.categories.update');  
 
-
+    Route::get('advt', 'AdvtController@index')->name('admin.advt'); 
+    Route::post('advt/publish', 'AdvtController@publish')->name('admin.advt.publish');
+    Route::post('advt/unpublish', 'AdvtController@unpublish')->name('admin.advt.unpublish'); 
+    Route::post('advt/destroy', 'AdvtController@destroy')->name('admin.advt.destroy');  
+    Route::get('advt/create', 'AdvtController@create')->name('admin.advt.create'); 
+    Route::post('advt/store', 'AdvtController@store')->name('admin.advt.store'); 
+    Route::get('advt/edit/{edit}', 'AdvtController@edit')->name('admin.advt.edit');
+    Route::post('advt/update', 'AdvtController@update')->name('admin.advt.update');
+	
     Route::get('countries', 'CountryController@index')->name('admin.countries'); 
     Route::get('countries/create', 'CountryController@create')->name('admin.countries.create');
     Route::get('countries/edit/{edit}', 'CountryController@edit')->name('admin.countries.edit'); 
