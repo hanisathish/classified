@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         //$allItem = Item::where('published',1)->get();
 		
-        $allItem = Item::orderBy('created_at','DESC')->limit(8)->get();
+        $allItem = Item::where('published',1)->orderBy('created_at','DESC')->limit(8)->get();//->limit(8)
 		
         //dd($allItem->count());
         return view('frontend.home', compact('allCategories','allItem'));
@@ -45,7 +45,7 @@ class HomeController extends Controller
         
         $allItem = Item::where('id','<',$id)->where('published',1)->orderBy('created_at','DESC')->limit(8)->get();
         
-
+        //dd($allItem);
         if(!$allItem->isEmpty())
         {
             foreach($allItem as $allItemValue)
@@ -81,6 +81,8 @@ class HomeController extends Controller
 								<h6 class="card-title mt-3">';
 								if( $allItemValue->show_price == 1) {
 				 $set_output .= '<a href="'.$linkurl.'" class="itemviewlink">&#x20b9;'.$allItemValue->price.'</a>';
+								}else{
+				 $set_output .= '<a href="'.$linkurl.'" class="itemviewlink">.</a>';
 								}
 				 $set_output .= '</h6>
 				                <div class="meta">';
@@ -114,13 +116,14 @@ class HomeController extends Controller
 
 			}
 			
-            $set_output .= '<div id="remove-row" style="text-align: center;">
+            $set_output .= '<div id="remove-row" class="col-sm-12 col-md-12 col-lg-12 mt-12" style="text-align: center;">
                                <button id="btn-more" data-id="'.$allItemValue->id.'" class="btn btn-danger">Load More <i class="fa fa-refresh" aria-hidden="true"></i></button>
                             </div>';
             
             echo $set_output;
         
     }
+    
 	
     }
 	

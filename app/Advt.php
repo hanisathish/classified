@@ -21,7 +21,7 @@ class Advt extends Model
 
         parent::boot(); 
 
-        parent::observe(new \App\Observers\ItemObserver); 
+        //parent::observe(new \App\Observers\ItemObserver); 
 
     }
 }

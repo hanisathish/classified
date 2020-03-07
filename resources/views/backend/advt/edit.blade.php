@@ -84,7 +84,7 @@ Edit Advertisement
                     <div class="form-group">
                     {!! Form::label('inputImage', 'Existing Image', array('class'=> 'col-sm-2 control-label')) !!}
                       <div class="col-sm-10">
-                        <img src="{!!asset('/uploads/'. $advt->advt_image )!!}" />                   
+                        <img style="width: 100px;height:100px;" src="{!!asset('/uploads/'. $advt->advt_image )!!}" />                   
                       </div>
                     </div>
                     @endif

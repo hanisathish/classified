@@ -24,4 +24,26 @@ ALTER TABLE `users` ADD `createdBy` INT(11) NULL AFTER `created_at`, ADD `update
 
 -- Santhosh 06 Mar 2020
 
-ALTER TABLE `advt` ADD `published` TINYINT(4) NULL DEFAULT NULL AFTER `advt_url`;
+-- ALTER TABLE `advt` ADD `published` TINYINT(4) NULL DEFAULT NULL AFTER `advt_url`;
+
+
+-- Sathish 07 Mar 2020
+--
+-- Table structure for table `advt`
+--
+
+CREATE TABLE IF NOT EXISTS `advt` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `advt_name` varchar(255) DEFAULT NULL,
+  `advt_desc` text,
+  `advt_image` text,
+  `advt_url` text,
+  `published` tinyint(4) DEFAULT NULL,
+  `createdBy` text,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedBy` text,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `deletedBy` text,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

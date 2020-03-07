@@ -165,11 +165,15 @@
                    </div>
                 <div class="clearfix"></div>
               <ul class="list">
+                
                 @if($items->count() > 0)
                   @foreach($items as $item)
                   
+                  <?php
+                  $url_al=$item->alias;
+                  ?>
                 
-                    <a href="{{URL::asset('/item/'.$item->id)}}">
+                    <a href="{{URL::asset('/item/'.$url_al)}}">
                       <li>
                       @if(empty($item->image))  
                         <img alt="{!!$item->title!!}" src="http://placehold.it/50X40?text=Image" data-holder-rendered="true" style="display: block;">

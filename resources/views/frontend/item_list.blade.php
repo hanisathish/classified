@@ -301,7 +301,7 @@ h5 {
                                 @if( $allItemValue->show_price == 1) 
                                     <a href="{{URL::asset('/item/'.$url_al)}}" class="itemviewlink">&#x20b9; {{$allItemValue->price}}</a>
                                 @else
-                                    &nbsp;
+                                    <a href="{{URL::asset('/item/'.$url_al)}}" class="itemviewlink">.</a>
                                 @endif
                             </h6>
                             <div class="meta">
@@ -326,7 +326,7 @@ h5 {
 	
      
 
-    <div id="remove-row" style="text-align: center;">
+    <div id="remove-row" class="col-sm-12 col-md-12 col-lg-12 mt-12" style="text-align: center;">
 		<button id="btn-more" class="btn btn-danger" data-id="{{ $allItemValue->id}}"> Load More <i class="fa fa-refresh" aria-hidden="true"></i></button>
 	</div>
  	
@@ -448,6 +448,7 @@ h5 {
 			   dataType : "text",
 			   success : function (datas)
 			   {  // ajax success
+                
 				  if(datas != '') {
 					  // remove row
 					  $('#remove-row').remove();
