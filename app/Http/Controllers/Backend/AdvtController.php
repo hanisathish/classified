@@ -53,7 +53,7 @@ class AdvtController extends Controller
             
                 $extension = $image->getClientOriginalExtension();
                 $uploadPath = public_path(). '/uploads';
-                $filename = rand(111,999). '.'. $extension;
+                $filename = time().rand(111,999). '.'. $extension;
                 $image->move($uploadPath, $filename);   
             }
         }
@@ -94,7 +94,7 @@ class AdvtController extends Controller
             if($image->isValid()){
                 $extension = $image->getClientOriginalExtension();
                 $uploadPath = public_path(). '/uploads/';
-                $filename = rand(111,999). '.'. $extension;
+                $filename = time().rand(111,999). '.'. $extension;
                 $image->move($uploadPath, $filename);   
             }
         }
