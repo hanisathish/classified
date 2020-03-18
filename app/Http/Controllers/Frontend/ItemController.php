@@ -10,6 +10,7 @@ use App\Item;
 use App\Category;
 use App\Country;
 use App\Item_Images;
+use App\Advt;
 use DB;
 use Meta;
 use AWS;
@@ -31,8 +32,12 @@ class ItemController extends Controller
         $item_al =  Item::select('*')->where('alias', $id)->get();
 
         $item =  Item::find($item_al[0]->id);
+		
+		$allAdvt = DB::table('advt')->inRandomOrder()->limit(1)->get();
+		
+		$allAdvtlist = Advt::orderByRaw('RAND()')->take(1)->get();
 
-        //dd($item);
+        //dd($allAdvtlist);
 
         if($item){
             
@@ -61,7 +66,7 @@ class ItemController extends Controller
         Meta::meta('description', $item->description);
         $defaultCountry = Country::find(Config('laralist.default_country'));
 
-        return view('frontend.item', compact('item','items','item_images','defaultCountry'));       
+        return view('frontend.item', compact('item','items','item_images','defaultCountry','allAdvt','allAdvtlist'));       
     }
 
    public function search(Request $request){

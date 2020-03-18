@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
+use App\Advt;
 use DB;
 use Meta;
 use Setting;
@@ -32,8 +33,10 @@ class HomeController extends Controller
 		
         $allItem = Item::where('published',1)->orderBy('created_at','DESC')->limit(8)->get();//->limit(8)
 		
+		$allAdvt = Advt::orderByRaw('RAND()')->take(4)->get();
+		
         //dd($allItem->count());
-        return view('frontend.home', compact('allCategories','allItem'));
+        return view('frontend.home', compact('allCategories','allItem','allAdvt'));
     }
 	
 	
@@ -44,8 +47,12 @@ class HomeController extends Controller
         $id = $request->id;
         
         $allItem = Item::where('id','<',$id)->where('published',1)->orderBy('created_at','DESC')->limit(8)->get();
-        
-        //dd($allItem);
+		
+		$allAdvt = DB::table('advt')->inRandomOrder()->limit(4)->get();
+		
+        //dd($allAdvt);
+		
+		
         if(!$allItem->isEmpty())
         {
             foreach($allItem as $allItemValue)
@@ -114,6 +121,23 @@ class HomeController extends Controller
 							   </div>
 							   </div>'; 
 
+			}
+			
+			$img_wrapper_featured="";
+			foreach($allAdvt as $allAdvtValue)
+            {
+				$url1 = url('/');
+				$img2 = ('/uploads/'.$allAdvtValue->advt_image);
+				$imgurl2 = $url1.$img2;
+				$linkurl2 = $allAdvtValue->advt_url;				
+				$set_output.= '<div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important;">
+								<div class="card '.$img_wrapper_featured.'">
+								<div class="box large">
+								        <a href="'.$linkurl2.'" class="itemviewlink" target="_blank">
+										<img class="child" src="'.$imgurl2.'" alt="'.substr($allAdvtValue->advt_name,0,20).'">
+										</a>
+							    </div>
+								</div></div>';
 			}
 			
             $set_output .= '<div id="remove-row" class="col-sm-12 col-md-12 col-lg-12 mt-12" style="text-align: center;">

@@ -323,7 +323,27 @@ h5 {
                 </div>
             @endforeach
         @endif
-	
+	        <?php
+			 $img_wrapper_featured="";
+		     foreach($allAdvt as $allAdvtValue)
+              {
+				$url1 = url('/');
+				$img2 = ('/uploads/'.$allAdvtValue->advt_image);
+				$imgurl2 = $url1.$img2;
+				$linkurl2 = $allAdvtValue->advt_url;
+		    ?>
+			<div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important;">
+				<div class="card '.$img_wrapper_featured.'">
+				<div class="box large">
+						<a href="<?php echo $linkurl2 ?>" class="itemviewlink" target="_blank">
+						   <img class="child" src="<?php echo $imgurl2; ?>" alt="<?php echo substr($allAdvtValue->advt_name,0,20); ?>">
+						</a>
+				</div>								
+				</div>
+			</div>
+			<?php				    
+			  }
+	    	?>
      
 
     <div id="remove-row" class="col-sm-12 col-md-12 col-lg-12 mt-12" style="text-align: center;">

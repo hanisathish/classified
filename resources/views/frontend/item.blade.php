@@ -77,6 +77,14 @@
 							<div class="clearfix"></div>
 						</div> -->
 					</div>
+					<div style="padding-left:70px;">
+					<?php
+					$url = url('/');
+					$img = ('/uploads/'.$allAdvt[0]->advt_image);
+					$imgurl = $url.$img;
+					?>
+					<img alt="{!!$allAdvt[0]->advt_name!!}" src="{!!$imgurl!!}" class="" width="450px;" height="100px;">
+					</div>
 					<div class="interested text-left">
 						<h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
             <p><a href="tel:{!! $item->phone!!}"><i class="glyphicon glyphicon-earphone"></i>&nbsp;{!! $item->phone!!}</a></p>
@@ -104,7 +112,15 @@
 								<li><a href="#">Contrary to popular belief.</a></li>
 							</ol>
 						</div> -->
-				</div>
+						<?php
+						$url = url('/');
+						$img = ('/uploads/'.$allAdvtlist[0]->advt_image);
+						$imgurl = $url.$img;			
+			            ?>
+			        <div style="padding-left:70px;">
+					 <img alt="{!!$allAdvtlist[0]->advt_name!!}" src="{!!$imgurl!!}" class="" width="350px;" height="100px;">
+					</div>
+			</div>		    
 			<div class="clearfix"></div>
 			</div>
 		</div>
