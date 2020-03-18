@@ -8,7 +8,7 @@
     {!! Meta::tag('keywords'); !!}
     
     <title>{!! Meta::meta('title')!!}</title>
-
+    <script data-ad-client="ca-pub-4112777987680683" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <link rel="stylesheet" href="{{ URL::asset('frontend/css/bootstrap.min.css') }}">
 <!-- bootstrap-CSS -->
 <link rel="stylesheet" href="{{ URL::asset('frontend/css/bootstrap-select.css') }}"><!-- bootstrap-select-CSS -->
