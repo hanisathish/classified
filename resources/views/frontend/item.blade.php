@@ -77,13 +77,15 @@
 							<div class="clearfix"></div>
 						</div> -->
 					</div>
-					<div style="padding-left:70px;">
+					<div style="text-align: center !important;margin-left: 15%;margin-top: 1%;">
 					<?php
 					$url = url('/');
 					$img = ('/uploads/'.$allAdvt[0]->advt_image);
 					$imgurl = $url.$img;
+					//width="450px;" height="100px !important;"
 					?>
-					<img alt="{!!$allAdvt[0]->advt_name!!}" src="{!!$imgurl!!}" class="" width="450px;" height="100px;">
+
+					<img alt="{!!$allAdvt[0]->advt_name!!}" src="{!!$imgurl!!}" class="" style="width: 370px;height:150px;text-align: center;">
 					</div>
 					<div class="interested text-left">
 						<h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
@@ -117,8 +119,8 @@
 						$img = ('/uploads/'.$allAdvtlist[0]->advt_image);
 						$imgurl = $url.$img;			
 			            ?>
-			        <div style="padding-left:70px;">
-					 <img alt="{!!$allAdvtlist[0]->advt_name!!}" src="{!!$imgurl!!}" class="" width="350px;" height="100px;">
+			        <div style="text-align: center !important;margin-left: 15%;margin-top: 1%;">
+					 <img alt="{!!$allAdvtlist[0]->advt_name!!}" src="{!!$imgurl!!}" class="" style="width: 370px;height:150px;text-align: center;">
 					</div>
 			</div>		    
 			<div class="clearfix"></div>
