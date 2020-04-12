@@ -13,7 +13,7 @@ class Advt extends Model
 	
 	
     protected $fillable = [
-        'id', 'advt_name', 'advt_desc', 'advt_image', 'advt_url', 'published', 'createdBy', 
+        'id','advt_type' , 'advt_name', 'advt_desc', 'advt_image', 'advt_url', 'published', 'createdBy', 
          'created_at', 'updatedBy', 'updated_at', 'deletedBy', 'deleted_at'
     ];
 

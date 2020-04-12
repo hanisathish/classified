@@ -33,9 +33,23 @@ class HomeController extends Controller
 		
         $allItem = Item::where('published',1)->orderBy('created_at','DESC')->limit(8)->get();//->limit(8)
 		
-		$allAdvt = Advt::orderByRaw('RAND()')->take(4)->get();
-		
+		//$allAdvt = Advt::orderByRaw('RAND()')->take(4)->get();
+		 
+
+		$allAdvt = DB::select("SELECT t1.*
+					FROM advt t1, advt t2, advt t3
+					where 
+					t1.id != t2.id and
+					t1.id != t3.id and
+					t2.id != t3.id
+					and t1.published=1
+					-- and t2.published=1 and t3.published=1
+					order by rand()
+					limit 4 ");
+
+		//dd(count($allAdvt));
         //dd($allItem->count());
+        //dd($allAdvt[0]->toArray());
         return view('frontend.home', compact('allCategories','allItem','allAdvt'));
     }
 	
@@ -48,7 +62,17 @@ class HomeController extends Controller
         
         $allItem = Item::where('id','<',$id)->where('published',1)->orderBy('created_at','DESC')->limit(8)->get();
 		
-		$allAdvt = DB::table('advt')->inRandomOrder()->limit(4)->get();
+		//$allAdvt = DB::table('advt')->inRandomOrder()->limit(4)->get();
+		$allAdvt = DB::select("SELECT t1.*
+					FROM advt t1, advt t2, advt t3
+					where 
+					t1.id != t2.id and
+					t1.id != t3.id and
+					t2.id != t3.id
+					and t1.published=1 
+					-- and t2.published=1 and t3.published=1
+					order by rand()
+					limit 4 ");
 		
         //dd($allAdvt);
 		
@@ -124,20 +148,27 @@ class HomeController extends Controller
 			}
 			
 			$img_wrapper_featured="";
-			foreach($allAdvt as $allAdvtValue)
-            {
-				$url1 = url('/');
-				$img2 = ('/uploads/'.$allAdvtValue->advt_image);
-				$imgurl2 = $url1.$img2;
-				$linkurl2 = $allAdvtValue->advt_url;				
-				$set_output.= '<div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important;">
-								<div class="card '.$img_wrapper_featured.'">
-								<div class="box large">
-								        <a href="'.$linkurl2.'" class="itemviewlink" target="_blank">
-										<img class="child" src="'.$imgurl2.'" alt="'.substr($allAdvtValue->advt_name,0,20).'">
-										</a>
-							    </div>
-								</div></div>';
+			if(count($allAdvt) > 0){
+				foreach($allAdvt as $allAdvtValue)
+	            {
+					$url1 = url('/');
+					$img2 = ('/uploads/'.$allAdvtValue->advt_image);
+					$imgurl2 = $url1.$img2;
+					$linkurl2 = $allAdvtValue->advt_url;				
+					$set_output.= '<div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important;">
+									<div class="card '.$img_wrapper_featured.'">
+									<div class="box large">';
+					if($allAdvtValue->advt_type == 1){
+									
+						$set_output.= '<a href="'.$linkurl2.'" class="itemviewlink" target="_blank">
+											<img class="child" src="'.$imgurl2.'" alt="'.substr($allAdvtValue->advt_name,0,20).'">
+											</a>';
+					}else{
+						$set_output.= $allAdvtValue->advt_desc;
+					}
+
+					$set_output.= '</div></div></div>';
+				}
 			}
 			
             $set_output .= '<div id="remove-row" class="col-sm-12 col-md-12 col-lg-12 mt-12" style="text-align: center;">

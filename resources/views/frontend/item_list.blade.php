@@ -324,25 +324,42 @@ h5 {
             @endforeach
         @endif
 	        <?php
-			 $img_wrapper_featured="";
-		     foreach($allAdvt as $allAdvtValue)
-              {
-				$url1 = url('/');
-				$img2 = ('/uploads/'.$allAdvtValue->advt_image);
-				$imgurl2 = $url1.$img2;
-				$linkurl2 = $allAdvtValue->advt_url;
-		    ?>
-			<div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important;">
-				<div class="card '.$img_wrapper_featured.'">
-				<div class="box large">
-						<a href="<?php echo $linkurl2 ?>" class="itemviewlink" target="_blank">
-						   <img class="child" src="<?php echo $imgurl2; ?>" alt="<?php echo substr($allAdvtValue->advt_name,0,20); ?>">
-						</a>
-				</div>								
-				</div>
-			</div>
-			<?php				    
-			  }
+			$img_wrapper_featured="";
+            if(count($allAdvt) > 0){
+
+                foreach($allAdvt as $allAdvtValue)
+                {
+                    $url1 = url('/');
+                    $img2 = ('/uploads/'.$allAdvtValue->advt_image);
+                    $imgurl2 = $url1.$img2;
+                    $linkurl2 = $allAdvtValue->advt_url;
+                    ?>
+                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4 blogBox moreBox" style="padding-bottom: 10px !important;">
+                    <div class="card '.$img_wrapper_featured.'">
+                    <div class="box large">
+                    <?php
+                    if($allAdvtValue->advt_type == 1){
+                        ?>
+
+                        <a href="<?php echo $linkurl2 ?>" class="itemviewlink" target="_blank">
+                        <img class="child" src="<?php echo $imgurl2; ?>" alt="<?php echo substr($allAdvtValue->advt_name,0,20); ?>">
+                        </a>
+                        <?php
+                    }else{
+                        ?>
+                        <?php echo $allAdvtValue->advt_desc;?>
+                        <?php
+                    }
+                    
+                    ?>
+                    
+                    
+                    </div>                              
+                    </div>
+                    </div>   
+                    <?php				    
+                }
+            }
 	    	?>
      
 

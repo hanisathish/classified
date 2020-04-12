@@ -18,6 +18,17 @@
     $(".select2").select2();    
   });
 </script>
+
+<script>
+  $(function () {
+   
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('advt_desc')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+</script>
 @endsection
 
 @section('view-page-title')
@@ -49,6 +60,14 @@ Edit Advertisement
                 <form class="form-horizontal">
                   <div class="box-body">
                     <div class="form-group">
+                     {!! Form::label('advt_type', 'Advt type', array('class'=> 'col-sm-2 control-label')) !!}
+                      <div class="col-sm-10">
+                        <input type="radio" name="advt_type" class="minimal"  value="1" @if($advt->advt_type ==1) {{ 'checked' }} @endif > Local Ads 
+                        <input type="radio" name="advt_type" class="minimal" value="0" @if($advt->advt_type ==2) {{ 'checked' }} @endif> Google Ads
+                      </div>
+                    </div>
+
+                    <div class="form-group">
                      {!! Form::label('advt_name', 'Name', array('class'=> 'col-sm-2 control-label')) !!}
                       <div class="col-sm-10">
                        {!! Form::text('advt_name', $advt->advt_name, ['class'=>'form-control', 'placeholder'=>'Enter Name', 'id'=>'advt_name']) !!}
@@ -58,7 +77,7 @@ Edit Advertisement
                     <div class="form-group">              
                       {!! Form::label('advt_desc', 'Description', array('class'=> 'col-sm-2 control-label')) !!}
                       <div class="col-sm-10">
-                       {!! Form::text('advt_desc', $advt->advt_desc, ['class'=>'form-control', 'placeholder'=>'Enter Description', 'id'=>'advt_desc']) !!}
+                       {!! Form::textarea('advt_desc', $advt->advt_desc, ['class'=>'form-control', 'placeholder'=>'Enter Description', 'id'=>'advt_desc']) !!}
                       </div>
                     </div> 
 

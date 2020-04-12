@@ -33,9 +33,9 @@ class ItemController extends Controller
 
         $item =  Item::find($item_al[0]->id);
 		
-		$allAdvt = DB::table('advt')->inRandomOrder()->limit(1)->get();
+		$allAdvt = DB::table('advt')->where('published', 1)->inRandomOrder()->limit(1)->get();
 		
-		$allAdvtlist = Advt::orderByRaw('RAND()')->take(1)->get();
+		$allAdvtlist = Advt::orderByRaw('RAND()')->where('published', 1)->take(1)->get();
 
         //dd($allAdvtlist);
 

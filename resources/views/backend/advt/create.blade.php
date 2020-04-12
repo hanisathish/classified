@@ -12,6 +12,18 @@
     $(".select2").select2();
   });
 </script>
+
+<script>
+  $(function () {
+   
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('advt_desc')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+</script>
+
 @endsection
 
 @section('content-header')
@@ -50,6 +62,14 @@
                  {!! Form::open(['route' => 'admin.advt.store','files' => true , 'class' =>'form-horizontal']) !!}              
                   <div class="box-body">
                     <div class="form-group">
+                     {!! Form::label('advt_type', 'Advt type', array('class'=> 'col-sm-2 control-label')) !!}
+                      <div class="col-sm-10">
+                        <input type="radio" name="advt_type" class="minimal"  value="1" checked> Local Ads 
+                        <input type="radio" name="advt_type" class="minimal" value="2"> Google Ads
+                      </div>
+                    </div>
+
+                    <div class="form-group">
                      {!! Form::label('advt_name', 'Name', array('class'=> 'col-sm-2 control-label')) !!}
                       <div class="col-sm-10">
                        {!! Form::text('advt_name', null, ['class'=>'form-control', 'placeholder'=>'Enter Name', 'id'=>'advt_name']) !!}
@@ -58,7 +78,9 @@
                     <div class="form-group">              
                       {!! Form::label('advt_desc', 'Description', array('class'=> 'col-sm-2 control-label')) !!}
                       <div class="col-sm-10">
-                       {!! Form::text('advt_desc', null, ['class'=>'form-control', 'placeholder'=>'Enter Description', 'id'=>'advt_desc']) !!}
+                        
+
+                       {!! Form::textarea('advt_desc', null, ['class'=>'form-control', 'placeholder'=>'Enter Description', 'id'=>'advt_desc']) !!}
                       </div>
                     </div> 
 					
@@ -99,4 +121,5 @@
           <!-- /.box -->
         </div>
   </div>
+
 @endsection

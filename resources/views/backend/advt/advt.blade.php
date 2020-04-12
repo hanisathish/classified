@@ -125,6 +125,7 @@
                 <thead>
                 <tr>
                   <th><input name="select_all" value="1" id="categories-select-all" type="checkbox"></th>
+                  <th>Ads Type</th>
                   <th>Name</th>
                   <th>Created Date</th>
                   <th>Published</th>
@@ -135,6 +136,7 @@
                 @foreach($allAdvt as $advt)
                   <tr>
                     <td><input type="checkbox" name="id[]" value="{!! $advt->id !!}" /></td>
+                    <td>{!!($advt->advt_type==1 ? 'Local Ads' : 'Google Ads')!!}</td>                    
                     <td>{!! Html::linkRoute('admin.advt.edit', $advt->advt_name, array($advt->id)) !!}              
                     </td>
                     <td>{!!$advt->created_at!!}</td>
@@ -147,6 +149,7 @@
                 <tfoot>
                 <tr>
                   <th></th>
+                  <th>Ads Type</th>
                   <th>Name</th>
                   <th>Created Date</th>
                   <th>Published</th>

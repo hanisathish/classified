@@ -47,3 +47,6 @@ CREATE TABLE IF NOT EXISTS `advt` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- Sathish 11 Apr 2020
+ALTER TABLE `advt` ADD `advt_type` TINYINT( 1 ) NOT NULL DEFAULT '1' COMMENT '1=Normal ads,2=Google ads' AFTER `id` ;

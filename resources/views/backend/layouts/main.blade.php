@@ -153,5 +153,8 @@
 
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/app.min.js')}}"></script>
+
+<script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
+
 </body>
 </html>

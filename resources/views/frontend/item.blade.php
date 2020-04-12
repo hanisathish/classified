@@ -80,12 +80,19 @@
 					<div style="text-align: center !important;margin-left: 15%;margin-top: 1%;">
 					<?php
 					$url = url('/');
+					if($allAdvt[0]->advt_type == 1){
 					$img = ('/uploads/'.$allAdvt[0]->advt_image);
 					$imgurl = $url.$img;
 					//width="450px;" height="100px !important;"
 					?>
 
-					<img alt="{!!$allAdvt[0]->advt_name!!}" src="{!!$imgurl!!}" class="" style="width: 370px;height:150px;text-align: center;">
+					<img alt="{!!$allAdvt[0]->advt_name!!}" src="{!!$imgurl!!}" class="" style="width: 370px;height:150px;text-align: center;" />
+					<?php
+					}else{
+						echo $allAdvt[0]->advt_desc;
+					}
+
+					?>
 					</div>
 					<div class="interested text-left">
 						<h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
@@ -114,13 +121,20 @@
 								<li><a href="#">Contrary to popular belief.</a></li>
 							</ol>
 						</div> -->
+						<div style="text-align: center !important;margin-left: 15%;margin-top: 1%;">
 						<?php
 						$url = url('/');
+						if($allAdvt[0]->advt_type == 1){
 						$img = ('/uploads/'.$allAdvtlist[0]->advt_image);
 						$imgurl = $url.$img;			
 			            ?>
-			        <div style="text-align: center !important;margin-left: 15%;margin-top: 1%;">
-					 <img alt="{!!$allAdvtlist[0]->advt_name!!}" src="{!!$imgurl!!}" class="" style="width: 370px;height:150px;text-align: center;">
+			        
+					 <img alt="{!!$allAdvtlist[0]->advt_name!!}" src="{!!$imgurl!!}" class="" style="width: 370px;height:150px;text-align: center;" />
+					 <?php
+					 	}else{
+							echo $allAdvt[0]->advt_desc;
+						}
+					 ?>
 					</div>
 			</div>		    
 			<div class="clearfix"></div>

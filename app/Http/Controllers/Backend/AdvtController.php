@@ -43,6 +43,7 @@ class AdvtController extends Controller
         $advt->advt_desc = $request['advt_desc'];
         $advt->advt_url = $request['advt_url'];
         $advt->published = $request['published'];
+        $advt->advt_type = $request['advt_type']; 
 
         $image = $request->file('advt_image');
 
@@ -84,6 +85,7 @@ class AdvtController extends Controller
         $advt->advt_desc = $request['advt_desc'];
         $advt->advt_url = $request['advt_url'];
         $advt->published = $request['published'];
+        $advt->advt_type = $request['advt_type']; 
         
         $filename=null;
 
